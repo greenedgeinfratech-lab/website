@@ -1,0 +1,125 @@
+<?php
+include 'db.php';
+
+// Pagination setup
+$limit = 6;
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+if ($page < 1) $page = 1;
+
+$offset = ($page - 1) * $limit;
+
+// Count total resources
+$totalQuery = $conn->query("SELECT COUNT(*) as total FROM resources");
+$totalResources = $totalQuery->fetch_assoc()['total'];
+$totalPages = ceil($totalResources / $limit);
+
+// Fetch resources
+$stmt = $conn->prepare("SELECT * FROM resources ORDER BY created_at DESC LIMIT ? OFFSET ?");
+$stmt->bind_param("ii", $limit, $offset);
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources | GreenEdge Infratech</title>
+<link rel="icon" href="assets/image/favicon.ico">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+<div id="header"></div>
+
+<!-- Hero Section -->
+<section class="relative bg-[url('assets/image/about-bg.png')] bg-cover bg-center text-white py-20">
+    <div class="absolute inset-0 bg-gradient-to-r from-green-900/90 via-green-700/70 to-transparent"></div>
+    <div class="container mx-auto text-center px-6 relative z-10">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Resources</h1>
+        <p class="text-lg max-w-2xl mx-auto">
+            Explore helpful guides, insights, and sustainable energy resources.
+        </p>
+    </div>
+</section>
+
+<!-- Resources Grid -->
+<section class="py-20 bg-white">
+<div class="container mx-auto px-6">
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+
+<?php if ($result->num_rows > 0): ?>
+    <?php while($row = $result->fetch_assoc()): ?>
+        
+        <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+            
+            <!-- Optional image (if column exists) -->
+            <?php if(!empty($row['image'])): ?>
+                <a href="resource_details.php?id=<?= $row['id']; ?>">
+                    <img src="uploads/resources/<?= htmlspecialchars($row['image']); ?>"
+                         alt="<?= htmlspecialchars($row['title']); ?>"
+                         class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+                </a>
+            <?php endif; ?>
+
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">
+                    <?= htmlspecialchars($row['title']); ?>
+                </h3>
+
+                <p class="text-gray-600 mb-4">
+                    <?= substr(strip_tags($row['content']), 0, 120); ?>...
+                </p>
+
+                <a href="resource_details.php?id=<?= $row['id']; ?>"
+                   class="text-green-600 font-semibold hover:underline">
+                   Read More <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+
+    <?php endwhile; ?>
+<?php else: ?>
+    <p class="col-span-3 text-center text-gray-500">
+        No resources available.
+    </p>
+<?php endif; ?>
+
+</div>
+
+<!-- Pagination -->
+<div class="flex justify-center space-x-2">
+
+<?php if ($page > 1): ?>
+    <a href="?page=<?= $page - 1; ?>"
+       class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">
+       <i class="fas fa-arrow-left"></i> Prev
+    </a>
+<?php endif; ?>
+
+<?php for ($i = 1; $i <= $totalPages; $i++): ?>
+    <a href="?page=<?= $i; ?>"
+       class="px-4 py-2 <?= $i == $page ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700'; ?> rounded hover:bg-green-500 hover:text-white">
+       <?= $i; ?>
+    </a>
+<?php endfor; ?>
+
+<?php if ($page < $totalPages): ?>
+    <a href="?page=<?= $page + 1; ?>"
+       class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">
+       Next <i class="fas fa-arrow-right"></i>
+    </a>
+<?php endif; ?>
+
+</div>
+
+</div>
+</section>
+
+<div id="footer"></div>
+<script src="./assets/js/component.js"></script>
+</body>
+</html>

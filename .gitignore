@@ -1,0 +1,5 @@
+error_log
+debug_post.txt
+*.zip
+.DS_Store
+Thumbs.db
