@@ -9,7 +9,7 @@ echo "=== SMTP Connection & Authentication Test ===\n";
 
 try {
     $mail = createMailer();
-    $mail->SMTPDebug = 2; // Output SMTP connection details
+    $mail->SMTPDebug = 0; // Disable debug output for clean view
     $mail->Debugoutput = 'echo';
 
     $mail->addAddress(SMTP_FROM_EMAIL); // Send test mail to self
