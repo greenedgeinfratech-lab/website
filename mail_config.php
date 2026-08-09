@@ -6,7 +6,7 @@ define('SMTP_PORT', 587);
 define('SMTP_SECURE', 'tls'); // Options: 'tls' (Port 587) or 'ssl' (Port 465)
 define('SMTP_AUTH', true);
 define('SMTP_USER', 'greenedgeinfratech@gmail.com');
-define('SMTP_PASS', 'lcle rahq ncpw refc'); // Google App Password (16 characters)
+define('SMTP_PASS', 'xjdbcgstpvxicusd'); // Google App Password (16 characters, no spaces)
 define('SMTP_FROM_EMAIL', 'greenedgeinfratech@gmail.com');
 define('SMTP_FROM_NAME', 'Greenedge Infratech');
 
@@ -27,7 +27,7 @@ function createMailer() {
     $mail->Host       = SMTP_HOST;
     $mail->SMTPAuth   = SMTP_AUTH;
     $mail->Username   = SMTP_USER;
-    $mail->Password   = SMTP_PASS;
+    $mail->Password   = str_replace(' ', '', SMTP_PASS);
     $mail->SMTPSecure = SMTP_SECURE;
     $mail->Port       = SMTP_PORT;
     $mail->setFrom(SMTP_FROM_EMAIL, SMTP_FROM_NAME);
