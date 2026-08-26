@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block spam/injected shop directory
+Disallow: /shop/
+
+# Block admin panel
+Disallow: /admin/
+
+Sitemap: https://greenedgeinfratech.com/sitemap.xml
