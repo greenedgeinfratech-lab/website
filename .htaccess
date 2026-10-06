@@ -1,4 +1,18 @@
 # =============================================
+# HTTP SECURITY HEADERS (mod_headers)
+# =============================================
+<IfModule mod_headers.c>
+    # HTTP Strict Transport Security (HSTS)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # Clickjacking protection
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # MIME-sniffing protection
+    Header always set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# =============================================
 # GZIP COMPRESSION (mod_deflate)
 # =============================================
 <IfModule mod_deflate.c>

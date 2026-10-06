@@ -5,7 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Return & Refund Policy | GreenEdge Infratech</title>
+    <meta name="description" content="Read the official Return & Refund Policy of GreenEdge Infratech regarding our solar products, equipment, and service agreements.">
+    <link rel="canonical" href="https://greenedgeinfratech.com/return_policy" />
     <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://greenedgeinfratech.com/return_policy" />
+    <meta property="og:title" content="Return & Refund Policy | GreenEdge Infratech" />
+    <meta property="og:description" content="Read the official Return & Refund Policy of GreenEdge Infratech." />
+    <meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+    <meta property="og:site_name" content="GreenEdge Infratech" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>

@@ -26,7 +26,17 @@ $result = $stmt->get_result();
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Publications | GreenEdge Infratech</title>
+<meta name="description" content="Explore research publications, whitepapers, and technical reports on solar energy and sustainable infrastructure by GreenEdge Infratech.">
+<link rel="canonical" href="https://greenedgeinfratech.com/publications<?= ($page > 1) ? '?page=' . $page : ''; ?>" />
 <link rel="icon" href="assets/image/favicon.ico">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://greenedgeinfratech.com/publications<?= ($page > 1) ? '?page=' . $page : ''; ?>" />
+<meta property="og:title" content="Publications | GreenEdge Infratech" />
+<meta property="og:description" content="Explore research publications, whitepapers, and technical reports on solar energy by GreenEdge Infratech." />
+<meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+<meta property="og:site_name" content="GreenEdge Infratech" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 </head>

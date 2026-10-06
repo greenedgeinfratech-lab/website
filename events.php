@@ -9,7 +9,17 @@ $events = $conn->query("SELECT * FROM events ORDER BY event_date DESC");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events | GreenEdge Infratech</title>
+    <meta name="description" content="Discover upcoming events, workshops, webinars, and sustainability conferences hosted by GreenEdge Infratech.">
+    <link rel="canonical" href="https://greenedgeinfratech.com/events" />
     <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://greenedgeinfratech.com/events" />
+    <meta property="og:title" content="Events | GreenEdge Infratech" />
+    <meta property="og:description" content="Discover upcoming events, workshops, webinars, and sustainability conferences hosted by GreenEdge Infratech." />
+    <meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+    <meta property="og:site_name" content="GreenEdge Infratech" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>

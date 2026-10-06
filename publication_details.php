@@ -28,7 +28,17 @@ $relatedResult = $relatedStmt->get_result();
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= htmlspecialchars($publication['title']); ?> | GreenEdge Infratech</title>
+<meta name="description" content="<?= htmlspecialchars(mb_substr(trim(preg_replace('/\s+/', ' ', strip_tags($publication['content'] ?? ''))), 0, 155)); ?>">
+<link rel="canonical" href="https://greenedgeinfratech.com/publication_details<?= ($id > 0) ? '?id=' . $id : ''; ?>" />
 <link rel="icon" href="assets/image/favicon.ico">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://greenedgeinfratech.com/publication_details<?= ($id > 0) ? '?id=' . $id : ''; ?>" />
+<meta property="og:title" content="<?= htmlspecialchars($publication['title']); ?> | GreenEdge Infratech" />
+<meta property="og:description" content="<?= htmlspecialchars(mb_substr(trim(preg_replace('/\s+/', ' ', strip_tags($publication['content'] ?? ''))), 0, 155)); ?>" />
+<meta property="og:image" content="<?= !empty($publication['image']) ? 'https://greenedgeinfratech.com/uploads/' . htmlspecialchars($publication['image']) : 'https://greenedgeinfratech.com/assets/logo.png'; ?>" />
+<meta property="og:site_name" content="GreenEdge Infratech" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 </head>

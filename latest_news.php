@@ -26,7 +26,18 @@ $result = $stmt->get_result();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Latest News | GreenEdge Infratech</title>
+  <meta name="description" content="Stay updated with the latest news, announcements, solar project milestones, and clean energy developments from GreenEdge Infratech.">
+  <link rel="canonical" href="https://greenedgeinfratech.com/latest_news<?= ($page > 1) ? '?page=' . $page : ''; ?>" />
   <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenedgeinfratech.com/latest_news<?= ($page > 1) ? '?page=' . $page : ''; ?>" />
+  <meta property="og:title" content="Latest News | GreenEdge Infratech" />
+  <meta property="og:description" content="Stay updated with the latest news, announcements, solar project milestones, and clean energy developments from GreenEdge Infratech." />
+  <meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+  <meta property="og:site_name" content="GreenEdge Infratech" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -45,7 +56,7 @@ $result = $stmt->get_result();
         <i class="fas fa-newspaper text-green-600 w-4 h-4"></i>
         <span class="text-green-600 text-sm font-medium">Latest News</span>
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold mb-6">Explore Our News Updates</h2>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Explore Our News Updates</h1>
       <p class="text-xl text-gray-600 max-w-2xl mx-auto">
         Discover company updates, industry news, and important announcements.
       </p>

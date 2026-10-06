@@ -47,8 +47,19 @@ if (isset($_POST['ajax_register'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?= htmlspecialchars($event['title']); ?> | GreenEdge Infratech</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= htmlspecialchars($event['title']); ?> | GreenEdge Infratech</title>
+    <meta name="description" content="<?= htmlspecialchars(mb_substr(trim(preg_replace('/\s+/', ' ', strip_tags($event['description'] ?? ''))), 0, 155)); ?>">
+    <link rel="canonical" href="https://greenedgeinfratech.com/event_details<?= ($id > 0) ? '?id=' . $id : ''; ?>" />
+    <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://greenedgeinfratech.com/event_details<?= ($id > 0) ? '?id=' . $id : ''; ?>" />
+    <meta property="og:title" content="<?= htmlspecialchars($event['title']); ?> | GreenEdge Infratech" />
+    <meta property="og:description" content="<?= htmlspecialchars(mb_substr(trim(preg_replace('/\s+/', ' ', strip_tags($event['description'] ?? ''))), 0, 155)); ?>" />
+    <meta property="og:image" content="<?= !empty($event['image']) ? 'https://greenedgeinfratech.com/uploads/' . htmlspecialchars($event['image']) : 'https://greenedgeinfratech.com/assets/logo.png'; ?>" />
+    <meta property="og:site_name" content="GreenEdge Infratech" />
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>

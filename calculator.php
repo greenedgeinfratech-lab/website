@@ -237,8 +237,18 @@ $result = $conn->query($query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Edge Infratech - Solar Energy Solutions</title>
+    <title>Solar Calculator - Estimate Savings | GreenEdge Infratech</title>
+    <meta name="description" content="Calculate your rooftop solar potential, estimated installation cost, monthly electricity generation, and annual savings with GreenEdge Infratech.">
+    <link rel="canonical" href="https://greenedgeinfratech.com/calculator" />
     <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://greenedgeinfratech.com/calculator" />
+    <meta property="og:title" content="Solar Calculator - Estimate Savings | GreenEdge Infratech" />
+    <meta property="og:description" content="Calculate your rooftop solar potential, estimated installation cost, and annual savings with GreenEdge Infratech." />
+    <meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+    <meta property="og:site_name" content="GreenEdge Infratech" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
