@@ -25,8 +25,44 @@ $result = $stmt->get_result();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Blogs | Solar Insights</title>
+  <title>All Blogs | Solar Insights - GreenEdge Infratech</title>
+  <meta name="description" content="Explore solar energy insights, news, and guides from GreenEdge Infratech. Stay informed on sustainability, solar panel installation, and clean technology.">
+  <link rel="canonical" href="https://greenedgeinfratech.com/blogs<?= ($page > 1) ? '?page=' . $page : ''; ?>" />
   <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greenedgeinfratech.com/blogs<?= ($page > 1) ? '?page=' . $page : ''; ?>" />
+  <meta property="og:title" content="All Blogs | Solar Insights - GreenEdge Infratech" />
+  <meta property="og:description" content="Explore solar energy insights, news, and guides from GreenEdge Infratech. Stay informed on sustainability, solar panel installation, and clean technology." />
+  <meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+  <meta property="og:site_name" content="GreenEdge Infratech" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://greenedgeinfratech.com/blogs<?= ($page > 1) ? '?page=' . $page : ''; ?>" />
+  <meta name="twitter:title" content="All Blogs | Solar Insights - GreenEdge Infratech" />
+  <meta name="twitter:description" content="Explore solar energy insights, news, and guides from GreenEdge Infratech. Stay informed on sustainability, solar panel installation, and clean technology." />
+  <meta name="twitter:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+
+  <!-- Structured Data (Schema.org JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "All Blogs | Solar Insights - GreenEdge Infratech",
+    "url": "https://greenedgeinfratech.com/blogs",
+    "description": "Explore solar energy insights, news, and guides from GreenEdge Infratech.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "GreenEdge Infratech",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://greenedgeinfratech.com/assets/logo.png"
+      }
+    }
+  }
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google tag (gtag.js) -->
@@ -51,10 +87,10 @@ $result = $stmt->get_result();
       <div class="text-center mb-16">
         <div class="inline-flex items-center space-x-2 bg-blue-100 rounded-full px-4 py-2 mb-4">
           <i class="fas fa-newspaper text-blue-600 w-4 h-4"></i>
-          <span class="text-blue-600 text-sm font-medium">All Blogs</span>
+          <span class="text-blue-600 text-sm font-medium">Solar Knowledge Hub</span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">Explore Our Blog Articles</h2>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Explore Our Blog Articles</h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
           Discover the latest news, guides, and insights on solar energy and sustainability.
         </p>
       </div>
@@ -63,26 +99,48 @@ $result = $stmt->get_result();
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         <?php if ($result->num_rows > 0): ?>
           <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
-              <a href="blog_details.php?id=<?= $row['id']; ?>">
+            <?php
+              $rawExcerpt = trim(preg_replace('/\s+/', ' ', strip_tags($row['content'] ?? '')));
+              $excerpt = mb_substr($rawExcerpt, 0, 180);
+              if (mb_strlen($rawExcerpt) > 180) {
+                  $excerpt .= '...';
+              }
+              $blogDate = !empty($row['created_at']) ? date("F j, Y", strtotime($row['created_at'])) : '';
+            ?>
+            <article class="bg-gray-50 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition flex flex-col justify-between">
+              <div>
+                <a href="blog_details.php?id=<?= $row['id']; ?>" class="block overflow-hidden">
                   <img src="uploads/<?= htmlspecialchars($row['image']); ?>" 
                        alt="<?= htmlspecialchars($row['title']); ?>" 
                        class="w-full h-48 object-cover hover:scale-105 transition duration-300">
                 </a>
-              <div class="p-6">
-                <h3 class="text-xl font-bold mb-2"><?= htmlspecialchars($row['title']); ?></h3>
-                <p class="text-gray-600 mb-4">
-                  <?= substr(strip_tags($row['content']), 0, 120); ?>...
-                </p>
+                <div class="p-6 pb-2">
+                  <?php if (!empty($blogDate)): ?>
+                    <p class="text-xs text-gray-500 mb-2 flex items-center">
+                      <i class="fas fa-calendar-alt mr-2 text-green-600"></i>
+                      <?= $blogDate; ?>
+                    </p>
+                  <?php endif; ?>
+                  <h2 class="text-xl font-bold text-gray-900 mb-3 hover:text-green-600 transition">
+                    <a href="blog_details.php?id=<?= $row['id']; ?>">
+                      <?= htmlspecialchars($row['title']); ?>
+                    </a>
+                  </h2>
+                  <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                    <?= htmlspecialchars($excerpt); ?>
+                  </p>
+                </div>
+              </div>
+              <div class="px-6 pb-6 pt-2">
                 <a href="blog_details.php?id=<?= $row['id']; ?>" 
-                   class="text-green-600 font-semibold hover:underline">
-                  Read More <i class="fas fa-arrow-right ml-1"></i>
+                   class="inline-flex items-center text-green-600 font-semibold hover:text-green-700 hover:underline text-sm">
+                  Read Full Article <i class="fas fa-arrow-right ml-1.5 text-xs"></i>
                 </a>
               </div>
-            </div>
+            </article>
           <?php endwhile; ?>
         <?php else: ?>
-          <p class="col-span-3 text-center text-gray-500">No blogs available.</p>
+          <p class="col-span-3 text-center text-gray-500 py-8">No blogs available at this moment. Please check back soon.</p>
         <?php endif; ?>
       </div>
 

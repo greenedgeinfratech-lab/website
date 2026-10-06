@@ -9,7 +9,17 @@ $result = $conn->query("SELECT * FROM faqs ORDER BY id DESC");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FAQ | GreenEdge Infratech</title>
+<meta name="description" content="Find answers to frequently asked questions about solar rooftop systems, PM Surya Ghar Yojana subsidies, solar installation, and maintenance with GreenEdge Infratech.">
+<link rel="canonical" href="https://greenedgeinfratech.com/faq" />
 <link rel="icon" href="assets/image/favicon.ico">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://greenedgeinfratech.com/faq" />
+<meta property="og:title" content="FAQ | GreenEdge Infratech" />
+<meta property="og:description" content="Find answers to frequently asked questions about solar rooftop systems, subsidies, and maintenance with GreenEdge Infratech." />
+<meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+<meta property="og:site_name" content="GreenEdge Infratech" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 </head>

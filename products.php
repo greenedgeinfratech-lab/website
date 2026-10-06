@@ -52,7 +52,17 @@ if (empty($slug)) {
             Our Products - GreenEdge Infratech
         <?php endif; ?>
     </title>
+    <meta name="description" content="<?php echo (!$showAllProducts && isset($product)) ? htmlspecialchars(mb_substr(strip_tags($product['description'] ?? $product['name']), 0, 155)) : 'Explore high-quality solar products, inverters, and clean energy components from GreenEdge Infratech.'; ?>">
+    <link rel="canonical" href="https://greenedgeinfratech.com/products<?= (!$showAllProducts && isset($product) && !empty($product['slug'])) ? '?slug=' . urlencode($product['slug']) : ''; ?>" />
     <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://greenedgeinfratech.com/products<?= (!$showAllProducts && isset($product) && !empty($product['slug'])) ? '?slug=' . urlencode($product['slug']) : ''; ?>" />
+    <meta property="og:title" content="<?php echo (!$showAllProducts && isset($product)) ? htmlspecialchars($product['name']) . ' - GreenEdge Infratech' : 'Our Products - GreenEdge Infratech'; ?>" />
+    <meta property="og:description" content="<?php echo (!$showAllProducts && isset($product)) ? htmlspecialchars(mb_substr(strip_tags($product['description'] ?? $product['name']), 0, 155)) : 'Explore high-quality solar products, inverters, and clean energy components from GreenEdge Infratech.'; ?>" />
+    <meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+    <meta property="og:site_name" content="GreenEdge Infratech" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>

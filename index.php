@@ -245,7 +245,53 @@ $servicesQuery = $conn->query("SELECT * FROM services ORDER BY id DESC");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Green Edge Infratech - Solar Energy Solutions</title>
+    <meta name="description" content="GreenEdge Infratech provides rooftop solar energy solutions, professional solar panel installation, and customized clean power systems for homes and businesses.">
+    <link rel="canonical" href="https://greenedgeinfratech.com/" />
     <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://greenedgeinfratech.com/" />
+    <meta property="og:title" content="Green Edge Infratech - Solar Energy Solutions" />
+    <meta property="og:description" content="GreenEdge Infratech provides rooftop solar energy solutions, professional solar panel installation, and customized clean power systems for homes and businesses." />
+    <meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+    <meta property="og:site_name" content="GreenEdge Infratech" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://greenedgeinfratech.com/" />
+    <meta name="twitter:title" content="Green Edge Infratech - Solar Energy Solutions" />
+    <meta name="twitter:description" content="GreenEdge Infratech provides rooftop solar energy solutions, professional solar panel installation, and customized clean power systems for homes and businesses." />
+    <meta name="twitter:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+
+    <!-- Structured Data (Schema.org JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "GreenEdge Infratech Pvt. Ltd.",
+      "url": "https://greenedgeinfratech.com/",
+      "logo": "https://greenedgeinfratech.com/assets/logo.png",
+      "image": "https://greenedgeinfratech.com/assets/logo.png",
+      "description": "GreenEdge Infratech provides customized rooftop solar solutions, solar installation, and clean energy services.",
+      "telephone": "+91 98370 67681",
+      "email": "greenedgeinfratech@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "opp. BJP office Kayampur, Asadpur Kayam",
+        "addressLocality": "Aligarh",
+        "addressRegion": "Uttar Pradesh",
+        "postalCode": "202001",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://www.facebook.com/share/1BzXrvyHHt/",
+        "https://www.instagram.com/greenedge.infratech?igsh=Z2t0MTRpMmF5ZGh6",
+        "https://www.linkedin.com/company/greenedgeinfratech/",
+        "https://x.com/Greenedgeinfra?t=d7USa7IKRU1XjjskGJbmmw&s=09"
+      ]
+    }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -608,7 +654,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <img src="assets/logo.png" alt="Logo" class="w-24 h-24 object-contain">
                     </div>
                     <div>
-                        <h1 class="text-2xl font-bold text-green-800">Greenedge Infratech Pvt. Ltd.</h1>
+                        <h2 class="text-2xl font-bold text-green-800">Greenedge Infratech Pvt. Ltd.</h2>
                         <p class="text-green-700 font-medium">Customized Rooftop Solar Solutions</p>
                         <p class="text-gray-600 text-sm flex items-center gap-1 mt-1">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>

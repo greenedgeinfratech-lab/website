@@ -25,7 +25,17 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services - GreenEdge Infratech</title>
+    <meta name="description" content="Discover professional solar services by GreenEdge Infratech: solar installation, energy storage solutions, maintenance and repairs, and energy efficiency consulting.">
+    <link rel="canonical" href="https://greenedgeinfratech.com/services" />
     <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://greenedgeinfratech.com/services" />
+    <meta property="og:title" content="Our Services - GreenEdge Infratech" />
+    <meta property="og:description" content="Discover professional solar services by GreenEdge Infratech: solar installation, energy storage, maintenance, and consulting." />
+    <meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+    <meta property="og:site_name" content="GreenEdge Infratech" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>

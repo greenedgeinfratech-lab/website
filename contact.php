@@ -12,7 +12,18 @@ if (empty($_SESSION['csrf_token'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - GreenEdge Infratech</title>
+    <meta name="description" content="Contact GreenEdge Infratech for customized solar rooftop installations, energy solutions, and consultations in Aligarh, Uttar Pradesh. Call +91 98370 67681.">
+    <link rel="canonical" href="https://greenedgeinfratech.com/contact" />
     <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://greenedgeinfratech.com/contact" />
+    <meta property="og:title" content="Contact Us - GreenEdge Infratech" />
+    <meta property="og:description" content="Contact GreenEdge Infratech for customized solar rooftop installations, energy solutions, and consultations in Aligarh, Uttar Pradesh." />
+    <meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+    <meta property="og:site_name" content="GreenEdge Infratech" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,7 +43,7 @@ if (empty($_SESSION['csrf_token'])) {
     <section class="relative py-20">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800">Contact Us</h2>
+                <h1 class="text-4xl font-bold text-gray-800">Contact Us</h1>
                 <p class="text-gray-600 mt-4">We’re here to answer your questions and help your projects move forward.</p>
             </div>
 

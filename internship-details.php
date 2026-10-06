@@ -81,8 +81,18 @@ if($poster->num_rows > 0){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($internship['title']); ?> | Internship at GEC - GreenEdge Infratech</title>
-
+    <meta name="description" content="Internship opportunity for <?php echo htmlspecialchars($internship['title']); ?> at GreenEdge Infratech. <?php echo htmlspecialchars(mb_substr(trim(preg_replace('/\s+/', ' ', strip_tags($internship['description'] ?? ''))), 0, 110)); ?>">
+    <link rel="canonical" href="https://greenedgeinfratech.com/internship-details<?= ($id > 0) ? '?id=' . $id : ''; ?>" />
     <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://greenedgeinfratech.com/internship-details<?= ($id > 0) ? '?id=' . $id : ''; ?>" />
+    <meta property="og:title" content="<?php echo htmlspecialchars($internship['title']); ?> | GreenEdge Infratech" />
+    <meta property="og:description" content="Internship opportunity for <?php echo htmlspecialchars($internship['title']); ?> at GreenEdge Infratech." />
+    <meta property="og:image" content="https://greenedgeinfratech.com/assets/logo.png" />
+    <meta property="og:site_name" content="GreenEdge Infratech" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -120,9 +130,9 @@ if($poster->num_rows > 0){
          class="relative w-full h-full object-contain">
 
 </div>
-    <h1 class="text-4xl font-bold text-green-700 mb-6">
+    <h2 class="text-4xl font-bold text-green-700 mb-6">
         <?php echo htmlspecialchars($internship['title']); ?>
-    </h1>
+    </h2>
 
     <div class="mb-6 text-gray-600 space-y-2 border-b pb-6">
         <p><strong>Type:</strong> 
