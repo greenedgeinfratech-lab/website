@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= career.title %> - GreenEdge Infratech</title>
+  <link rel="icon" href="/assets/image/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased">
+  <%- include('partials/header') %>
+
+  <main class="py-16">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-10 border border-gray-100">
+        <span class="inline-block bg-green-100 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full uppercase mb-3">
+          <%= career.type %>
+        </span>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4"><%= career.title %></h1>
+        <p class="text-sm text-gray-500 mb-6 flex items-center">
+          <i class="fas fa-map-marker-alt text-green-600 mr-2"></i> <%= career.location %>
+        </p>
+
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Role Overview</h3>
+        <p class="text-gray-700 leading-relaxed mb-6"><%= career.description %></p>
+
+        <% if (career.benefits && career.benefits.length > 0) { %>
+          <h3 class="text-lg font-bold text-gray-800 mb-3">What We Offer</h3>
+          <ul class="list-disc list-inside space-y-1.5 text-gray-700 mb-8 text-sm">
+            <% career.benefits.forEach(b => { %>
+              <li><%= b %></li>
+            <% }); %>
+          </ul>
+        <% } %>
+
+        <div class="bg-green-50 p-6 rounded-xl border border-green-200">
+          <h4 class="font-bold text-green-900 mb-2">How to Apply</h4>
+          <p class="text-sm text-gray-700 mb-4">
+            Send your resume/CV and cover letter directly to:
+            <a href="mailto:<%= career.application_email %>" class="text-green-700 font-bold underline"><%= career.application_email %></a>
+            with the subject line "Application for <%= career.title %>".
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

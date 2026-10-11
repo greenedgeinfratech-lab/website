@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - GreenEdge Infratech</title>
+  <link rel="icon" href="/assets/image/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+  <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-200">
+    <div class="text-center mb-6">
+      <img src="/assets/logo.png" alt="Logo" class="w-16 h-auto mx-auto mb-2">
+      <h2 class="text-2xl font-bold text-gray-800">Staff & Admin Portal</h2>
+      <p class="text-sm text-gray-500">GreenEdge Infratech Management</p>
+    </div>
+
+    <% if (error) { %>
+      <div class="mb-4 p-3 bg-red-100 text-red-700 text-sm rounded-lg">
+        <%= error %>
+      </div>
+    <% } %>
+
+    <form action="/admin/login" method="POST" class="space-y-4">
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+        <input type="text" id="username" name="username" value="greenedge" required class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <input type="password" id="password" name="password" value="admin" required class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+      </div>
+      <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow transition">
+        Sign In to Dashboard
+      </button>
+    </form>
+
+    <div class="mt-6 text-center text-xs text-gray-400">
+      <a href="/" class="hover:text-green-600">← Back to Main Website</a>
+    </div>
+  </div>
+</body>
+</html>

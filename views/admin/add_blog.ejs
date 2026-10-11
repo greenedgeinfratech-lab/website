@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Blog Post - GreenEdge Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <nav class="bg-green-700 text-white px-6 py-4 flex justify-between items-center shadow">
+    <a href="/admin/manage_blogs" class="font-bold text-lg hover:underline">← Back to Blog Manager</a>
+  </nav>
+
+  <div class="container mx-auto p-6 max-w-3xl">
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800">Add New Blog Post</h2>
+
+      <form action="/admin/add-blog" method="POST" class="space-y-4">
+        <div>
+          <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Article Title</label>
+          <input type="text" id="title" name="title" required placeholder="e.g. Benefits of Rooftop Solar for Factories" class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+        </div>
+
+        <div>
+          <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Featured Image Name (from uploads/)</label>
+          <input type="text" id="image" name="image" value="1756835849_about-bg.png" class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+        </div>
+
+        <div>
+          <label for="content" class="block text-sm font-medium text-gray-700 mb-1">Article Content</label>
+          <textarea id="content" name="content" rows="10" required placeholder="Write article content here..." class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500 outline-none"></textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow transition">
+          Publish Article
+        </button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

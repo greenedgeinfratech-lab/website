@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events & Workshops - GreenEdge Infratech</title>
+  <link rel="icon" href="/assets/image/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased">
+  <%- include('partials/header') %>
+
+  <section class="py-20 bg-green-900 text-white text-center">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Upcoming & Past Events</h1>
+      <p class="text-lg text-green-100 max-w-2xl mx-auto">
+        Workshops, vendor seminars, community awareness drives, and expo participation.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl space-y-6">
+      <div class="border rounded-2xl p-6 bg-gray-50">
+        <div class="flex items-center space-x-2 text-xs text-green-700 font-semibold mb-2">
+          <i class="fas fa-calendar-check"></i>
+          <span>Community Outreach</span>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-1">PM Surya Ghar Muft Bijli Awareness Camp</h3>
+        <p class="text-sm text-gray-600 mb-3">On-ground assistance camp in Aligarh assisting residential welfare associations and homeowners in online registration and subsidy claiming.</p>
+        <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full font-medium">Aligarh, Uttar Pradesh</span>
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

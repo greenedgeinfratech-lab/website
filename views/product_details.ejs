@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= product.name %> - GreenEdge Infratech</title>
+  <meta name="description" content="<%= product.description %>">
+  <link rel="canonical" href="https://greenedgeinfratech.com/products?slug=<%= product.slug %>" />
+  <link rel="icon" href="/assets/image/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased">
+  <%- include('partials/header') %>
+
+  <main class="py-16">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-8">
+        <a href="/" class="hover:text-green-600">Home</a>
+        <span>/</span>
+        <a href="/products" class="hover:text-green-600">Products</a>
+        <span>/</span>
+        <span class="text-gray-900 truncate"><%= product.name %></span>
+      </nav>
+
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 p-6 sm:p-10">
+        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 text-green-700">
+          <%= product.name %>
+        </h1>
+        <p class="text-lg text-gray-600 mb-8"><%= product.description %></p>
+
+        <% if (product.image_path) { %>
+          <div class="mb-8 rounded-xl overflow-hidden shadow-md">
+            <img src="/<%= product.image_path %>" alt="<%= product.name %>" class="w-full max-h-[420px] object-cover">
+          </div>
+        <% } %>
+
+        <div class="prose max-w-none text-gray-700 leading-relaxed text-base sm:text-lg space-y-4 whitespace-pre-line">
+          <%= product.content %>
+        </div>
+
+        <div class="mt-12 bg-emerald-50 border border-emerald-200 rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <h3 class="text-xl font-bold text-green-900 mb-1">Request Pricing & Wholesale Quote</h3>
+            <p class="text-gray-600 text-sm">Bulk supply and project packages available for EPC installers and residential owners.</p>
+          </div>
+          <a href="/contact" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition whitespace-nowrap">
+            Inquire Now
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="/products" class="inline-flex items-center text-green-600 font-semibold hover:text-green-700">
+          <i class="fas fa-arrow-left mr-2"></i> Back to all products
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

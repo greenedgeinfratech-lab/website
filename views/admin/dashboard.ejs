@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - GreenEdge Infratech</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <!-- Navbar -->
+  <nav class="bg-green-700 text-white px-6 py-4 flex justify-between items-center shadow">
+    <div class="flex items-center space-x-3">
+      <img src="/assets/logo.png" alt="Logo" class="w-8 h-auto bg-white rounded p-0.5">
+      <span class="font-bold text-lg">GreenEdge Admin</span>
+    </div>
+    <div class="flex items-center space-x-4 text-sm">
+      <span class="hidden sm:inline">Logged in as: <strong><%= admin.username %></strong></span>
+      <a href="/" target="_blank" class="hover:underline">Visit Site <i class="fas fa-external-link-alt text-xs ml-1"></i></a>
+      <a href="/admin/logout" class="bg-red-500 hover:bg-red-600 px-3 py-1.5 rounded transition">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container mx-auto p-6 max-w-6xl">
+    <!-- Top KPI Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+        <div class="text-xs text-gray-500 uppercase font-semibold">Solar Quote Leads</div>
+        <div class="text-3xl font-bold text-green-700 mt-1"><%= stats.solarRequestsCount %></div>
+        <a href="/admin/solar_requests" class="text-xs text-green-600 hover:underline mt-2 inline-block">View all quotes →</a>
+      </div>
+      <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+        <div class="text-xs text-gray-500 uppercase font-semibold">Contact Inquiries</div>
+        <div class="text-3xl font-bold text-blue-700 mt-1"><%= stats.contactInquiriesCount %></div>
+        <a href="/admin/manage-contacts" class="text-xs text-blue-600 hover:underline mt-2 inline-block">View inquiries →</a>
+      </div>
+      <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+        <div class="text-xs text-gray-500 uppercase font-semibold">Live Blogs</div>
+        <div class="text-3xl font-bold text-purple-700 mt-1"><%= stats.blogsCount %></div>
+        <a href="/admin/manage_blogs" class="text-xs text-purple-600 hover:underline mt-2 inline-block">Manage blogs →</a>
+      </div>
+      <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+        <div class="text-xs text-gray-500 uppercase font-semibold">Active Services</div>
+        <div class="text-3xl font-bold text-amber-700 mt-1"><%= stats.servicesCount %></div>
+        <span class="text-xs text-gray-400 mt-2 inline-block">Catalog active</span>
+      </div>
+    </div>
+
+    <!-- Quick Navigation Modules -->
+    <div class="grid md:grid-cols-3 gap-6 mb-8">
+      <a href="/admin/solar_requests" class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-500 hover:shadow transition block">
+        <div class="text-green-600 text-2xl mb-2"><i class="fas fa-calculator"></i></div>
+        <h3 class="font-bold text-lg text-gray-800">Solar Leads & Requests</h3>
+        <p class="text-sm text-gray-500 mt-1">Review user calculations, contact numbers, and kW specifications.</p>
+      </a>
+      <a href="/admin/manage_blogs" class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-500 hover:shadow transition block">
+        <div class="text-purple-600 text-2xl mb-2"><i class="fas fa-newspaper"></i></div>
+        <h3 class="font-bold text-lg text-gray-800">Blog Manager</h3>
+        <p class="text-sm text-gray-500 mt-1">Add, edit, or delete articles and subsidy announcements.</p>
+      </a>
+      <a href="/admin/manage-contacts" class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-green-500 hover:shadow transition block">
+        <div class="text-blue-600 text-2xl mb-2"><i class="fas fa-envelope"></i></div>
+        <h3 class="font-bold text-lg text-gray-800">Customer Messages</h3>
+        <p class="text-sm text-gray-500 mt-1">Read customer queries, property types, and requirements.</p>
+      </a>
+    </div>
+
+    <!-- Recent Leads Table -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold text-lg text-gray-800">Recent Solar Leads</h3>
+        <a href="/admin/solar_requests" class="text-sm text-green-600 font-semibold hover:underline">View All</a>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-gray-700">
+          <thead class="bg-gray-50 text-xs text-gray-500 uppercase border-b">
+            <tr>
+              <th class="py-3 px-4">Name</th>
+              <th class="py-3 px-4">City</th>
+              <th class="py-3 px-4">Phone</th>
+              <th class="py-3 px-4">System Size</th>
+              <th class="py-3 px-4">Category</th>
+              <th class="py-3 px-4">Date</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            <% if (recentSolarRequests && recentSolarRequests.length > 0) { %>
+              <% recentSolarRequests.forEach(req => { %>
+                <tr class="hover:bg-gray-50">
+                  <td class="py-3 px-4 font-semibold"><%= req.name %></td>
+                  <td class="py-3 px-4"><%= req.city %></td>
+                  <td class="py-3 px-4"><%= req.phone %></td>
+                  <td class="py-3 px-4"><%= req.system_size %> kW</td>
+                  <td class="py-3 px-4 capitalize"><%= req.category %></td>
+                  <td class="py-3 px-4 text-xs text-gray-500"><%= req.created_at ? req.created_at.split(' ')[0] : '' %></td>
+                </tr>
+              <% }); %>
+            <% } else { %>
+              <tr>
+                <td colspan="6" class="py-6 text-center text-gray-400">No leads recorded yet.</td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

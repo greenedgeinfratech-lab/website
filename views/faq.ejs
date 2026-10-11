@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions - GreenEdge Infratech</title>
+  <meta name="description" content="Frequently asked questions about solar panel installation, PM Surya Ghar subsidy, net metering, and solar system sizing.">
+  <link rel="icon" href="/assets/image/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased">
+  <%- include('partials/header') %>
+
+  <section class="py-20 bg-green-900 text-white text-center">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
+      <p class="text-lg md:text-xl text-green-100 max-w-2xl mx-auto">
+        Clear, transparent answers to help you navigate your journey toward solar energy independence.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-3xl space-y-4">
+      <% if (faqs && faqs.length > 0) { %>
+        <% faqs.forEach(faq => { %>
+          <div class="border border-gray-200 rounded-xl p-6 bg-gray-50 hover:bg-white transition shadow-sm">
+            <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center">
+              <i class="fas fa-question-circle text-green-600 mr-2"></i>
+              <%= faq.question %>
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed"><%= faq.answer %></p>
+          </div>
+        <% }); %>
+      <% } %>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

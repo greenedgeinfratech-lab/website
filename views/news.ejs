@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latest News - GreenEdge Infratech</title>
+  <link rel="icon" href="/assets/image/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased">
+  <%- include('partials/header') %>
+
+  <section class="py-20 bg-green-900 text-white text-center">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Latest Solar News & Updates</h1>
+      <p class="text-lg text-green-100 max-w-2xl mx-auto">
+        Stay up to date with policy announcements, scheme updates, and company milestones.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="grid md:grid-cols-2 gap-8">
+        <% if (news && news.length > 0) { %>
+          <% news.forEach(item => { %>
+            <div class="bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col justify-between">
+              <div>
+                <% if (item.image) { %>
+                  <img src="/uploads/<%= item.image %>" alt="<%= item.title %>" class="w-full h-48 object-cover">
+                <% } %>
+                <div class="p-6">
+                  <p class="text-xs text-gray-500 mb-2"><i class="fas fa-calendar mr-1"></i> <%= item.created_at ? item.created_at.split(' ')[0] : 'Recent' %></p>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2"><%= item.title %></h3>
+                  <p class="text-gray-600 text-sm"><%= item.content.replace(/<[^>]*>?/gm, '').substring(0, 140) %>...</p>
+                </div>
+              </div>
+              <div class="px-6 pb-6">
+                <a href="/blog_details?id=<%= item.id %>" class="text-green-600 font-semibold text-sm hover:underline">Read More →</a>
+              </div>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

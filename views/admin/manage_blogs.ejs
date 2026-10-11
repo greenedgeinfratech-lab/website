@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Blogs - GreenEdge Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <nav class="bg-green-700 text-white px-6 py-4 flex justify-between items-center shadow">
+    <div class="flex items-center space-x-3">
+      <a href="/admin/dashboard" class="font-bold text-lg hover:underline">← Admin Dashboard</a>
+    </div>
+    <a href="/admin/add-blog" class="bg-white text-green-700 px-4 py-2 rounded-lg font-bold text-sm shadow hover:bg-green-50 transition">
+      + Add New Blog
+    </a>
+  </nav>
+
+  <div class="container mx-auto p-6 max-w-5xl">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Manage Blog Articles</h2>
+
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+      <table class="w-full text-left text-sm text-gray-700">
+        <thead class="bg-gray-50 text-xs text-gray-500 uppercase border-b">
+          <tr>
+            <th class="py-3 px-4">Title</th>
+            <th class="py-3 px-4">Image</th>
+            <th class="py-3 px-4">Published Date</th>
+            <th class="py-3 px-4 text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y">
+          <% if (blogs && blogs.length > 0) { %>
+            <% blogs.forEach(blog => { %>
+              <tr class="hover:bg-gray-50">
+                <td class="py-3 px-4 font-semibold text-gray-900 max-w-md truncate">
+                  <%= blog.title %>
+                </td>
+                <td class="py-3 px-4">
+                  <% if (blog.image) { %>
+                    <img src="/uploads/<%= blog.image %>" alt="thumb" class="w-12 h-10 object-cover rounded">
+                  <% } %>
+                </td>
+                <td class="py-3 px-4 text-xs text-gray-500">
+                  <%= blog.created_at ? blog.created_at.split(' ')[0] : '' %>
+                </td>
+                <td class="py-3 px-4 text-right space-x-2">
+                  <a href="/blog_details?id=<%= blog.id %>" target="_blank" class="text-blue-600 hover:underline text-xs">View</a>
+                  <a href="/admin/manage_blogs?delete=<%= blog.id %>" onclick="return confirm('Delete this blog post?')" class="text-red-600 hover:underline text-xs font-semibold">Delete</a>
+                </td>
+              </tr>
+            <% }); %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

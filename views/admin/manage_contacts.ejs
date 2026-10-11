@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Inquiries - GreenEdge Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <nav class="bg-green-700 text-white px-6 py-4 flex justify-between items-center shadow">
+    <a href="/admin/dashboard" class="font-bold text-lg hover:underline">← Admin Dashboard</a>
+    <span class="text-sm">Total Messages: <strong><%= inquiries.length %></strong></span>
+  </nav>
+
+  <div class="container mx-auto p-6 max-w-5xl">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Customer Contact Inquiries</h2>
+
+    <div class="space-y-4">
+      <% if (inquiries && inquiries.length > 0) { %>
+        <% inquiries.forEach(inq => { %>
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <h4 class="font-bold text-lg text-gray-900"><%= inq.first_name %> <%= inq.last_name %></h4>
+                <div class="text-sm text-gray-500 space-x-3 mt-0.5">
+                  <span><i class="fas fa-envelope text-gray-400 mr-1"></i> <%= inq.email %></span>
+                  <span><i class="fas fa-phone text-gray-400 mr-1"></i> <%= inq.phone %></span>
+                  <span class="bg-blue-50 text-blue-700 text-xs px-2 py-0.5 rounded font-semibold"><%= inq.property_type %></span>
+                </div>
+              </div>
+              <span class="text-xs text-gray-400"><%= inq.created_at ? inq.created_at.split(' ')[0] : '' %></span>
+            </div>
+            <div class="bg-gray-50 p-3 rounded-lg text-sm text-gray-700 mt-3 whitespace-pre-wrap">
+              <%= inq.message %>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <div class="bg-white p-8 rounded-xl text-center text-gray-400">
+          No customer inquiries received yet.
+        </div>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

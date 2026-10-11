@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= isInternship ? 'Internship at GEI' : 'Careers at GreenEdge Infratech' %></title>
+  <meta name="description" content="Explore job opportunities and technical internships in solar engineering with GreenEdge Infratech.">
+  <link rel="icon" href="/assets/image/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased">
+  <%- include('partials/header') %>
+
+  <!-- Header Section -->
+  <section class="py-20 bg-green-900 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur rounded-full px-4 py-1.5 mb-4 text-sm font-medium">
+        <i class="fas fa-briefcase text-green-300"></i>
+        <span>Join the Green Revolution</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        <%= isInternship ? 'Internship Opportunities' : 'Build Your Career in Solar Energy' %>
+      </h1>
+      <p class="text-lg md:text-xl text-green-100 max-w-2xl mx-auto">
+        Join our passionate team advancing renewable energy across India.
+      </p>
+    </div>
+  </section>
+
+  <!-- Openings Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="space-y-6">
+        <% if (careers && careers.length > 0) { %>
+          <% careers.forEach(job => { %>
+            <div class="bg-gray-50 rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+              <div>
+                <span class="inline-block bg-green-100 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full uppercase mb-2">
+                  <%= job.type %>
+                </span>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2"><%= job.title %></h3>
+                <p class="text-gray-600 text-sm mb-3"><%= job.description %></p>
+                <div class="flex items-center space-x-4 text-xs text-gray-500">
+                  <span><i class="fas fa-map-marker-alt text-green-600 mr-1"></i> <%= job.location %></span>
+                  <span><i class="fas fa-envelope text-green-600 mr-1"></i> <%= job.application_email %></span>
+                </div>
+              </div>
+              <a href="/career-details?id=<%= job.id %>" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2.5 rounded-lg shadow whitespace-nowrap transition">
+                Apply Now
+              </a>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <p class="text-center text-gray-500 py-8">No open positions at this moment. You can always send your resume to greenedgeinfratech@gmail.com.</p>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

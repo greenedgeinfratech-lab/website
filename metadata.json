@@ -1,0 +1,8 @@
+{
+  "name": "Green Edge Infratech",
+  "description": "GreenEdge Infratech provides rooftop solar energy solutions, professional solar panel installation, and customized clean power systems for homes and businesses.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ],
+  "permissions": []
+}

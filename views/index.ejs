@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Edge Infratech - Solar Energy Solutions</title>
+    <meta name="description" content="GreenEdge Infratech provides rooftop solar energy solutions, professional solar panel installation, and customized clean power systems for homes and businesses.">
+    <link rel="canonical" href="https://greenedgeinfratech.com/" />
+    <link rel="icon" href="/assets/image/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://greenedgeinfratech.com/" />
+    <meta property="og:title" content="Green Edge Infratech - Solar Energy Solutions" />
+    <meta property="og:description" content="GreenEdge Infratech provides rooftop solar energy solutions, professional solar panel installation, and customized clean power systems for homes and businesses." />
+    <meta property="og:image" content="/assets/logo.png" />
+    <meta property="og:site_name" content="GreenEdge Infratech" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://greenedgeinfratech.com/" />
+    <meta name="twitter:title" content="Green Edge Infratech - Solar Energy Solutions" />
+    <meta name="twitter:description" content="GreenEdge Infratech provides rooftop solar energy solutions, professional solar panel installation, and customized clean power systems for homes and businesses." />
+    <meta name="twitter:image" content="/assets/logo.png" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+    .active-option {
+        background-color: #16a34a !important;
+        color: white !important;
+    }
+    .pdf-mode {
+        background: #fff !important;
+    }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased">
+
+    <%- include('partials/header') %>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[90vh] flex items-center pt-16 overflow-hidden bg-slate-900">
+        <div class="absolute inset-0">
+            <img src="/assets/hero-solar.jpg" alt="Solar Farm Background" class="w-full h-full object-cover opacity-30" />
+            <div class="absolute inset-0 bg-gradient-to-r from-green-950/95 via-green-900/80 to-slate-900/75"></div>
+        </div>
+        <div class="relative container mx-auto px-4 z-10 py-16">
+            <div class="max-w-4xl">
+                <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                    <i class="fas fa-sun text-yellow-400 w-4 h-4"></i>
+                    <span class="text-white text-sm font-medium">Clean Energy Solutions</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    Power Your Future with <span class="block bg-gradient-to-r from-emerald-400 to-green-200 bg-clip-text text-transparent">Solar Energy</span>
+                </h1>
+                <p class="text-lg md:text-2xl text-white/90 mb-8 max-w-2xl leading-relaxed">
+                    Transform your energy costs with premium solar solutions. Professional installation, financing options, and 25-year warranty included.
+                </p>
+                <div class="grid grid-cols-3 gap-6 mb-8 max-w-md">
+                    <div class="text-center bg-white/10 backdrop-blur rounded-lg p-3 border border-white/10"><div class="text-2xl font-bold text-white">500+</div><div class="text-white/80 text-xs sm:text-sm">Installations</div></div>
+                    <div class="text-center bg-white/10 backdrop-blur rounded-lg p-3 border border-white/10"><div class="text-2xl font-bold text-white">25yr</div><div class="text-white/80 text-xs sm:text-sm">Warranty</div></div>
+                    <div class="text-center bg-white/10 backdrop-blur rounded-lg p-3 border border-white/10"><div class="text-2xl font-bold text-white">90%</div><div class="text-white/80 text-xs sm:text-sm">Savings</div></div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <a href="#calculator" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3.5 rounded-lg text-lg font-semibold flex items-center justify-center group transition shadow-lg">
+                        Calculate Solar Savings <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="tel:9837067681" class="border border-white/40 text-white px-6 py-3.5 rounded-lg text-lg flex items-center justify-center hover:bg-white/10 backdrop-blur-sm transition">
+                        <i class="fas fa-phone mr-2"></i> Call Now: 9837067681
+                    </a>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-6 text-white/80">
+                    <div class="flex items-center space-x-2"><i class="fas fa-envelope text-green-400"></i><span class="text-sm">greenedgeinfratech@gmail.com</span></div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-1"><i class="fas fa-bolt text-yellow-400"></i><span class="text-sm">Clean Energy</span></div>
+                        <div class="flex items-center space-x-1"><i class="fas fa-leaf text-green-400"></i><span class="text-sm">Eco Friendly</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 bg-green-100 rounded-full px-4 py-2 mb-4">
+                    <i class="fas fa-bolt text-green-600 w-4 h-4"></i><span class="text-green-600 text-sm font-medium">Our Services</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Complete Solar Solutions</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">From initial consultation to ongoing maintenance, we provide end-to-end solar energy services tailored to your specific needs and budget.</p>
+            </div>
+
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <% if (services && services.length > 0) { %>
+                    <% services.slice(0, 6).forEach(service => { %>
+                        <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                            <div>
+                                <% if (service.image_path) { %>
+                                    <img src="/<%= service.image_path %>" alt="<%= service.title %>" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <% } %>
+                                <h3 class="text-xl font-bold mb-3 text-green-700">
+                                    <%= service.title %>
+                                </h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                                    <%= service.description.replace(/<[^>]*>?/gm, '').substring(0, 160) %>...
+                                </p>
+                            </div>
+                            <a href="/service-details?id=<%= service.id %>" class="inline-flex items-center text-green-600 font-semibold hover:text-green-700 text-sm mt-2">
+                                Learn More <i class="fas fa-arrow-right ml-1.5 text-xs"></i>
+                            </a>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <p class="col-span-3 text-center text-gray-500">No services available.</p>
+                <% } %>
+            </div>
+
+            <div class="text-center">
+                <a href="/services" class="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                    View All Services <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Solar Section -->
+    <section id="why-solar" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center space-x-2 bg-green-100 rounded-full px-4 py-2 mb-6">
+                        <i class="fas fa-leaf text-green-600 w-4 h-4"></i><span class="text-green-600 text-sm font-medium">Why Choose Solar</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+                        Why We Need <span class="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent block">Green Energy Solar</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Green energy, such as solar power, is essential for a sustainable future. Solar energy is renewable, abundant, and emits zero greenhouse gases, making it a cleaner, high-yield alternative to fossil fuels.
+                    </p>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center space-x-3"><div class="w-2.5 h-2.5 rounded-full bg-green-600"></div><span class="text-gray-800 font-medium">Renewable and abundant clean energy source</span></div>
+                        <div class="flex items-center space-x-3"><div class="w-2.5 h-2.5 rounded-full bg-green-600"></div><span class="text-gray-800 font-medium">Zero greenhouse gas emissions & 80% lower carbon footprint</span></div>
+                        <div class="flex items-center space-x-3"><div class="w-2.5 h-2.5 rounded-full bg-green-600"></div><span class="text-gray-800 font-medium">Huge government subsidies up to ₹1,08,000 under PM Surya Ghar</span></div>
+                        <div class="flex items-center space-x-3"><div class="w-2.5 h-2.5 rounded-full bg-green-600"></div><span class="text-gray-800 font-medium">25-Year warranty with rapid payback in 3–5 years</span></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="p-6 text-center bg-gray-50 rounded-xl shadow hover:shadow-lg transition-all duration-300 border border-gray-100">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-600 to-emerald-500 flex items-center justify-center mx-auto mb-4"><i class="fas fa-leaf text-white text-xl"></i></div>
+                        <div class="text-2xl font-bold text-green-600 mb-1">80% Less Carbon</div>
+                        <h3 class="font-semibold mb-2">Environmental Impact</h3>
+                        <p class="text-sm text-gray-600">Drastically reduce emissions with clean, rooftop generation.</p>
+                    </div>
+                    <div class="p-6 text-center bg-gray-50 rounded-xl shadow hover:shadow-lg transition-all duration-300 border border-gray-100">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-600 to-emerald-500 flex items-center justify-center mx-auto mb-4"><i class="fas fa-rupee-sign text-white text-xl"></i></div>
+                        <div class="text-2xl font-bold text-green-600 mb-1">₹50k+ Annual Savings</div>
+                        <h3 class="font-semibold mb-2">Cost Savings</h3>
+                        <p class="text-sm text-gray-600">Save up to 90% on electricity bills with systems that pay for themselves.</p>
+                    </div>
+                    <div class="p-6 text-center bg-gray-50 rounded-xl shadow hover:shadow-lg transition-all duration-300 border border-gray-100">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-600 to-emerald-500 flex items-center justify-center mx-auto mb-4"><i class="fas fa-bolt text-white text-xl"></i></div>
+                        <div class="text-2xl font-bold text-green-600 mb-1">90% Self Sufficient</div>
+                        <h3 class="font-semibold mb-2">Energy Independence</h3>
+                        <p class="text-sm text-gray-600">Generate your own clean electricity and hedge against grid tariff hikes.</p>
+                    </div>
+                    <div class="p-6 text-center bg-gray-50 rounded-xl shadow hover:shadow-lg transition-all duration-300 border border-gray-100">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-600 to-emerald-500 flex items-center justify-center mx-auto mb-4"><i class="fas fa-shield-alt text-white text-xl"></i></div>
+                        <div class="text-2xl font-bold text-green-600 mb-1">25 Year Warranty</div>
+                        <h3 class="font-semibold mb-2">Long-term Reliability</h3>
+                        <p class="text-sm text-gray-600">Tier-1 panels and microinverters engineered for 25+ years performance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Solar Calculator Section -->
+    <section id="calculator" class="py-20 bg-gray-50 scroll-mt-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center space-x-2 bg-green-100 rounded-full px-4 py-2 mb-4">
+                    <i class="fas fa-calculator text-green-600 w-4 h-4"></i>
+                    <span class="text-green-600 text-sm font-medium">Solar Calculator</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+                    Calculate Your Ideal 
+                    <span class="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                        Solar System Size
+                    </span>
+                    In Minutes
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Enter your electricity details and instantly get system size, savings, subsidy benefits, payback period, and environmental impact.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-white border border-green-200 rounded-2xl p-6 sm:p-10 shadow-lg">
+                <h3 class="text-lg font-semibold mb-3 text-gray-800">1. Select Calculation Basis</h3>
+                <div class="grid sm:grid-cols-3 gap-4 mb-8">
+                    <button type="button" class="calc-option active-option transition-all px-4 py-4 rounded-lg text-center font-semibold border border-green-600 bg-green-600 text-white shadow-md text-sm sm:text-base" data-type="bill">Monthly Electricity Bill</button>
+                    <button type="button" class="calc-option transition-all px-4 py-4 rounded-lg text-center font-semibold border border-green-400 bg-white hover:bg-green-50 text-gray-700 text-sm sm:text-base" data-type="units">Monthly Consumption Units</button>
+                    <button type="button" class="calc-option transition-all px-4 py-4 rounded-lg text-center font-semibold border border-green-400 bg-white hover:bg-green-50 text-gray-700 text-sm sm:text-base" data-type="area">Total Rooftop Area</button>
+                </div>
+
+                <div id="input-section" class="mb-6">
+                    <div id="bill-input" class="toggle-input">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Monthly Electricity Bill (₹)</label>
+                        <input id="input-bill" type="number" placeholder="e.g. 3500" value="3500" class="w-full border border-green-400 rounded-lg h-12 px-4 bg-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+                    </div>
+                    <div id="units-input" class="toggle-input hidden">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Monthly Units (kWh)</label>
+                        <input id="input-units" type="number" placeholder="e.g. 400" class="w-full border border-green-400 rounded-lg h-12 px-4 bg-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+                    </div>
+                    <div id="area-input" class="toggle-input hidden">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Rooftop Area (sq ft)</label>
+                        <input id="input-area" type="number" placeholder="e.g. 500" class="w-full border border-green-400 rounded-lg h-12 px-4 bg-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Select State</label>
+                        <select id="state" class="w-full border border-green-400 rounded-lg h-12 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <option value="Uttar Pradesh" selected>Uttar Pradesh</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option value="Odisha">Odisha</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Customer Category</label>
+                        <select id="category" class="w-full border border-green-400 rounded-lg h-12 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <option value="residential" selected>Residential</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="industrial">Industrial</option>
+                            <option value="institutional">Institutional</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Electricity Tariff / Unit Cost (₹ / kWh)</label>
+                    <input id="unit-cost" type="number" value="7.5" step="0.1" placeholder="e.g. 7.5" class="w-full border border-green-400 rounded-lg h-12 px-4 bg-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+                </div>
+
+                <button id="calculate-btn" type="button" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-lg shadow-md text-lg transition duration-200">
+                    <i class="fas fa-bolt mr-2"></i> Calculate Solar Estimate
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solar Quote Lead Modal -->
+    <div id="popup-form" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl shadow-2xl p-6 sm:p-8 w-full max-w-md relative">
+            <button id="close-popup" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold">&times;</button>
+            <h3 class="text-2xl font-bold mb-2 text-green-700">Get Your Solar Quote</h3>
+            <p class="text-xs text-gray-500 mb-4">Enter your contact details to unlock your detailed report and subsidy calculation.</p>
+
+            <form id="solar-form" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+                </div>
+                <div>
+                    <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City / Town</label>
+                    <input type="text" id="city" name="city" placeholder="Aligarh" required class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+91 98370 67681" required class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+                </div>
+
+                <input type="hidden" name="system_size" id="form-system-size">
+                <input type="hidden" name="estimated_cost" id="form-estimated-cost">
+                <input type="hidden" name="monthly_generation" id="form-monthly-generation">
+                <input type="hidden" name="payback_period" id="form-payback-period">
+                <input type="hidden" name="annual_savings" id="form-annual-savings">
+                <input type="hidden" name="category" id="form-category">
+                <input type="hidden" name="area_required" id="form-area-required">
+                <input type="hidden" name="state" id="form-state">
+                <input type="hidden" name="unit_cost" id="form-unit-cost">
+                <input type="hidden" name="calc_type" id="form-calc-type">
+                <input type="hidden" name="calc_value" id="form-calc-value">
+
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-bold shadow transition mt-2">
+                    View Instant Estimate
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Solar Estimate Result Popup -->
+    <div id="result-popup" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[92vh] overflow-y-auto relative border border-green-200 pdf-area p-6 sm:p-8">
+            <button id="close-result" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center">&times;</button>
+
+            <!-- Report Header -->
+            <div class="border-b pb-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                <div class="flex items-center space-x-3">
+                    <img src="/assets/logo.png" alt="Logo" class="w-12 h-auto">
+                    <div>
+                        <h3 class="text-xl font-bold text-green-700">Green Edge Infratech</h3>
+                        <p class="text-xs text-gray-500">Rooftop Solar Feasibility & Savings Report</p>
+                    </div>
+                </div>
+                <div class="mt-2 sm:mt-0 text-left sm:text-right text-xs text-gray-600">
+                    <p>Customer: <strong id="cd-name">-</strong> (<span id="cd-city">-</span>)</p>
+                    <p>Segment: <strong id="pdf-category-display">Residential</strong></p>
+                </div>
+            </div>
+
+            <!-- Key Metrics Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                <div class="bg-green-50 p-4 rounded-xl border border-green-200 text-center">
+                    <div class="text-xs text-gray-600 font-medium">Recommended System</div>
+                    <div id="popup-system-size" class="text-2xl font-bold text-green-700 mt-1">3.0 kW</div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 text-center">
+                    <div class="text-xs text-gray-600 font-medium">Monthly Generation</div>
+                    <div id="popup-monthly-gen" class="text-2xl font-bold text-blue-700 mt-1">405 kWh</div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 text-center">
+                    <div class="text-xs text-gray-600 font-medium">Annual Savings</div>
+                    <div id="popup-annual-saving" class="text-2xl font-bold text-purple-700 mt-1">₹34,000</div>
+                </div>
+                <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 text-center">
+                    <div class="text-xs text-gray-600 font-medium">Payback Period</div>
+                    <div id="popup-payback" class="text-2xl font-bold text-amber-700 mt-1">4.5 Years</div>
+                </div>
+            </div>
+
+            <!-- Electricity Bill Comparison -->
+            <div class="bg-slate-50 p-6 rounded-xl border border-gray-200 mb-6">
+                <h4 class="font-bold text-gray-800 mb-4 text-center">Estimated Monthly Electricity Bill Comparison</h4>
+                <div class="grid grid-cols-2 gap-6 text-center max-w-sm mx-auto">
+                    <div>
+                        <div class="text-xs text-gray-500 mb-2">Current Bill</div>
+                        <div class="h-24 flex items-end justify-center">
+                            <div id="oldBillBar" class="w-16 bg-red-400 rounded-t transition-all" style="height: 60px;"></div>
+                        </div>
+                        <div class="font-bold text-red-600 mt-2">₹<span id="ui-old-bill">3,500</span></div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-2">After Solar</div>
+                        <div class="h-24 flex items-end justify-center">
+                            <div id="newBillBar" class="w-16 bg-green-500 rounded-t transition-all" style="height: 15px;"></div>
+                        </div>
+                        <div class="font-bold text-green-700 mt-2">₹<span id="ui-new-bill">350</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financials and Environment -->
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-white p-4 rounded-xl border border-gray-200">
+                    <h4 class="font-bold text-gray-800 mb-3">Financial Return Highlights</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between py-1 border-b">
+                            <span class="text-gray-600">Estimated Project Cost:</span>
+                            <span id="popup-estimated-cost" class="font-bold text-gray-800">₹1,80,000</span>
+                        </div>
+                        <div class="flex justify-between py-1 border-b">
+                            <span class="text-gray-600">Central & UP State Subsidy:</span>
+                            <span id="popup-subsidy-amount" class="font-bold text-green-600">₹78,000 - ₹1,08,000</span>
+                        </div>
+                        <div class="flex justify-between py-1 border-b">
+                            <span class="text-gray-600">Rooftop Area Required:</span>
+                            <span id="popup-area-required" class="font-bold text-gray-800">300 sq ft</span>
+                        </div>
+                        <div class="flex justify-between py-1">
+                            <span class="text-gray-600">25-Year Lifetime Savings:</span>
+                            <span id="popup-lifetime-saving" class="font-bold text-emerald-700">₹8,50,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-emerald-50/60 p-4 rounded-xl border border-emerald-200">
+                    <h4 class="font-bold text-gray-800 mb-3">Environmental Footprint Offset</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white p-3 rounded-lg border border-emerald-100">
+                            <span class="text-2xl">🌳</span>
+                            <div>
+                                <div class="text-xs text-gray-500">Trees Planted Equivalent</div>
+                                <div class="font-bold text-green-800"><span id="popup-trees-2">120</span> Trees</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3 bg-white p-3 rounded-lg border border-emerald-100">
+                            <span class="text-2xl">🚗</span>
+                            <div>
+                                <div class="text-xs text-gray-500">Cars Taken Off Road</div>
+                                <div class="font-bold text-red-700"><span id="ui-cars-2">3</span> Vehicles / yr</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3 bg-white p-3 rounded-lg border border-emerald-100">
+                            <span class="text-2xl">🌍</span>
+                            <div>
+                                <div class="text-xs text-gray-500">Lifetime CO₂ Reduction</div>
+                                <div class="font-bold text-blue-700"><span id="popup-co2">98.5</span> Tons</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF Download Button -->
+            <div class="text-center">
+                <button id="downloadPDF" type="button" class="bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg transition">
+                    <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest Blogs Section -->
+    <section id="blogs" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 bg-blue-100 rounded-full px-4 py-2 mb-4">
+                    <i class="fas fa-newspaper text-blue-600 w-4 h-4"></i><span class="text-blue-600 text-sm font-medium">Latest Blogs</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Stay Updated With Solar Insights</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Explore our latest articles, tips, and updates on solar technology, government subsidies, and renewable energy.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <% if (blogs && blogs.length > 0) { %>
+                    <% blogs.slice(0, 3).forEach(blog => { %>
+                        <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition flex flex-col justify-between border border-gray-100">
+                            <div>
+                                <a href="/blog_details?id=<%= blog.id %>">
+                                    <img src="/uploads/<%= blog.image %>" alt="<%= blog.title %>" class="w-full h-48 object-cover hover:opacity-90 transition duration-300">
+                                </a>
+                                <div class="p-6">
+                                    <p class="text-xs text-gray-500 mb-2 flex items-center">
+                                        <i class="fas fa-calendar-alt mr-2 text-green-600"></i>
+                                        <%= blog.created_at ? blog.created_at.split(' ')[0] : '' %>
+                                    </p>
+                                    <h3 class="text-lg font-bold mb-2 text-gray-900 hover:text-green-600 transition">
+                                        <a href="/blog_details?id=<%= blog.id %>"><%= blog.title %></a>
+                                    </h3>
+                                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                                        <%= blog.content.replace(/<[^>]*>?/gm, '').substring(0, 120) %>...
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="px-6 pb-6 pt-0">
+                                <a href="/blog_details?id=<%= blog.id %>" class="inline-flex items-center text-green-600 font-semibold hover:text-green-700 text-sm">
+                                    Read Article <i class="fas fa-arrow-right ml-1.5 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <p class="col-span-3 text-center text-gray-500">No blog posts available.</p>
+                <% } %>
+            </div>
+
+            <div class="text-center">
+                <a href="/blogs" class="bg-green-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition shadow">
+                    View All Blogs <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 bg-green-100 rounded-full px-4 py-2 mb-4">
+                    <i class="fas fa-phone text-green-600 w-4 h-4"></i><span class="text-green-600 text-sm font-medium">Get In Touch</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Ready to Go Solar?</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Contact our solar experts for a free consultation and personalized quote. We're here to help you make the switch to clean energy.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div class="p-8 bg-white rounded-2xl shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900">Send an Inquiry</h3>
+                    <form action="/contact" method="POST" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="first_name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                <input type="text" id="first_name" name="first_name" required class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+                            </div>
+                            <div>
+                                <label for="last_name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                <input type="text" id="last_name" name="last_name" required class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="c_email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="c_email" name="email" required class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+                        </div>
+                        <div>
+                            <label for="c_phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="c_phone" name="phone" required class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+                        </div>
+                        <div>
+                            <label for="property_type" class="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
+                            <select id="property_type" name="property_type" class="w-full border rounded-lg h-11 px-3 focus:ring-2 focus:ring-green-500 outline-none">
+                                <option>Residential House</option>
+                                <option>Commercial Building</option>
+                                <option>Industrial Facility</option>
+                                <option>Agricultural Land</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Tell us about your requirements..." class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500 outline-none" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow transition">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="relative rounded-2xl overflow-hidden shadow-md">
+                        <img src="/assets/installation-team.jpg" alt="Installation Team" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-green-900/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <div class="text-2xl font-bold">Certified Engineering Team</div>
+                            <div class="text-sm opacity-90">10+ years executing residential & commercial solar</div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-200 space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600"><i class="fas fa-phone"></i></div>
+                            <div><div class="text-xs text-gray-500">Call Us Directly</div><div class="font-bold text-gray-800">+91 98370 67681</div></div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600"><i class="fas fa-envelope"></i></div>
+                            <div><div class="text-xs text-gray-500">Email Us</div><div class="font-bold text-gray-800">greenedgeinfratech@gmail.com</div></div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600"><i class="fas fa-map-marker-alt"></i></div>
+                            <div><div class="text-xs text-gray-500">Main Office</div><div class="text-sm font-medium text-gray-800">opp. BJP office Kayampur, Aligarh, UP 202001</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>
+
+    <!-- Client-side Solar Calculator Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      const solarRadiation = { "Uttar Pradesh": 4.5, "Assam": 3.5, "Delhi": 4.2, "Gujarat": 4.8, "Rajasthan": 5.4, "Tamil Nadu": 4.7, "Maharashtra": 4.5, "Odisha": 4.2, "West Bengal": 3.8 };
+      let selectedType = "bill";
+      let solarResult = null;
+      let selectedCategoryText = "Residential";
+
+      const LIFE_YEARS = 25;
+      const CO2_PER_KWH_TONNES = 0.00082;
+      const TONNES_PER_TREE = 0.06;
+
+      document.querySelectorAll(".calc-option").forEach(btn => {
+          btn.addEventListener("click", function () {
+              selectedType = this.dataset.type;
+              document.querySelectorAll(".calc-option").forEach(b => {
+                  b.classList.remove("active-option", "bg-green-600", "text-white");
+                  b.classList.add("bg-white", "text-gray-700");
+              });
+              this.classList.add("active-option", "bg-green-600", "text-white");
+              this.classList.remove("bg-white", "text-gray-700");
+
+              document.querySelectorAll(".toggle-input").forEach(div => div.classList.add("hidden"));
+              document.getElementById(selectedType + "-input").classList.remove("hidden");
+          });
+      });
+
+      document.getElementById("calculate-btn").addEventListener("click", function () {
+          let input = 0;
+          if (selectedType === "bill") input = parseFloat(document.getElementById("input-bill").value);
+          if (selectedType === "units") input = parseFloat(document.getElementById("input-units").value);
+          if (selectedType === "area") input = parseFloat(document.getElementById("input-area").value);
+
+          const unitCost = parseFloat(document.getElementById("unit-cost").value) || 7.5;
+          const stateSelect = document.getElementById("state");
+          const categorySelect = document.getElementById("category");
+
+          if (!input || !stateSelect.value || !categorySelect.value || !unitCost) {
+              alert("⚠️ Please enter a valid number and select your options.");
+              return;
+          }
+          selectedCategoryText = categorySelect.options[categorySelect.selectedIndex].text;
+
+          let systemSize = 0;
+          if (selectedType === "bill") systemSize = ((input / 30) / unitCost) / 4;
+          if (selectedType === "units") systemSize = input / 120;
+          if (selectedType === "area") systemSize = input / 100;
+
+          systemSize = Math.max(1, parseFloat(systemSize.toFixed(1)));
+          const estimatedCost = systemSize * 60000;
+          const radiation = solarRadiation[stateSelect.value] || 4.5;
+
+          const dailyGeneration = systemSize * radiation;
+          const monthlyGeneration = dailyGeneration * 30;
+          const annualGeneration = monthlyGeneration * 12;
+          const lifetimeGeneration = annualGeneration * LIFE_YEARS;
+
+          const monthlySaving = monthlyGeneration * unitCost;
+          const yearlySaving = monthlySaving * 12;
+          const lifetimeSaving = yearlySaving * LIFE_YEARS;
+          const annualSavings = yearlySaving;
+          const paybackPeriod = Math.max(2.5, estimatedCost / annualSavings);
+
+          const co2Tonnes = lifetimeGeneration * CO2_PER_KWH_TONNES;
+          const trees = co2Tonnes / TONNES_PER_TREE;
+          const areaRequired = systemSize * 100;
+
+          solarResult = { systemSize, estimatedCost, dailyGeneration, monthlyGeneration, annualGeneration, lifetimeGeneration, monthlySaving, yearlySaving, lifetimeSaving, annualSavings, paybackPeriod, unitCost, co2Tonnes, trees, areaRequired };
+
+          document.getElementById("form-system-size").value = systemSize.toFixed(1);
+          document.getElementById("form-estimated-cost").value = estimatedCost.toFixed(0);
+          document.getElementById("form-monthly-generation").value = monthlyGeneration.toFixed(2);
+          document.getElementById("form-payback-period").value = paybackPeriod.toFixed(1);
+          document.getElementById("form-annual-savings").value = annualSavings.toFixed(0);
+          document.getElementById("form-category").value = categorySelect.value;
+          document.getElementById("form-area-required").value = areaRequired.toFixed(0);
+          document.getElementById("form-state").value = stateSelect.value;
+          document.getElementById("form-unit-cost").value = unitCost;
+          document.getElementById("form-calc-type").value = selectedType;
+          document.getElementById("form-calc-value").value = input;
+
+          document.getElementById("popup-form").classList.remove("hidden");
+      });
+
+      document.getElementById("close-popup").addEventListener("click", () => document.getElementById("popup-form").classList.add("hidden"));
+      document.getElementById("close-result").addEventListener("click", () => document.getElementById("result-popup").classList.add("hidden"));
+
+      function openResultPopup() {
+          document.getElementById("cd-name").textContent = document.getElementById("name").value || "Valued Customer";
+          document.getElementById("cd-city").textContent = document.getElementById("city").value || "India";
+          document.getElementById("pdf-category-display").textContent = selectedCategoryText + " Segment";
+
+          const oldBill = Math.round(selectedType === "bill" ? document.getElementById("input-bill").value : solarResult.monthlySaving);
+          const maxSaving = oldBill * 0.85;
+          const actualSaving = Math.min(solarResult.monthlySaving, maxSaving);
+          let newBill = Math.max(100, oldBill - actualSaving);
+
+          document.getElementById("ui-old-bill").textContent = oldBill.toLocaleString();
+          document.getElementById("ui-new-bill").textContent = Math.round(newBill).toLocaleString();
+
+          document.getElementById("popup-system-size").textContent = solarResult.systemSize.toFixed(1) + " kW";
+          document.getElementById("popup-monthly-gen").textContent = Math.round(solarResult.monthlyGeneration) + " kWh";
+          document.getElementById("popup-annual-saving").textContent = "₹" + Math.round(solarResult.yearlySaving).toLocaleString();
+          document.getElementById("popup-payback").textContent = solarResult.paybackPeriod.toFixed(1) + " Years";
+          document.getElementById("popup-estimated-cost").textContent = "₹" + Math.round(solarResult.estimatedCost).toLocaleString();
+          document.getElementById("popup-area-required").textContent = Math.round(solarResult.areaRequired) + " sq ft";
+          document.getElementById("popup-lifetime-saving").textContent = "₹" + Math.round(solarResult.lifetimeSaving).toLocaleString();
+          document.getElementById("popup-co2").textContent = solarResult.co2Tonnes.toFixed(1);
+          document.getElementById("popup-trees-2").textContent = Math.round(solarResult.trees);
+          document.getElementById("ui-cars-2").textContent = Math.round(solarResult.co2Tonnes / 4.6);
+
+          document.getElementById("result-popup").classList.remove("hidden");
+          document.getElementById("result-popup").classList.add("flex");
+      }
+
+      document.getElementById("solar-form").onsubmit = function(e) {
+          e.preventDefault();
+          const submitBtn = document.querySelector("#solar-form button[type='submit']");
+          submitBtn.innerText = "Processing...";
+          submitBtn.disabled = true;
+
+          const data = {
+              name: document.getElementById("name").value,
+              city: document.getElementById("city").value,
+              phone: document.getElementById("phone").value,
+              email: document.getElementById("email").value,
+              system_size: document.getElementById("form-system-size").value,
+              estimated_cost: document.getElementById("form-estimated-cost").value,
+              monthly_generation: document.getElementById("form-monthly-generation").value,
+              payback_period: document.getElementById("form-payback-period").value,
+              annual_savings: document.getElementById("form-annual-savings").value,
+              category: document.getElementById("form-category").value,
+              area_required: document.getElementById("form-area-required").value,
+              state: document.getElementById("form-state").value,
+              unit_cost: document.getElementById("form-unit-cost").value
+          };
+
+          fetch("/api/solar-quote", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data)
+          })
+          .then(r => r.json())
+          .then(res => {
+              submitBtn.innerText = "View Instant Estimate";
+              submitBtn.disabled = false;
+              document.getElementById("popup-form").classList.add("hidden");
+              openResultPopup();
+          })
+          .catch(err => {
+              submitBtn.innerText = "View Instant Estimate";
+              submitBtn.disabled = false;
+              document.getElementById("popup-form").classList.add("hidden");
+              openResultPopup();
+          });
+      };
+
+      document.getElementById("downloadPDF").addEventListener("click", function () {
+          window.print();
+      });
+    </script>
+</body>
+</html>

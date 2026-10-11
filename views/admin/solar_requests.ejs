@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar Leads & Quotes - GreenEdge Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <nav class="bg-green-700 text-white px-6 py-4 flex justify-between items-center shadow">
+    <a href="/admin/dashboard" class="font-bold text-lg hover:underline">← Admin Dashboard</a>
+    <span class="text-sm">Total Leads: <strong><%= requests.length %></strong></span>
+  </nav>
+
+  <div class="container mx-auto p-6 max-w-6xl">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Solar Quote Calculator Submissions</h2>
+
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700">
+        <thead class="bg-gray-50 text-xs text-gray-500 uppercase border-b">
+          <tr>
+            <th class="py-3 px-4">#</th>
+            <th class="py-3 px-4">Customer</th>
+            <th class="py-3 px-4">City</th>
+            <th class="py-3 px-4">Phone</th>
+            <th class="py-3 px-4">Email</th>
+            <th class="py-3 px-4">kW Size</th>
+            <th class="py-3 px-4">Est. Cost</th>
+            <th class="py-3 px-4">Monthly Gen</th>
+            <th class="py-3 px-4">Date</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y">
+          <% if (requests && requests.length > 0) { %>
+            <% requests.forEach((r, idx) => { %>
+              <tr class="hover:bg-gray-50">
+                <td class="py-3 px-4 text-gray-400 text-xs"><%= idx + 1 %></td>
+                <td class="py-3 px-4 font-bold text-gray-900"><%= r.name %></td>
+                <td class="py-3 px-4"><%= r.city %></td>
+                <td class="py-3 px-4 font-mono text-green-700 font-semibold"><%= r.phone %></td>
+                <td class="py-3 px-4 text-gray-600"><%= r.email %></td>
+                <td class="py-3 px-4 font-semibold"><%= r.system_size %> kW</td>
+                <td class="py-3 px-4">₹<%= Number(r.estimated_cost).toLocaleString() %></td>
+                <td class="py-3 px-4"><%= r.monthly_generation %> units</td>
+                <td class="py-3 px-4 text-xs text-gray-500"><%= r.created_at ? r.created_at.split(' ')[0] : '' %></td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="9" class="py-6 text-center text-gray-400">No leads recorded.</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

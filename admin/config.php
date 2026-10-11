@@ -1,8 +1,0 @@
-<?php
-// config.php
-session_start();
-
-include "../db.php";
-
-
-?>
