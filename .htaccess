@@ -1,0 +1,30 @@
+# ----------------------------------------------------------------------
+# Green Edge Infratech - Hostinger Apache Configuration
+# ----------------------------------------------------------------------
+
+# Ensure default index files are explicitly recognized
+DirectoryIndex index.html index.php
+
+# Prevent directory browsing (security) without throwing 403 when index exists
+Options -Indexes +FollowSymLinks
+
+# Character encoding
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # If the requested file or directory exists, serve it directly
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Clean URL handling for .html files (e.g. /about -> /about.html)
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^([^\.]+)$ $1.html [NC,L]
+</IfModule>
+
+# Custom error documents (fallback)
+ErrorDocument 403 /index.html
+ErrorDocument 404 /index.html
