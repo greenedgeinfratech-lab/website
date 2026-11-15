@@ -47,7 +47,7 @@
 
     Array.prototype.forEach.call(document.querySelectorAll('.lead-form'), function (form) {
       var startedAt = 0;
-      form.addEventListener('focusin', function () { if (!startedAt) { startedAt = Date.now(); form.ts.value = String(startedAt); } });
+      form.addEventListener('focusin', function () { if (!startedAt) { startedAt = Date.now(); form.elements.ts.value = String(startedAt); } });
       var status = form.querySelector('.form-status');
       function show(ok, msg) {
         status.textContent = msg;
@@ -55,11 +55,11 @@
       }
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var phone = (form.phone.value || '').replace(/\D/g, '').replace(/^(91|0)(?=\d{10}$)/, '');
-        if ((form.name.value || '').trim().length < 2) return show(false, 'Please enter your name.');
+        var phone = (form.elements.phone.value || '').replace(/\D/g, '').replace(/^(91|0)(?=\d{10}$)/, '');
+        if ((form.elements.name.value || '').trim().length < 2) return show(false, 'Please enter your name.');
         if (!/^[6-9]\d{9}$/.test(phone)) return show(false, 'Please enter a valid 10-digit mobile number.');
-        if ((form.city.value || '').trim().length < 2) return show(false, 'Please enter your city or locality.');
-        if (!form.consent.checked) return show(false, 'Please tick the consent box so we can contact you.');
+        if ((form.elements.city.value || '').trim().length < 2) return show(false, 'Please enter your city or locality.');
+        if (!form.elements.consent.checked) return show(false, 'Please tick the consent box so we can contact you.');
 
         var data = {};
         new FormData(form).forEach(function (v, k) { data[k] = v; });
@@ -87,6 +87,7 @@
           if (j.ok) {
             show(true, j.message);
             track('generate_lead', { enquiry_type: data.enquiry_type, category: data.category, page: location.pathname });
+            form.dispatchEvent(new CustomEvent('ge:lead-success', { bubbles: true, detail: data }));
             form.reset();
           } else {
             show(false, j.message || 'Sorry, that did not go through. Please call us on +91 98370 67681.');

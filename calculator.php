@@ -86,14 +86,19 @@ include __DIR__ . '/inc/header.php';
         <a href="#assumptions" class="underline">See all assumptions</a>.
       </div>
 
-      <div class="grid md:grid-cols-[1fr_280px] gap-6 items-start">
-        <?php $lf = ['type' => 'calculator', 'heading' => 'Get an exact quotation for your system', 'sub' => 'We will confirm the size and price after a free site survey. Your calculator result is sent with your request.', 'button' => 'Get My Solar Quotation']; include __DIR__ . '/inc/lead-form.php'; ?>
-        <div class="card p-5 space-y-3">
-          <p class="font-semibold">Rather talk to someone?</p>
-          <a href="tel:<?= BIZ_PHONE ?>" class="btn-secondary w-full" data-track="phone_click">Speak to a Solar Expert</a>
-          <a href="<?= e(wa_link('Hello Greenedge, I used your solar calculator and would like a quotation.')) ?>" target="_blank" rel="noopener" class="btn-whatsapp w-full" data-track="whatsapp_click">WhatsApp Our Solar Expert</a>
+      <div class="card p-5 flex flex-wrap items-center justify-between gap-3 bg-green-50">
+        <p class="font-semibold text-slate-800">Next step: a free site survey confirms the exact size and price.</p>
+        <div class="flex flex-wrap gap-2">
+          <a href="/contact?type=site-survey" class="btn-primary" data-track="cta_site_survey">Book a Free Site Survey</a>
+          <a href="tel:<?= BIZ_PHONE ?>" class="btn-secondary" data-track="phone_click">Speak to a Solar Expert</a>
+          <a href="<?= e(wa_link('Hello Greenedge, I used your solar calculator and would like a quotation.')) ?>" target="_blank" rel="noopener" class="btn-whatsapp" data-track="whatsapp_click">WhatsApp Us</a>
         </div>
       </div>
+    </div>
+
+    <div id="calc-gate" class="hidden scroll-mt-24">
+      <p class="rounded-lg bg-green-50 border border-green-200 p-4 text-green-900 mb-4"><strong>Your solar estimate is ready.</strong> Enter your details to see it. We will also send a copy to your email, and our solar expert will call you to answer questions.</p>
+      <?php $lf = ['type' => 'calculator', 'heading' => 'See your solar savings', 'sub' => 'Your recommended system size, savings, subsidy and payback will appear as soon as you submit.', 'button' => 'Show My Solar Savings', 'email_label' => 'Email (to receive your report)', 'hide_type' => true]; include __DIR__ . '/inc/lead-form.php'; ?>
     </div>
 
     <div id="results-empty" class="card p-8 text-slate-600">

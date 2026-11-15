@@ -28,13 +28,16 @@ $lfId   = $lf['id'] ?? 'lead-form';
         <option value="commercial" <?= $lfCat === 'commercial' ? 'selected' : '' ?>>Commercial / institution</option>
         <option value="industrial" <?= $lfCat === 'industrial' ? 'selected' : '' ?>>Industrial / factory</option>
       </select></label>
-    <label class="block sm:col-span-2"><span class="label">Email (optional)</span>
+    <label class="block sm:col-span-2"><span class="label"><?= e($lf['email_label'] ?? 'Email (optional)') ?></span>
       <input name="email" type="email" autocomplete="email" maxlength="120" class="input" placeholder="you@example.com"></label>
     <?php if (!empty($lf['message'])): ?>
     <label class="block sm:col-span-2"><span class="label">Your requirement (optional)</span>
       <textarea name="message" rows="3" maxlength="1500" class="input h-auto py-2" placeholder="Monthly bill, roof type, sanctioned load, anything we should know"></textarea></label>
     <?php endif; ?>
   </div>
+  <?php if (!empty($lf['hide_type'])): ?>
+  <input type="hidden" name="enquiry_type" value="calculator">
+  <?php else: ?>
   <fieldset>
     <legend class="label">I would like</legend>
     <div class="flex flex-wrap gap-2 mt-1">
@@ -43,6 +46,7 @@ $lfId   = $lf['id'] ?? 'lead-form';
       <?php endforeach; ?>
     </div>
   </fieldset>
+  <?php endif; ?>
   <label class="flex items-start gap-2 text-sm text-slate-600">
     <input type="checkbox" name="consent" value="1" required class="mt-1 w-4 h-4 accent-green-700">
     <span>I agree that Greenedge Infratech may call, WhatsApp or email me about my solar enquiry. See our <a href="/privacy_policy" class="underline">privacy policy</a>.</span>

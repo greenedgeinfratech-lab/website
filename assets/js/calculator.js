@@ -183,6 +183,36 @@
       }
     } catch (err) { /* ignore */ }
 
+    var pending = null;
+    function isUnlocked() { try { return sessionStorage.getItem('ge_calc_unlocked') === '1'; } catch (e) { return false; } }
+    function fillLead(r) {
+      var lf = document.getElementById('lead-form');
+      if (!lf) return;
+      lf.elements.category.value = r.category === 'residential' ? 'residential' : r.category;
+      lf.elements.calc_summary.value = JSON.stringify({
+        system_kw: r.kw, monthly_units: Math.round(r.monthlyUnits), monthly_bill: Math.round(r.currentMonthlyBill),
+        tariff: parseFloat(F.tariff.value), annual_savings: Math.round(r.annualSavings),
+        cost_range: [Math.round(r.costLow), Math.round(r.costHigh)], subsidy: r.subsidy.total,
+        net_cost: Math.round(r.netCost), payback_years: r.payback ? +r.payback.toFixed(1) : null
+      });
+    }
+    function showGate(r) {
+      pending = r;
+      fillLead(r);
+      $('calc-error').classList.add('hidden');
+      if ($('results-empty')) $('results-empty').classList.add('hidden');
+      $('results').classList.add('hidden');
+      $('calc-gate').classList.remove('hidden');
+      $('calc-gate').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      track('calculator_gate_shown', { system_kw: r.kw, category: r.category });
+    }
+    document.addEventListener('ge:lead-success', function (ev) {
+      if (!ev.target || ev.target.id !== 'lead-form' || !pending) return;
+      try { sessionStorage.setItem('ge_calc_unlocked', '1'); } catch (e) { /* ignore */ }
+      var r = pending;
+      setTimeout(function () { $('calc-gate').classList.add('hidden'); render(r); }, 1200);
+    });
+
     function render(r) {
       $('calc-error').classList.add('hidden');
       $('results').classList.remove('hidden');
@@ -214,18 +244,6 @@
       $('r-notes').classList.toggle('hidden', notes.length === 0);
       if ($('size-input')) { $('size-input').value = r.kw; $('size-input').step = cfg.categories[r.category].step; }
 
-      // carry into the lead form
-      var lf = document.getElementById('lead-form');
-      if (lf) {
-        lf.category.value = r.category;
-        lf.calc_summary.value = JSON.stringify({
-          system_kw: r.kw, monthly_units: Math.round(r.monthlyUnits), monthly_bill: Math.round(r.currentMonthlyBill),
-          tariff: parseFloat(F.tariff.value), annual_savings: Math.round(r.annualSavings),
-          cost_range: [Math.round(r.costLow), Math.round(r.costHigh)], subsidy: r.subsidy.total,
-          net_cost: Math.round(r.netCost), payback_years: r.payback ? +r.payback.toFixed(1) : null
-        });
-        $('lead-heading').textContent = 'Get an exact quote for your ' + fmt(r.kw, r.kw % 1 ? 1 : 0) + ' kW system';
-      }
       $('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
@@ -246,7 +264,7 @@
         return;
       }
       last = r;
-      render(r);
+      if (isUnlocked() || resize) render(r); else showGate(r);
       track('calculator_complete', { system_kw: r.kw, category: r.category });
     });
   });
