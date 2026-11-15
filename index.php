@@ -14,15 +14,15 @@ include __DIR__ . '/inc/header.php';
   <div class="relative container mx-auto px-4 py-16 lg:py-24 grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center">
     <div>
       <p class="inline-flex flex-wrap gap-2 mb-5"><span class="rounded-full bg-white/15 px-4 py-1 text-sm font-medium">Solar EPC company in Aligarh since <?= BIZ_SINCE ?></span><span class="rounded-full bg-yellow-400 text-green-950 px-4 py-1 text-sm font-semibold">Registered PM Surya Ghar vendor (UP)</span></p>
-      <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">Rooftop Solar Installation in Aligarh &amp; Western UP</h1>
-      <p class="mt-5 text-lg text-green-50 max-w-xl">Cut your electricity bill by up to 70&ndash;80% with a rooftop solar system designed for your home, shop or factory. Eligible homes in Uttar Pradesh can get up to <strong>&#8377;1,08,000</strong> in PM Surya Ghar central and state subsidy.</p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight"><?= e(site('home_hero_title')) ?></h1>
+      <p class="mt-5 text-lg text-green-50 max-w-xl"><?= e(site('home_hero_text')) ?></p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/calculator" class="btn-primary text-base" data-track="cta_calculator">Calculate Your Solar Savings</a>
         <a href="/contact?type=site-survey" class="btn-outline-light text-base" data-track="cta_site_survey">Book a Free Site Survey</a>
       </div>
       <ul class="mt-8 grid grid-cols-3 gap-3 max-w-lg text-center">
         <li class="rounded-lg bg-white/10 p-3"><span class="block text-2xl font-bold"><?= BIZ_INSTALLS ?></span><span class="text-xs text-green-100">solar installations</span></li>
-        <li class="rounded-lg bg-white/10 p-3"><span class="block text-2xl font-bold">70&ndash;80%</span><span class="text-xs text-green-100">typical bill saving*</span></li>
+        <li class="rounded-lg bg-white/10 p-3"><span class="block text-2xl font-bold"><?= e(site('home_savings_stat')) ?></span><span class="text-xs text-green-100">typical bill saving*</span></li>
         <li class="rounded-lg bg-white/10 p-3"><span class="block text-2xl font-bold"><?= BIZ_SINCE ?></span><span class="text-xs text-green-100">working since</span></li>
       </ul>
       <p class="mt-3 text-xs text-green-100/80">*Depends on your usage, roof, system size and tariff. Use the calculator for your own estimate.</p>

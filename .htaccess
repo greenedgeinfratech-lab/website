@@ -61,6 +61,8 @@ AddDefaultCharset UTF-8
     RewriteCond %{THE_REQUEST} \s/about\.html[\s?] [NC]
     RewriteRule ^about\.html$ /about [R=301,L,NC]
 
+    # Admin panel lives at /manage/ (index.php handles sign-in)
+
     # Blog articles: /blog/<slug>
     RewriteRule ^blog/([a-z0-9-]+)/?$ blog.php?slug=$1 [L,QSA,NC]
 

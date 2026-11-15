@@ -124,4 +124,5 @@ include __DIR__ . '/inc/header.php';
     <p><strong>CO&#8322;.</strong> 0.727 kg CO&#8322; per unit, the weighted-average grid emission factor in the Central Electricity Authority CO&#8322; Baseline Database (v20, 2023-24).</p>
   </div>
 </section>
+<script>window.SOLAR_OVERRIDES = <?= json_encode(ge_load_json('calculator', new stdClass()), JSON_UNESCAPED_SLASHES) ?>;</script>
 <?php include __DIR__ . '/inc/footer.php'; ?>

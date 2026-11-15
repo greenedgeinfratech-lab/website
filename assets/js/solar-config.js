@@ -86,3 +86,26 @@ window.SOLAR_CONFIG = {
     state: { perKw: 15000, cap: 30000, label: 'Uttar Pradesh (UPNEDA)' }
   }
 };
+
+// Values saved in the admin panel (/manage/ > Calculator) override the defaults above.
+(function (c, o) {
+  if (!o) return;
+  ['generationPerKwPerDay', 'surplusExportRate', 'tariffEscalation', 'costRange'].forEach(function (k) {
+    if (typeof o[k] === 'number' && isFinite(o[k]) && o[k] >= 0) c[k] = o[k];
+  });
+  if (o.categories) Object.keys(c.categories).forEach(function (k) {
+    var src = o.categories[k] || {};
+    ['defaultTariff', 'fixedCharges'].forEach(function (f) { if (typeof src[f] === 'number' && src[f] >= 0) c.categories[k][f] = src[f]; });
+  });
+  if (Array.isArray(o.costPerKw) && o.costPerKw.length === c.costBands.length) {
+    o.costPerKw.forEach(function (v, i) { if (typeof v === 'number' && v > 0) c.costBands[i].perKw = v; });
+  }
+  if (o.subsidy) {
+    var s = o.subsidy;
+    if (s.centralFirst2 > 0) c.subsidy.central[0].perKw = s.centralFirst2;
+    if (s.centralThird >= 0) c.subsidy.central[1].perKw = s.centralThird;
+    if (s.centralCap > 0) c.subsidy.centralCap = s.centralCap;
+    if (s.statePerKw >= 0) c.subsidy.state.perKw = s.statePerKw;
+    if (s.stateCap >= 0) c.subsidy.state.cap = s.stateCap;
+  }
+})(window.SOLAR_CONFIG, window.SOLAR_OVERRIDES);
