@@ -20,7 +20,7 @@ include __DIR__ . '/inc/header.php';
 <section class="bg-green-900 text-white">
   <div class="container mx-auto px-4 py-12">
     <h1 class="text-3xl sm:text-4xl font-extrabold">Solar savings calculator for Uttar Pradesh</h1>
-    <p class="mt-3 text-green-100 max-w-2xl">Enter your electricity bill or units to see a recommended system size, PM Surya Ghar subsidy, cost range, savings and payback. Results appear instantly &ndash; no sign-up.</p>
+    <p class="mt-3 text-green-100 max-w-2xl">Enter your electricity bill or units to see a recommended system size, PM Surya Ghar subsidy, cost range, savings and payback. Share your name and mobile number to see your full report, and we will email you a copy.</p>
   </div>
 </section>
 
