@@ -3,3 +3,17 @@ debug_post.txt
 *.zip
 .DS_Store
 Thumbs.db
+
+# --- added 2026-11-15: never commit secrets, leads, logs or archives ---
+.env
+.env.*
+private_config/
+private_leads/
+*.jsonl
+*.sql
+*.zip
+*.bak*
+error_log
+node_modules/
+uploads/resumes/
+_quarantine_*/

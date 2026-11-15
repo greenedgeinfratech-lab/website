@@ -1,30 +1,100 @@
 # ----------------------------------------------------------------------
 # Green Edge Infratech - Hostinger Apache Configuration
+# Rebuilt 2026-11-15 (previous versions kept as .htaccess.bak-*)
 # ----------------------------------------------------------------------
 
-# Ensure default index files are explicitly recognized
-DirectoryIndex index.html index.php
-
-# Prevent directory browsing (security) without throwing 403 when index exists
+DirectoryIndex index.php index.html
 Options -Indexes +FollowSymLinks
-
-# Character encoding
 AddDefaultCharset UTF-8
+
+# --- Block source code, data files, repo metadata and archives --------
+<FilesMatch "(^\.env|\.env\..*|\.git.*|server\.js|package(-lock)?\.json|metadata\.json|\.ejs|\.sql|\.zip|\.tar|\.gz|\.bak.*|error_log|\.md|\.d\.ts|\.jsonl)$">
+    Require all denied
+</FilesMatch>
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
+
+    # Directories that must never be served to the public
+    RewriteRule ^(\.git|data|views|inc|components/.*\.php)(/|$) - [F,L]
+
+    # Old PHP admin panel (broken since the Node.js deploy, contains an upload script): closed 2026-11-15
+    RewriteRule ^admin(/|$) - [F,L,NC]
+
+    # Job applicants' CVs are personal data: never public
+    RewriteRule ^uploads/resumes(/|$) - [F,L,NC]
+
+    # Never execute scripts from the uploads folder
+    RewriteRule ^uploads/.*\.(php\d*|phtml|phar|phps|shtml?|stm|pl|py|cgi|sh)$ - [F,L,NC]
+    RewriteRule \.(php\d+|phps|shtml?|stm)$ - [F,L,NC]
+
+    # Injected spam directory: tell search engines it is permanently gone
+    RewriteRule ^shop(/.*)?$ - [G,L]
+
+    # --- Permanent redirects from old URLs -----------------------------
+    # Only act on what the visitor actually typed (THE_REQUEST), so internal
+    # rewrites to the new .php files never loop.
+    RewriteCond %{THE_REQUEST} \s/index\.(html|php)[\s?] [NC]
+    RewriteRule ^index\.(html|php)$ / [R=301,L]
+    RewriteCond %{THE_REQUEST} \s/(calculator|solarcalculator)(\.(html|php))?[\s?] [NC]
+    RewriteRule ^(calculator|solarcalculator)\.(html|php)$|^solarcalculator$ /calculator [R=301,L,NC]
+    RewriteCond %{THE_REQUEST} \s/contact\.(html|php)[\s?] [NC]
+    RewriteRule ^contact\.(html|php)$ /contact [R=301,L,NC]
+    RewriteRule ^components/contactForm\.php$ /contact [R=301,L,NC]
+    RewriteCond %{THE_REQUEST} \s/(service|services|service-details)(\.(html|php))?[\s?] [NC]
+    RewriteCond %{THE_REQUEST} !\s/services[\s?] [NC]
+    RewriteRule ^ /services [R=301,L]
+    RewriteCond %{THE_REQUEST} \s/(products|product-detail|product_details)(\.(html|php))?[\s?] [NC]
+    RewriteCond %{THE_REQUEST} !\s/products[\s?] [NC]
+    RewriteRule ^ /products [R=301,L]
+    RewriteCond %{THE_REQUEST} \s/blogs\.(html|php)[\s?] [NC]
+    RewriteRule ^ /blogs [R=301,L]
+    RewriteRule ^blog_details\.html$ /blog_details [R=301,L,NC]
+    RewriteRule ^(latest_news|single_news|resources|publications|events|social_media)(\.(html|php))?$ /blogs [R=301,L,NC]
+    RewriteCond %{THE_REQUEST} \s/(faq|career)\.(html|php)[\s?] [NC]
+    RewriteRule ^(faq|career)\. /$1 [R=301,L,NC]
+    RewriteRule ^(career-details|internship-details)(\.(html|php))?$ /career [R=301,L,NC]
+    RewriteRule ^internship(\.(html|php))?$ /career#internship [R=301,L,NC,NE]
+    RewriteRule ^return_policy(\.(html|php))?$ /privacy_policy [R=301,L,NC]
+    RewriteRule ^pm-surya-ghar/?$ /pmsuryaghar/ [R=301,L,NC]
+    RewriteCond %{THE_REQUEST} \s/about\.html[\s?] [NC]
+    RewriteRule ^about\.html$ /about [R=301,L,NC]
+
+    # Blog articles: /blog/<slug>
+    RewriteRule ^blog/([a-z0-9-]+)/?$ blog.php?slug=$1 [L,QSA,NC]
 
     # If the requested file or directory exists, serve it directly
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
 
-    # Clean URL handling for .html files (e.g. /about -> /about.html)
+    # Clean URLs: /about -> about.html, /contact -> contact.php
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^([^\.]+)$ $1.php [NC,L]
     RewriteCond %{REQUEST_FILENAME}.html -f
     RewriteRule ^([^\.]+)$ $1.html [NC,L]
 </IfModule>
 
-# Custom error documents (fallback)
-ErrorDocument 403 /index.html
-ErrorDocument 404 /index.html
+# --- Security headers ---------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# --- Browser caching for static assets ---------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 30 days"
+    ExpiresByType image/png "access plus 30 days"
+    ExpiresByType image/webp "access plus 30 days"
+    ExpiresByType image/avif "access plus 30 days"
+    ExpiresByType image/x-icon "access plus 30 days"
+    ExpiresByType text/css "access plus 30 days"
+    ExpiresByType application/javascript "access plus 30 days"
+</IfModule>
+
+ErrorDocument 404 /404.php
