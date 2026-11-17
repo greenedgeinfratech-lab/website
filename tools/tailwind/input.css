@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  .container { max-width: 1200px; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center rounded-lg px-5 py-2.5 font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 disabled:opacity-60; }
+  .btn-primary { @apply btn bg-green-700 text-white shadow-sm hover:bg-green-800; }
+  .btn-secondary { @apply btn border border-green-700 bg-white text-green-800 hover:bg-green-50; }
+  .btn-light { @apply btn bg-white text-green-800 hover:bg-green-50; }
+  .btn-outline-light { @apply btn border border-white/70 text-white hover:bg-white/10; }
+  .btn-whatsapp { @apply btn bg-[#25D366] text-white hover:brightness-95; }
+  .btn-accent { @apply btn bg-yellow-400 text-green-950 hover:bg-yellow-300; }
+  .card { @apply rounded-xl border border-slate-200 bg-white shadow-sm; }
+  .label { @apply mb-1 block text-sm font-medium text-slate-700; }
+  .hint { @apply mt-1 block text-xs text-slate-500; }
+  .input { @apply h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-slate-900 focus:border-green-600 focus:outline-none focus:ring-2 focus:ring-green-600/30; }
+  .chip { @apply inline-flex cursor-pointer items-center gap-2 rounded-full border border-slate-300 px-3 py-1.5 text-sm; }
+  .chip:has(:checked) { @apply border-green-700 bg-green-50 text-green-800; }
+  .section-title { @apply text-3xl font-extrabold text-slate-900; }
+  .eyebrow { @apply text-sm font-semibold uppercase tracking-wider text-green-700; }
+  .prose-lite { @apply leading-relaxed text-slate-700; }
+  .prose-lite h2 { @apply mt-10 mb-3 text-2xl font-bold text-slate-900; }
+  .prose-lite h3 { @apply mt-6 mb-2 text-lg font-bold text-slate-900; }
+  .prose-lite p { @apply my-3; }
+  .prose-lite ul { @apply my-3 list-disc space-y-1 pl-6; }
+  .prose-lite ol { @apply my-3 list-decimal space-y-1 pl-6; }
+  .prose-lite a { @apply text-green-700 underline; }
+  .prose-lite table { @apply my-4 w-full text-sm; }
+  .prose-lite th { @apply bg-green-50 p-2 text-left font-semibold text-slate-900; }
+  .prose-lite td { @apply border-t border-slate-200 p-2 align-top; }
+  .tick-list > li { @apply relative pl-7; }
+  .tick-list > li::before { content: "✓"; @apply absolute left-0 top-0 font-bold text-green-700; }
+  .nav-drop { @apply invisible absolute left-1/2 top-full z-50 w-[min(92vw,640px)] -translate-x-1/2 rounded-xl border border-slate-200 bg-white p-4 opacity-0 shadow-xl transition; }
+  .group:hover > .nav-drop, .group:focus-within > .nav-drop { @apply visible opacity-100; }
+}

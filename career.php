@@ -1,19 +1,19 @@
 <?php
 require __DIR__ . '/inc/config.php';
 $page = [
-    'title' => 'Careers & Internships at Greenedge Infratech, Aligarh | Solar Jobs',
-    'description' => 'Solar site engineer jobs and electrical / renewable energy internships with Greenedge Infratech in Aligarh and Western Uttar Pradesh.',
+    'title' => 'Careers & Internships at Greenedge Infratech | Solar Jobs',
+    'description' => 'Solar site engineer jobs and electrical / renewable energy internships with Greenedge Infratech.',
     'path' => '/career', 'crumbs' => [['Careers', '/career']],
 ];
 $roles = [
-  ['Solar Site Engineer / Supervisor', 'Full time', 'Aligarh &amp; Western UP', 'Supervise rooftop solar sites: mounting structure erection, DC/AC cabling, earthing, inverter commissioning and quality checks. Coordinate with customers and DISCOM inspections.', ['Diploma / B.Tech in Electrical or related field', 'Site experience in solar or electrical work preferred', 'Two-wheeler and willingness to travel in Western UP']],
+  ['Solar Site Engineer / Supervisor', 'Full time', 'Project sites (travel required)', 'Supervise rooftop solar sites: mounting structure erection, DC/AC cabling, earthing, inverter commissioning and quality checks. Coordinate with customers and DISCOM inspections.', ['Diploma / B.Tech in Electrical or related field', 'Site experience in solar or electrical work preferred', 'Two-wheeler and willingness to travel to project sites']],
   ['Solar Technical Intern (Electrical / Renewable)', 'Internship', 'Aligarh', 'Hands-on internship for diploma and degree students: site feasibility surveys, system design basics and subsidy documentation.', ['Electrical / renewable energy students', 'Certificate of completion', 'Stipend based on performance and fieldwork']],
 ];
 include __DIR__ . '/inc/header.php';
 ?>
 <section class="container mx-auto px-4 py-12 max-w-4xl">
   <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Work with Greenedge</h1>
-  <p class="mt-2 text-slate-600">Help homes and businesses in Western UP switch to solar.</p>
+  <p class="mt-2 text-slate-600">Help homes and businesses across India switch to solar.</p>
   <div class="mt-8 space-y-6">
   <?php foreach ($roles as $i => $r): ?>
     <section id="<?= $i ? 'internship' : 'jobs' ?>" class="card p-6 scroll-mt-24">

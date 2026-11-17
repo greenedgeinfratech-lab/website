@@ -1,8 +1,8 @@
 <?php
 require __DIR__ . '/inc/config.php';
 $page = [
-    'title' => 'Contact Greenedge Infratech, Aligarh | Free Solar Site Survey | +91 98370 67681',
-    'description' => 'Call, WhatsApp or write to Greenedge Infratech in Aligarh for a free rooftop solar site survey, quotation or PM Surya Ghar help. Open Monday to Saturday, 9 AM to 6 PM.',
+    'title' => 'Contact Greenedge Infratech | Free Solar Site Survey | +91 98370 67681',
+    'description' => 'Call, WhatsApp or write to Greenedge Infratech for a free rooftop solar site survey, quotation or PM Surya Ghar help. Open Monday to Saturday, 9 AM to 6 PM.',
     'path' => '/contact',
     'nav' => 'contact',
     'crumbs' => [['Contact', '/contact']],
@@ -26,7 +26,7 @@ include __DIR__ . '/inc/header.php';
         <p class="text-sm text-slate-600 mt-2"><?= e(BIZ_HOURS) ?></p>
         <a class="text-green-700 font-semibold text-sm mt-2 inline-block" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=<?= rawurlencode('Greenedge Infratech ' . BIZ_STREET . ' ' . BIZ_CITY) ?>">Open in Google Maps &rarr;</a>
       </div>
-      <p class="text-sm text-slate-600">Service area: <?= e(implode(', ', BIZ_SERVICE_AREA)) ?> and nearby districts of Western Uttar Pradesh.</p>
+      <p class="text-sm text-slate-600">We take up projects across India and abroad through our own team and partner network. Tell us your city and we will confirm how we can serve you.</p>
     </div>
   </div>
   <?php $lf = ['type' => 'callback', 'message' => true, 'heading' => 'Send us your enquiry', 'button' => 'Send Enquiry']; include __DIR__ . '/inc/lead-form.php'; ?>

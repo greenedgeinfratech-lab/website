@@ -4,15 +4,15 @@ $posts = require __DIR__ . '/inc/blog-data.php';
 $posts = array_filter($posts, fn($p) => empty($p['draft']));
 uasort($posts, fn($a, $b) => strcmp($b['date'], $a['date']));
 $page = [
-    'title' => 'Solar Blog: Subsidy, Savings & Rooftop Solar Guides for UP | Greenedge Infratech',
-    'description' => 'Practical guides on PM Surya Ghar subsidy, solar system sizing, maintenance and savings for homes and businesses in Aligarh and Uttar Pradesh.',
+    'title' => 'Solar Blog: Subsidy, Savings & Rooftop Solar Guides | Greenedge Infratech',
+    'description' => 'Practical guides on PM Surya Ghar subsidy, solar system sizing, maintenance and savings for homes and businesses in India.',
     'path' => '/blogs', 'nav' => 'blogs', 'crumbs' => [['Blog', '/blogs']],
 ];
 include __DIR__ . '/inc/header.php';
 ?>
 <section class="container mx-auto px-4 py-12">
   <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Solar guides &amp; news</h1>
-  <p class="mt-2 text-slate-600 max-w-2xl">Clear, practical answers about rooftop solar in Uttar Pradesh.</p>
+  <p class="mt-2 text-slate-600 max-w-2xl">Clear, practical answers about rooftop solar.</p>
   <div class="grid gap-6 mt-8 sm:grid-cols-2 lg:grid-cols-3">
     <?php foreach ($posts as $slug => $p): ?>
     <a href="/blog/<?= e($slug) ?>" class="card overflow-hidden hover:shadow-lg transition flex flex-col"<?= isset($p['lang']) ? ' lang="' . e($p['lang']) . '"' : '' ?>>

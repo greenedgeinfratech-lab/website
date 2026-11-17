@@ -18,28 +18,27 @@
   <div class="container mx-auto px-4 py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
     <div>
       <p class="text-white font-bold text-lg">Greenedge Infratech</p>
-      <p class="mt-2"><?= e(BIZ_NAME) ?> is a rooftop solar EPC company in Aligarh, working since <?= BIZ_SINCE ?> with homes, businesses and industries across Western Uttar Pradesh.</p>
+      <p class="mt-2"><?= e(BIZ_NAME) ?> is a solar EPC company working since <?= BIZ_SINCE ?> with homes, housing societies, businesses, industries and public bodies across India and abroad.</p>
       <p class="mt-2 text-yellow-300 font-semibold"><?= e(BIZ_PMSG_VENDOR) ?></p>
     </div>
     <div>
       <p class="text-white font-semibold mb-2">Solar solutions</p>
       <ul class="space-y-1">
-        <li><a href="/services#residential" class="hover:text-white">Residential rooftop solar</a></li>
-        <li><a href="/services#commercial" class="hover:text-white">Commercial solar</a></li>
-        <li><a href="/services#industrial" class="hover:text-white">Industrial solar</a></li>
-        <li><a href="/pmsuryaghar/" class="hover:text-white">PM Surya Ghar Yojana</a></li>
-        <li><a href="/calculator" class="hover:text-white">Solar savings calculator</a></li>
-        <li><a href="/products" class="hover:text-white">Panels, inverters &amp; pumps</a></li>
+        <?php foreach (GE_SOLUTIONS as $sol): ?><li><a href="<?= $sol[0] ?>" class="hover:text-white"><?= e($sol[1]) ?></a></li><?php endforeach; ?>
       </ul>
     </div>
     <div>
-      <p class="text-white font-semibold mb-2">Company</p>
+      <p class="text-white font-semibold mb-2">Company &amp; resources</p>
       <ul class="space-y-1">
+        <li><a href="/calculator" class="hover:text-white">Solar savings calculator</a></li>
+        <li><a href="/solar-schemes" class="hover:text-white">Government schemes &amp; policies</a></li>
+        <li><a href="/solar-guide" class="hover:text-white">Solar buyer&rsquo;s guide</a></li>
+        <li><a href="/products" class="hover:text-white">Panels, inverters &amp; batteries</a></li>
+        <li><a href="/partner" class="hover:text-white">Partner with us</a></li>
         <li><a href="/about" class="hover:text-white">About us</a></li>
         <li><a href="/blogs" class="hover:text-white">Solar blog</a></li>
         <li><a href="/faq" class="hover:text-white">FAQs</a></li>
         <li><a href="/career" class="hover:text-white">Careers &amp; internships</a></li>
-        <li><a href="/partner" class="hover:text-white">Partner with us</a></li>
         <li><a href="/privacy_policy" class="hover:text-white">Privacy policy</a></li>
       </ul>
     </div>
@@ -51,7 +50,7 @@
         <p><a href="mailto:<?= BIZ_EMAIL ?>" class="hover:text-white"><?= BIZ_EMAIL ?></a></p>
         <p><?= e(BIZ_HOURS) ?></p>
       </address>
-      <p class="mt-3 text-slate-400">Serving <?= e(implode(', ', BIZ_SERVICE_AREA)) ?> and nearby areas of Western UP.</p>
+      <p class="mt-3 text-slate-400">Projects and partners across India and abroad.</p>
     </div>
   </div>
   <div class="border-t border-slate-800">

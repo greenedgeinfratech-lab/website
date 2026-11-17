@@ -9,7 +9,7 @@
  * Last reviewed: 15 Nov 2026
  */
 window.SOLAR_CONFIG = {
-  // Average daily generation per kWp of rooftop solar in Aligarh / Western UP,
+  // Average daily generation per kWp of rooftop solar, conservative for north and central India,
   // across the year, after typical system losses (inverter, wiring, dust, heat).
   // Conservative planning value; real output varies with orientation and shade.
   generationPerKwPerDay: 4.2,          // kWh per kWp per day
@@ -33,7 +33,7 @@ window.SOLAR_CONFIG = {
   // Value of surplus units exported beyond your own consumption over a year.
   // Units you export and then import back are offset at your tariff under net
   // metering; only the annual surplus is credited at this lower rate. CONFIRM
-  // against the current UPERC net-metering order.
+  // against the net-metering order of the customer's state.
   surplusExportRate: 2.5,              // Rs per kWh
 
   categories: {
@@ -43,6 +43,14 @@ window.SOLAR_CONFIG = {
       fixedCharges: 220,               // Rs/month approx. fixed + other charges in a bill
       minKw: 1, maxKw: 10, step: 0.5,
       subsidyEligible: true
+    },
+    society: {
+      label: 'Housing society / RWA (common areas)',
+      defaultTariff: 8.0,              // Rs/kWh, common-area connection. CONFIRM
+      fixedCharges: 1500,
+      minKw: 5, maxKw: 500, step: 1,
+      subsidyEligible: true,
+      subsidyType: 'ghs'               // PM Surya Ghar GHS/RWA rate, see subsidy.ghs
     },
     commercial: {
       label: 'Commercial (shop, office, school, hospital)',
@@ -83,8 +91,16 @@ window.SOLAR_CONFIG = {
       { fromKw: 2, toKw: 3, perKw: 18000 }
     ],
     centralCap: 78000,
-    state: { perKw: 15000, cap: 30000, label: 'Uttar Pradesh (UPNEDA)' }
-  }
+    state: { perKw: 15000, cap: 30000, label: 'Uttar Pradesh (UPNEDA)', appliesTo: 'Uttar Pradesh' }, // added only when the visitor picks this state
+    // Group Housing Societies / RWAs, common facilities incl. EV charging:
+    // Rs 18,000/kW on the lowest of (installed kW, 3 kW x houses, 500 kW).
+    // No UP state top-up is assumed for societies. CONFIRM if UPNEDA adds one.
+    ghs: { perKw: 18000, capKw: 500, kwPerHouse: 3 }
+  },
+
+  // Indicative EMI shown for homes and societies. Bank rates and terms vary;
+  // PM Surya Ghar home loans are concessional and collateral-free up to set limits.
+  finance: { rate: 0.07, years: 7 }
 };
 
 // Values saved in the admin panel (/manage/ > Calculator) override the defaults above.

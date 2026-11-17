@@ -1,8 +1,8 @@
 <?php
 require __DIR__ . '/inc/config.php';
 $page = [
-    'title' => 'Rooftop Solar FAQs: Cost, Subsidy, Net Metering, Maintenance | Greenedge Aligarh',
-    'description' => 'Answers to common questions about rooftop solar in Uttar Pradesh: cost per kW, PM Surya Ghar subsidy, net metering, roof space, power cuts, maintenance and warranties.',
+    'title' => 'Rooftop Solar FAQs: Cost, Subsidy, Net Metering, Maintenance | Greenedge Infratech',
+    'description' => 'Answers to common questions about rooftop solar in India: cost per kW, PM Surya Ghar subsidy, net metering, roof space, power cuts, maintenance and warranties.',
     'path' => '/faq', 'crumbs' => [['FAQs', '/faq']],
 ];
 $groups = require __DIR__ . '/inc/faq-data.php';
