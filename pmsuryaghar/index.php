@@ -54,7 +54,7 @@ include __DIR__ . '/../inc/header.php';
     <li>The house has not already received a solar subsidy for the same connection.</li>
     <li>The system is grid-connected (on-grid) and installed by a vendor registered on the National Portal, using approved (ALMM-listed, domestic-content) panels.</li>
   </ul>
-  <p>Shops, offices, schools, factories and other non-residential connections are <strong>not</strong> eligible for PM Surya Ghar subsidy. See our <a href="/services#commercial">commercial</a> and <a href="/services#industrial">industrial</a> solutions instead. Housing societies and RWAs can apply for common-area systems under separate rates.</p>
+  <p>Shops, offices, schools, factories and other non-residential connections are <strong>not</strong> eligible for PM Surya Ghar subsidy. See our <a href="/commercial-solar">commercial</a> and <a href="/industrial-solar">industrial</a> solutions instead. Housing societies and RWAs get &#8377;18,000 per kW for common-area systems &ndash; see <a href="/housing-society-solar">solar for housing societies</a>.</p>
 
   <h2>How much subsidy will I get?</h2>
   <p>The central subsidy is &#8377;30,000 per kW for the first 2 kW and &#8377;18,000 for the third kW. Above 3 kW there is no extra central subsidy, so a 5 kW system receives the same &#8377;78,000 as a 3 kW system. UP adds &#8377;15,000 per kW up to &#8377;30,000. For in-between sizes the amount is proportional; for example 2.5 kW = &#8377;69,000 central + &#8377;30,000 state = &#8377;99,000.</p>
@@ -81,7 +81,7 @@ include __DIR__ . '/../inc/header.php';
   </ul>
 
   <h2>Can I get a loan?</h2>
-  <p>Yes. Public sector banks offer concessional, collateral-free loans for rooftop solar under the scheme. Interest rates and limits change, so check the current terms with your bank or on the National Portal.</p>
+  <p>Yes. Public sector banks offer concessional, collateral-free loans for rooftop solar under the scheme. For example, SBI&rsquo;s Surya Ghar loan offers up to &#8377;2 lakh for systems up to 3 kW and up to &#8377;6 lakh for 3&ndash;10 kW. Interest rates and conditions change, so check the current terms with your bank. Our <a href="/calculator?cat=residential">calculator</a> shows an indicative EMI.</p>
 
   <h2>How Greenedge helps</h2>
   <p>Greenedge Infratech is a registered vendor under PM Surya Ghar: Muft Bijli Yojana in Uttar Pradesh, so you can select us on the National Portal when you apply.</p>

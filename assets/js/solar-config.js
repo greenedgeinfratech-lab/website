@@ -44,6 +44,14 @@ window.SOLAR_CONFIG = {
       minKw: 1, maxKw: 10, step: 0.5,
       subsidyEligible: true
     },
+    society: {
+      label: 'Housing society / RWA (common areas)',
+      defaultTariff: 8.0,              // Rs/kWh, common-area connection. CONFIRM
+      fixedCharges: 1500,
+      minKw: 5, maxKw: 500, step: 1,
+      subsidyEligible: true,
+      subsidyType: 'ghs'               // PM Surya Ghar GHS/RWA rate, see subsidy.ghs
+    },
     commercial: {
       label: 'Commercial (shop, office, school, hospital)',
       defaultTariff: 9.0,              // CONFIRM
@@ -83,8 +91,16 @@ window.SOLAR_CONFIG = {
       { fromKw: 2, toKw: 3, perKw: 18000 }
     ],
     centralCap: 78000,
-    state: { perKw: 15000, cap: 30000, label: 'Uttar Pradesh (UPNEDA)' }
-  }
+    state: { perKw: 15000, cap: 30000, label: 'Uttar Pradesh (UPNEDA)' },
+    // Group Housing Societies / RWAs, common facilities incl. EV charging:
+    // Rs 18,000/kW on the lowest of (installed kW, 3 kW x houses, 500 kW).
+    // No UP state top-up is assumed for societies. CONFIRM if UPNEDA adds one.
+    ghs: { perKw: 18000, capKw: 500, kwPerHouse: 3 }
+  },
+
+  // Indicative EMI shown for homes and societies. Bank rates and terms vary;
+  // PM Surya Ghar home loans are concessional and collateral-free up to set limits.
+  finance: { rate: 0.07, years: 7 }
 };
 
 // Values saved in the admin panel (/manage/ > Calculator) override the defaults above.

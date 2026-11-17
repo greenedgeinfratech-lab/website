@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/inc/config.php';
 $page = [
-    'title' => 'Solar Calculator Aligarh & UP: Size, Subsidy, Savings & Payback | Greenedge',
+    'title' => 'Solar Calculator for UP: Size, Subsidy, Savings, EMI & Payback | Greenedge Infratech',
     'description' => 'Free rooftop solar calculator for Uttar Pradesh. Find the right system size, PM Surya Ghar subsidy, cost range, monthly savings and payback from your electricity bill.',
     'path' => '/calculator',
     'nav' => 'calculator',
@@ -20,7 +20,7 @@ include __DIR__ . '/inc/header.php';
 <section class="bg-green-900 text-white">
   <div class="container mx-auto px-4 py-12">
     <h1 class="text-3xl sm:text-4xl font-extrabold">Solar savings calculator for Uttar Pradesh</h1>
-    <p class="mt-3 text-green-100 max-w-2xl">Enter your electricity bill or units to see a recommended system size, PM Surya Ghar subsidy, cost range, savings and payback. Share your name and mobile number to see your full report, and we will email you a copy.</p>
+    <p class="mt-3 text-green-100 max-w-2xl">For homes, housing societies, businesses and factories. Enter your electricity bill or units to see a recommended system size, subsidy, cost range, savings, EMI and payback. Share your name and mobile number to see your full report, and we will email you a copy.</p>
   </div>
 </section>
 
@@ -29,9 +29,13 @@ include __DIR__ . '/inc/header.php';
     <label class="block"><span class="label">Customer type</span>
       <select name="category" class="input">
         <option value="residential">Residential (home)</option>
+        <option value="society">Housing society / RWA (common areas)</option>
         <option value="commercial">Commercial (shop, office, school, hospital)</option>
         <option value="industrial">Industrial (factory, cold store, mill)</option>
       </select></label>
+    <label class="block hidden" id="houses-wrap"><span class="label">Number of houses / flats in the society</span>
+      <input name="houses" type="number" min="2" max="5000" step="1" inputmode="numeric" class="input" placeholder="e.g. 120">
+      <span class="hint">Society subsidy is capped at 3 kW per house and 500 kW in total.</span></label>
     <fieldset>
       <legend class="label">I know my</legend>
       <div class="flex gap-2 mt-1">
@@ -77,6 +81,7 @@ include __DIR__ . '/inc/header.php';
         <div class="card p-5"><p class="text-sm text-slate-500">Your net investment (mid estimate)</p><p id="r-net" class="text-2xl font-bold">&ndash;</p><p class="text-sm text-slate-600">cost minus subsidy, if eligible</p></div>
         <div class="card p-5"><p class="text-sm text-slate-500">Simple payback</p><p id="r-payback" class="text-2xl font-bold">&ndash;</p><p class="text-sm text-slate-600">net investment &divide; year-1 savings</p></div>
         <div class="card p-5"><p class="text-sm text-slate-500">25-year savings (estimate)</p><p id="r-life" class="text-2xl font-bold">&ndash;</p><p class="text-sm text-slate-600">with 0.5%/yr panel ageing and 3%/yr tariff rise</p></div>
+        <div class="card p-5 sm:col-span-2 bg-yellow-50 border-yellow-200"><p class="text-sm text-slate-500">Finance</p><p id="r-emi" class="text-2xl font-bold">&ndash;</p><p id="r-emi-sub" class="text-sm text-slate-600"></p></div>
         <div class="card p-5"><p class="text-sm text-slate-500">Environmental benefit</p><p id="r-co2" class="text-2xl font-bold">&ndash;</p><p class="text-sm text-slate-600">CO&#8322; avoided (CEA grid factor)</p></div>
       </div>
       <p id="r-selfuse" class="text-sm text-slate-600"></p>
@@ -106,7 +111,8 @@ include __DIR__ . '/inc/header.php';
       <ul class="mt-3 space-y-2 list-disc pl-5">
         <li>Recommended system size and roof area needed</li>
         <li>Monthly and yearly generation, and your new estimated bill</li>
-        <li>PM Surya Ghar central + UP state subsidy for eligible homes</li>
+        <li>PM Surya Ghar central + UP state subsidy for eligible homes, and the housing society subsidy</li>
+        <li>Indicative EMI, or the zero-investment option for businesses</li>
         <li>Cost range, net investment, payback and 25-year savings</li>
       </ul>
     </div>
@@ -118,7 +124,9 @@ include __DIR__ . '/inc/header.php';
   <div class="prose-lite mt-4">
     <p><strong>System size.</strong> From your bill we first remove typical fixed charges, then divide by your rate per unit to get monthly units. The size is your monthly units divided by expected generation per kW (about 4.2 units per kW per day, roughly 128 a month in Western UP), rounded to 0.5 kW for homes. If you give your roof area, the size is limited to about 100 sq ft per kW.</p>
     <p><strong>Savings.</strong> Units that replace what you would buy from the grid are valued at your tariff. Under net metering, any annual surplus beyond your own use is valued at a lower export rate (assumed &#8377;2.5/unit). Solar generation is therefore <em>not</em> assumed to equal bill savings one-for-one. Fixed charges stay on your bill.</p>
-    <p><strong>Subsidy (residential only).</strong> Central PM Surya Ghar: &#8377;30,000 per kW for the first 2 kW and &#8377;18,000 for the third kW, capped at &#8377;78,000. UP state (UPNEDA): &#8377;15,000 per kW up to &#8377;30,000. Fractional sizes are calculated proportionally (e.g. 2.5 kW = &#8377;69,000 + &#8377;30,000). Commercial and industrial customers are not eligible for PM Surya Ghar.</p>
+    <p><strong>Subsidy for housing societies.</strong> Under PM Surya Ghar, Group Housing Societies and RWAs get &#8377;18,000 per kW for solar serving common facilities (including EV charging), on the lowest of: the plant size, 3 kW per house, or 500 kW. No state top-up is assumed.</p>
+    <p><strong>EMI.</strong> For homes and societies we show an indicative monthly instalment if the net investment is financed over 7 years at about 7% a year. Actual bank rates, limits and margin money vary; eligible homes can get collateral-free loans under PM Surya Ghar.</p>
+    <p><strong>Subsidy (residential).</strong> Central PM Surya Ghar: &#8377;30,000 per kW for the first 2 kW and &#8377;18,000 for the third kW, capped at &#8377;78,000. UP state (UPNEDA): &#8377;15,000 per kW up to &#8377;30,000. Fractional sizes are calculated proportionally (e.g. 2.5 kW = &#8377;69,000 + &#8377;30,000). Commercial and industrial customers are not eligible for PM Surya Ghar; they may benefit from accelerated depreciation or the <a href="/resco-solar" class="underline">zero-investment RESCO model</a>.</p>
     <p><strong>Cost.</strong> Indicative on-grid prices per kW that fall as systems get larger, shown as a &plusmn;8% range. Battery (hybrid/off-grid) systems cost more.</p>
     <p><strong>Payback and 25-year savings.</strong> Payback = net investment &divide; year-1 savings. Lifetime savings assume panel output falls 0.5% a year and electricity prices rise 3% a year.</p>
     <p><strong>CO&#8322;.</strong> 0.727 kg CO&#8322; per unit, the weighted-average grid emission factor in the Central Electricity Authority CO&#8322; Baseline Database (v20, 2023-24).</p>

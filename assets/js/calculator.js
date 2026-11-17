@@ -17,9 +17,16 @@
     return cfg.costBands[cfg.costBands.length - 1].perKw;
   }
 
-  function subsidyFor(kw, category, cfg) {
+  function subsidyFor(kw, category, cfg, houses) {
     var cat = cfg.categories[category];
     if (!cat || !cat.subsidyEligible) return { central: 0, state: 0, total: 0 };
+    if (cat.subsidyType === 'ghs') {
+      var g = cfg.subsidy.ghs;
+      var h = num(houses);
+      var eligibleKw = Math.min(kw, g.capKw, h > 0 ? h * g.kwPerHouse : Infinity);
+      var c = Math.round(eligibleKw * g.perKw);
+      return { central: c, state: 0, total: c, eligibleKw: eligibleKw, needsHouses: !(h > 0) };
+    }
     var central = 0;
     cfg.subsidy.central.forEach(function (slab) {
       var part = clamp(kw, slab.fromKw, slab.toKw) - slab.fromKw;
@@ -34,9 +41,16 @@
    * inputs: { category, mode: 'bill'|'units', value, tariff, roofArea?, sizeOverride? }
    * returns { ok:true, ... } or { ok:false, error }
    */
+  function emi(principal, rate, years) {
+    if (!(principal > 0)) return 0;
+    var r = rate / 12, n = years * 12;
+    return r > 0 ? principal * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1) : principal / n;
+  }
+
   function compute(inputs, cfg) {
     var cat = cfg.categories[inputs.category];
     if (!cat) return { ok: false, error: 'Please choose a customer type.' };
+    if (cat.subsidyType === 'ghs' && !(num(inputs.houses) >= 2)) return { ok: false, error: 'Please enter the number of houses / flats in your society.' };
 
     var tariff = num(inputs.tariff);
     if (!(tariff >= 2 && tariff <= 25)) return { ok: false, error: 'Please enter your electricity rate per unit (between Rs 2 and Rs 25).' };
@@ -85,7 +99,7 @@
 
     // Cost and subsidy
     var cost = kw * costPerKw(kw, cfg);
-    var sub = subsidyFor(kw, inputs.category, cfg);
+    var sub = subsidyFor(kw, inputs.category, cfg, inputs.houses);
     var netCost = Math.max(0, cost - sub.total);
     var payback = annualSavings > 0 ? netCost / annualSavings : null;
 
@@ -101,6 +115,8 @@
     }
 
     var co2Year = annualGen * cfg.co2PerKwh / 1000; // tonnes
+    var fin = cfg.finance || { rate: 0.07, years: 7 };
+    var monthlyEmi = cat.subsidyEligible ? emi(netCost, fin.rate, fin.years) : 0;
 
     return {
       ok: true,
@@ -129,13 +145,16 @@
       netCost: netCost,
       payback: payback,
       lifetimeSavings: lifetime,
+      monthlyEmi: monthlyEmi,
+      monthlySavings: annualSavings / 12,
+      houses: num(inputs.houses) || null,
       lifetimeNet: lifetime - netCost,
       co2Year: co2Year,
       co2Lifetime: co2Year * cfg.lifetimeYears * (1 - cfg.annualDegradation * cfg.lifetimeYears / 2)
     };
   }
 
-  var api = { compute: compute, subsidyFor: subsidyFor, costPerKw: costPerKw };
+  var api = { compute: compute, subsidyFor: subsidyFor, costPerKw: costPerKw, emi: emi };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.SolarCalc = api;
 
@@ -157,6 +176,8 @@
     function setTariffDefault() {
       var c = cfg.categories[F.category.value];
       if (!F.tariff.dataset.touched) F.tariff.value = c.defaultTariff;
+      var hw = $('houses-wrap');
+      if (hw) hw.classList.toggle('hidden', c.subsidyType !== 'ghs');
     }
     function setMode() {
       var m = form.querySelector('input[name="mode"]:checked').value;
@@ -188,12 +209,13 @@
     function fillLead(r) {
       var lf = document.getElementById('lead-form');
       if (!lf) return;
-      lf.elements.category.value = r.category === 'residential' ? 'residential' : r.category;
+      lf.elements.category.value = r.category === 'society' ? 'housing-society' : r.category;
       lf.elements.calc_summary.value = JSON.stringify({
         system_kw: r.kw, monthly_units: Math.round(r.monthlyUnits), monthly_bill: Math.round(r.currentMonthlyBill),
         tariff: parseFloat(F.tariff.value), annual_savings: Math.round(r.annualSavings),
         cost_range: [Math.round(r.costLow), Math.round(r.costHigh)], subsidy: r.subsidy.total,
-        net_cost: Math.round(r.netCost), payback_years: r.payback ? +r.payback.toFixed(1) : null
+        net_cost: Math.round(r.netCost), payback_years: r.payback ? +r.payback.toFixed(1) : null,
+        houses: r.houses
       });
     }
     function showGate(r) {
@@ -224,7 +246,11 @@
       $('r-save').textContent = inr(r.annualSavings);
       $('r-save-sub').textContent = 'in year 1 – bill drops from about ' + inr(r.currentMonthlyBill) + ' to ' + inr(r.newMonthlyBill) + ' a month (' + fmt(r.billReductionPct) + '% lower)';
       $('r-cost').textContent = inr(r.costLow) + ' – ' + inr(r.costHigh);
-      if (r.subsidy.total > 0) {
+      if (r.subsidy.total > 0 && r.category === 'society') {
+        $('r-sub').textContent = 'up to ' + inr(r.subsidy.total);
+        $('r-sub-sub').textContent = 'PM Surya Ghar for housing societies: ₹18,000/kW on ' + fmt(r.subsidy.eligibleKw, 1) + ' kW (lowest of plant size, 3 kW per house, 500 kW), common facilities only';
+        $('r-net').textContent = inr(r.netCost);
+      } else if (r.subsidy.total > 0) {
         $('r-sub').textContent = 'up to ' + inr(r.subsidy.total);
         $('r-sub-sub').textContent = inr(r.subsidy.central) + ' central (PM Surya Ghar) + ' + inr(r.subsidy.state) + ' Uttar Pradesh (UPNEDA), if eligible';
         $('r-net').textContent = inr(r.netCost);
@@ -236,6 +262,16 @@
       $('r-payback').textContent = r.payback ? fmt(r.payback, 1) + ' years' : '–';
       $('r-life').textContent = inr(r.lifetimeSavings);
       $('r-co2').textContent = fmt(r.co2Year, 1) + ' tonnes CO₂ a year';
+      if ($('r-emi')) {
+        var fin = cfg.finance;
+        if (r.monthlyEmi > 0) {
+          $('r-emi').textContent = inr(r.monthlyEmi) + ' / month';
+          $('r-emi-sub').textContent = 'if your net investment is financed over ' + fin.years + ' years at about ' + fmt(fin.rate * 100, 1) + '% (indicative). Estimated saving: ' + inr(r.monthlySavings) + ' a month.';
+        } else {
+          $('r-emi').textContent = 'Zero-investment option';
+          $('r-emi-sub').innerHTML = 'Businesses can also go solar with no upfront cost under the <a class="underline" href="/resco-solar">RESCO model</a>, or claim tax depreciation when they own the plant.';
+        }
+      }
       $('r-selfuse').textContent = fmt(r.selfUsePct) + '% of generation used against your own consumption' + (r.surplusUnits > 0 ? '; about ' + fmt(r.surplusUnits) + ' surplus units a year credited at a lower export rate' : '');
       var notes = [];
       if (r.limitedByRoof) notes.push('Your roof area limits the system to ' + fmt(r.kw, 1) + ' kW, so it will cover part of your use.');
@@ -256,6 +292,7 @@
         value: F.value.value,
         tariff: F.tariff.value,
         roofArea: F.roofArea.value,
+        houses: F.houses ? F.houses.value : '',
         sizeOverride: resize && $('size-input') ? $('size-input').value : ''
       }, cfg);
       if (!r.ok) {

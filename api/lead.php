@@ -76,6 +76,8 @@ $email    = field($in, 'email', 120);
 $category = field($in, 'category', 20);
 $type     = field($in, 'enquiry_type', 30);
 $message  = field($in, 'message', 1500);
+$company  = field($in, 'company', 120);
+$partnerType = field($in, 'partner_type', 80);
 $consent  = in_array(field($in, 'consent', 5), ['1', 'on', 'true', 'yes'], true);
 
 $errors = [];
@@ -87,14 +89,14 @@ if (!$consent)                                 $errors[] = 'your consent to be c
 if ($errors) {
     respond(false, 'Please add ' . implode(', ', $errors) . '.', 422);
 }
-if (!in_array($category, ['residential', 'commercial', 'industrial', 'pm-surya-ghar', 'other'], true)) $category = 'other';
-if (!in_array($type, ['calculator', 'quotation', 'site-survey', 'callback', 'contact'], true)) $type = 'contact';
+if (!in_array($category, ['residential', 'commercial', 'industrial', 'pm-surya-ghar', 'housing-society', 'government', 'agriculture', 'other'], true)) $category = 'other';
+if (!in_array($type, ['calculator', 'quotation', 'site-survey', 'callback', 'contact', 'partner'], true)) $type = 'contact';
 
 // Calculator results (kept as numbers only)
 $calc = [];
 $calcRaw = json_decode(field($in, 'calc_summary', 2000), true);
 if (is_array($calcRaw)) {
-    foreach (['system_kw', 'monthly_units', 'monthly_bill', 'tariff', 'annual_savings', 'subsidy', 'net_cost', 'payback_years'] as $k) {
+    foreach (['system_kw', 'monthly_units', 'monthly_bill', 'tariff', 'annual_savings', 'subsidy', 'net_cost', 'payback_years', 'houses'] as $k) {
         if (isset($calcRaw[$k]) && is_numeric($calcRaw[$k])) $calc[$k] = $calcRaw[$k] + 0;
     }
     if (isset($calcRaw['cost_range']) && is_array($calcRaw['cost_range'])) {
@@ -111,6 +113,8 @@ $lead = [
     'phone'        => $phone,
     'city'         => $city,
     'email'        => $email,
+    'company'      => $company,
+    'partner_type' => $partnerType,
     'message'      => $message,
     'calculator'   => $calc ?: null,
     'source_page'  => field($in, 'source_page', 300),
@@ -137,7 +141,7 @@ $saved = @file_put_contents(
 // --- 2. email ------------------------------------------------------------------
 $labels = [
     'calculator' => 'Solar calculator', 'quotation' => 'Quotation request', 'site-survey' => 'Free site survey',
-    'callback' => 'Call-back request', 'contact' => 'Contact form',
+    'callback' => 'Call-back request', 'contact' => 'Contact form', 'partner' => 'Partner application',
 ];
 $subject = 'New ' . ($labels[$type] ?? 'website') . ' lead: ' . $name . ' (' . $city . ')'
     . (isset($calc['system_kw']) ? ' - ' . $calc['system_kw'] . ' kW' : '');
@@ -146,13 +150,15 @@ $lines = [
     'New enquiry from greenedgeinfratech.com',
     str_repeat('-', 44),
     'Type:      ' . ($labels[$type] ?? $type),
-    'Category:  ' . ucfirst($category),
+    'Category:  ' . ucfirst(str_replace('-', ' ', $category)),
     'Name:      ' . $name,
+    'Company:   ' . ($company ?: '-'),
     'Mobile:    +91 ' . $phone,
     'City:      ' . $city,
     'Email:     ' . ($email ?: '-'),
     'Message:   ' . ($message ?: '-'),
 ];
+if ($partnerType !== '') array_splice($lines, 3, 0, ['Partner as: ' . $partnerType]);
 if ($calc) {
     $lines[] = '';
     $lines[] = 'Calculator result';
@@ -161,7 +167,7 @@ if ($calc) {
         'system_kw' => ['Recommended system', ' kW'], 'monthly_units' => ['Monthly units', ''],
         'monthly_bill' => ['Monthly bill', '', 'Rs '], 'tariff' => ['Tariff', ' /unit', 'Rs '],
         'annual_savings' => ['Est. savings (yr 1)', '', 'Rs '], 'subsidy' => ['Subsidy (if eligible)', '', 'Rs '],
-        'net_cost' => ['Net cost', '', 'Rs '], 'payback_years' => ['Payback', ' years'],
+        'net_cost' => ['Net cost', '', 'Rs '], 'payback_years' => ['Payback', ' years'], 'houses' => ['Houses in society', ''],
     ];
     foreach ($map as $k => $m) {
         if (isset($calc[$k])) $lines[] = str_pad($m[0] . ':', 24) . ($m[2] ?? '') . number_format((float)$calc[$k], is_float($calc[$k]) ? 1 : 0) . $m[1];
@@ -184,7 +190,9 @@ if ($email !== '') {
     $ack = [
         'Dear ' . $name . ',',
         '',
-        'Thank you for contacting Greenedge Infratech. We have received your solar enquiry and a solar expert will call you on +91 ' . $phone . ' within one working day.',
+        $type === 'partner'
+        ? 'Thank you for your interest in partnering with Greenedge Infratech. Our partnerships team will call you on +91 ' . $phone . ' within two working days.'
+        : 'Thank you for contacting Greenedge Infratech. We have received your solar enquiry and a solar expert will call you on +91 ' . $phone . ' within one working day.',
     ];
     if (isset($calc['system_kw'])) {
         $ack[] = '';
@@ -213,4 +221,6 @@ if (!$mailed) {
     error_log('Lead saved but email failed: ' . $lead['id']);
 }
 
-respond(true, 'Thank you, ' . $name . '! Our solar expert will call you on ' . $phone . ' within one working day.');
+respond(true, $type === 'partner'
+    ? 'Thank you, ' . $name . '! Our partnerships team will call you on ' . $phone . ' within two working days.'
+    : 'Thank you, ' . $name . '! Our solar expert will call you on ' . $phone . ' within one working day.');

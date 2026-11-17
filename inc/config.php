@@ -79,6 +79,24 @@ define('GOOGLE_TAG_ID', 'AW-11515555005');
 
 date_default_timezone_set('Asia/Kolkata');
 
+/**
+ * Every solution the company offers, in menu order. Used by the header menu,
+ * the footer, the /services hub and "related solutions" links on each page.
+ * [path, menu label, one-line description, group]
+ */
+const GE_SOLUTIONS = [
+    ['/residential-solar', 'Home rooftop solar', 'On-grid, hybrid and off-grid systems for houses and villas', 'Homes & communities'],
+    ['/pmsuryaghar/', 'PM Surya Ghar subsidy', 'Up to ₹1,08,000 subsidy for eligible UP homes', 'Homes & communities'],
+    ['/housing-society-solar', 'Housing societies & RWAs', '₹18,000/kW subsidy for common areas and EV charging', 'Homes & communities'],
+    ['/commercial-solar', 'Commercial solar', 'Shops, offices, schools, hospitals, hotels', 'Business & industry'],
+    ['/industrial-solar', 'Industrial solar', 'Factories, cold stores, mills, warehouses', 'Business & industry'],
+    ['/resco-solar', 'Zero-investment solar (RESCO)', 'Pay only for the power, no upfront cost', 'Business & industry'],
+    ['/open-access-solar', 'Green energy open access', 'Solar power from an off-site plant for 100 kW+ users', 'Business & industry'],
+    ['/government-solar', 'Government & institutions', 'Government buildings, PSUs, schools, colleges, hospitals', 'Government & farms'],
+    ['/solar-pumps-kusum', 'Solar pumps & PM-KUSUM', 'Solar irrigation pumps and farm solar plants', 'Government & farms'],
+    ['/solar-maintenance', 'Maintenance & AMC', 'Cleaning, health checks and repairs for any solar plant', 'Government & farms'],
+];
+
 function e(?string $s): string { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 function wa_link(string $text): string { return 'https://wa.me/' . BIZ_WHATSAPP . '?text=' . rawurlencode($text); }
 function site(string $key) { global $GE_SITE; return $GE_SITE[$key] ?? null; }

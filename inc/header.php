@@ -20,7 +20,7 @@ $schema[] = [
     '@id' => SITE_URL . '/#business',
     'name' => BIZ_NAME,
     'alternateName' => 'Greenedge Infratech',
-    'description' => 'Rooftop solar EPC company in Aligarh: residential, commercial and industrial on-grid, hybrid and off-grid solar systems, including PM Surya Ghar Muft Bijli Yojana installations across Western Uttar Pradesh. Registered vendor under PM Surya Ghar in Uttar Pradesh.',
+    'description' => 'Solar EPC company in Aligarh, Uttar Pradesh: residential, housing society, commercial, industrial and government solar plants, zero-investment RESCO solar, green energy open access, solar pumps and maintenance. Registered vendor under PM Surya Ghar in Uttar Pradesh.',
     'url' => SITE_URL . '/',
     'logo' => SITE_URL . '/assets/logo.png',
     'image' => SITE_URL . '/assets/hero-solar.jpg',
@@ -58,14 +58,15 @@ if (!empty($page['crumbs'])) {
 foreach (($page['schema'] ?? []) as $s) $schema[] = $s;
 
 $nav = [
-    ['/calculator', 'Solar Calculator', 'calculator'],
     ['/pmsuryaghar/', 'PM Surya Ghar', 'pmsg'],
-    ['/services', 'Services', 'services'],
-    ['/products', 'Products', 'products'],
+    ['/solar-schemes', 'Schemes & Policies', 'schemes'],
+    ['/solar-guide', 'Solar Guide', 'guide'],
+    ['/partner', 'Partner With Us', 'partner'],
     ['/about', 'About', 'about'],
-    ['/blogs', 'Blog', 'blogs'],
     ['/contact', 'Contact', 'contact'],
 ];
+$solGroups = [];
+foreach (GE_SOLUTIONS as $sol) $solGroups[$sol[3]][] = $sol;
 ?><!DOCTYPE html>
 <html lang="en-IN">
 <head>
@@ -101,7 +102,7 @@ $nav = [
 
 <div class="bg-green-800 text-white text-sm">
   <div class="container mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
-    <span class="hidden sm:inline">Rooftop solar for homes, businesses &amp; factories across Western Uttar Pradesh</span>
+    <span class="hidden sm:inline">Solar EPC &bull; PM Surya Ghar registered vendor (UP) &bull; Homes, societies, business, industry &amp; government</span>
     <div class="flex items-center gap-4">
       <a href="tel:<?= BIZ_PHONE ?>" class="font-semibold hover:underline" data-track="phone_click">Call <?= BIZ_PHONE_DISPLAY ?></a>
       <a href="<?= e(wa_link('Hello Greenedge, I would like to know about rooftop solar.')) ?>" class="font-semibold hover:underline" target="_blank" rel="noopener" data-track="whatsapp_click">WhatsApp</a>
@@ -115,13 +116,26 @@ $nav = [
       <img src="/assets/logo.png" alt="Greenedge Infratech logo" width="44" height="44" class="w-11 h-11 object-contain">
       <span class="leading-tight"><span class="block font-extrabold tracking-wide text-green-700">GREENEDGE</span><span class="block text-xs font-semibold tracking-widest text-slate-500">INFRATECH</span></span>
     </a>
-    <nav class="hidden lg:flex items-center gap-6 text-[15px] font-medium" aria-label="Main">
-      <?php foreach ($nav as $n): if ($n[2] === 'calculator') continue; ?>
+    <nav class="hidden lg:flex items-center gap-5 text-[15px] font-medium" aria-label="Main">
+      <div class="relative group">
+        <a href="/services" class="inline-flex items-center gap-1 py-5 hover:text-green-700 <?= $active === 'services' ? 'text-green-700' : '' ?>" aria-haspopup="true">Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-drop grid grid-cols-3 gap-4">
+          <?php foreach ($solGroups as $g => $items): ?>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2"><?= e($g) ?></p>
+            <ul class="space-y-2"><?php foreach ($items as $it): ?>
+              <li><a href="<?= $it[0] ?>" class="block rounded-md p-2 -m-2 hover:bg-green-50"><span class="block font-semibold text-slate-900 text-sm"><?= e($it[1]) ?></span><span class="block text-xs text-slate-500 font-normal"><?= e($it[2]) ?></span></a></li>
+            <?php endforeach; ?></ul>
+          </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+      <?php foreach ($nav as $n): ?>
         <a href="<?= $n[0] ?>" class="hover:text-green-700 <?= $active === $n[2] ? 'text-green-700' : '' ?>"><?= $n[1] ?></a>
       <?php endforeach; ?>
     </nav>
     <div class="flex items-center gap-2">
-      <a href="/calculator" class="hidden sm:inline-flex btn-primary text-sm" data-track="cta_calculator">Calculate Your Solar Savings</a>
+      <a href="/calculator" class="hidden sm:inline-flex btn-primary text-sm" data-track="cta_calculator">Solar Calculator</a>
       <button id="menu-toggle" class="lg:hidden p-2 rounded-md border border-slate-300" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
@@ -129,8 +143,12 @@ $nav = [
   </div>
   <nav id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white" aria-label="Mobile">
     <div class="container mx-auto px-4 py-3 grid gap-1">
+      <a href="/calculator" class="py-2 font-semibold text-green-700">Solar Savings Calculator</a>
+      <details class="py-1"><summary class="py-1 font-medium cursor-pointer">Solutions</summary>
+        <div class="grid gap-1 pl-3 pb-2"><?php foreach (GE_SOLUTIONS as $it): ?><a href="<?= $it[0] ?>" class="py-1.5 text-slate-700"><?= e($it[1]) ?></a><?php endforeach; ?></div>
+      </details>
       <?php foreach ($nav as $n): ?>
-        <a href="<?= $n[0] ?>" class="py-2 font-medium <?= $n[2] === 'calculator' ? 'text-green-700' : '' ?>"><?= $n[1] ?></a>
+        <a href="<?= $n[0] ?>" class="py-2 font-medium"><?= $n[1] ?></a>
       <?php endforeach; ?>
       <a href="tel:<?= BIZ_PHONE ?>" class="btn-primary mt-2 text-center" data-track="phone_click">Call <?= BIZ_PHONE_DISPLAY ?></a>
     </div>
