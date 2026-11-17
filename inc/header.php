@@ -89,7 +89,7 @@ $nav = [
 <meta name="twitter:title" content="<?= e($title) ?>">
 <meta name="twitter:description" content="<?= e($desc) ?>">
 <meta name="twitter:image" content="<?= e($image) ?>">
-<link rel="stylesheet" href="/assets/css/site.css?v=20261115b">
+<link rel="stylesheet" href="/assets/css/site.css?v=<?= is_file(dirname(__DIR__) . '/assets/css/site.css') ? filemtime(dirname(__DIR__) . '/assets/css/site.css') : '1' ?>">
 <?php if (!empty($page['preload'])): ?><link rel="preload" as="image" href="<?= e($page['preload']) ?>">
 <?php endif; ?>
 <script type="application/ld+json"><?= json_encode(count($schema) === 1 ? $schema[0] : $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?></script>
