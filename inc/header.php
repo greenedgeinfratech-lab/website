@@ -20,7 +20,7 @@ $schema[] = [
     '@id' => SITE_URL . '/#business',
     'name' => BIZ_NAME,
     'alternateName' => 'Greenedge Infratech',
-    'description' => 'Solar EPC company in Aligarh, Uttar Pradesh: residential, housing society, commercial, industrial and government solar plants, zero-investment RESCO solar, green energy open access, solar pumps and maintenance. Registered vendor under PM Surya Ghar in Uttar Pradesh.',
+    'description' => 'Solar EPC company serving India and international clients: residential, housing society, commercial, industrial and government solar plants, zero-investment RESCO solar, green energy open access, solar pumps and maintenance. Registered vendor under PM Surya Ghar in Uttar Pradesh.',
     'url' => SITE_URL . '/',
     'logo' => SITE_URL . '/assets/logo.png',
     'image' => SITE_URL . '/assets/hero-solar.jpg',
@@ -40,7 +40,7 @@ $schema[] = [
         'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         'opens' => '09:00', 'closes' => '18:00',
     ]],
-    'areaServed' => array_map(fn($c) => ['@type' => 'City', 'name' => $c . ', Uttar Pradesh'], BIZ_SERVICE_AREA),
+    'areaServed' => [['@type' => 'Country', 'name' => 'India'], ['@type' => 'Place', 'name' => 'International']],
     'sameAs' => [
         'https://www.facebook.com/share/1BzXrvyHHt/',
         'https://www.instagram.com/greenedge.infratech',
@@ -102,7 +102,7 @@ foreach (GE_SOLUTIONS as $sol) $solGroups[$sol[3]][] = $sol;
 
 <div class="bg-green-800 text-white text-sm">
   <div class="container mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
-    <span class="hidden sm:inline">Solar EPC &bull; PM Surya Ghar registered vendor (UP) &bull; Homes, societies, business, industry &amp; government</span>
+    <span class="hidden sm:inline">Solar EPC across India &amp; abroad &bull; Homes, societies, business, industry &amp; government</span>
     <div class="flex items-center gap-4">
       <a href="tel:<?= BIZ_PHONE ?>" class="font-semibold hover:underline" data-track="phone_click">Call <?= BIZ_PHONE_DISPLAY ?></a>
       <a href="<?= e(wa_link('Hello Greenedge, I would like to know about rooftop solar.')) ?>" class="font-semibold hover:underline" target="_blank" rel="noopener" data-track="whatsapp_click">WhatsApp</a>

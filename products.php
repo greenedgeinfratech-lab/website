@@ -1,8 +1,8 @@
 <?php
 require __DIR__ . '/inc/config.php';
 $page = [
-    'title' => 'Solar Panels, Inverters, Batteries & Solar Pumps in Aligarh | Greenedge Infratech',
-    'description' => 'Mono PERC and TOPCon solar panels, on-grid and hybrid inverters, batteries, mounting structures and solar pumps supplied and installed by Greenedge Infratech in Aligarh.',
+    'title' => 'Solar Panels, Inverters, Batteries & Solar Pumps | Greenedge Infratech',
+    'description' => 'Mono PERC and TOPCon solar panels, on-grid and hybrid inverters, batteries, mounting structures and solar pumps supplied and installed by Greenedge Infratech across India.',
     'path' => '/products',
     'nav' => 'products',
     'crumbs' => [['Products', '/products']],

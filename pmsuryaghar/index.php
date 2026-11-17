@@ -11,7 +11,7 @@ $page = [
         'name' => 'PM Surya Ghar rooftop solar installation',
         'serviceType' => 'Residential rooftop solar installation under PM Surya Ghar: Muft Bijli Yojana',
         'provider' => ['@id' => SITE_URL . '/#business'],
-        'areaServed' => array_map(fn($c) => ['@type' => 'City', 'name' => $c], BIZ_SERVICE_AREA),
+        'areaServed' => ['@type' => 'State', 'name' => 'Uttar Pradesh'],
         'url' => SITE_URL . '/pmsuryaghar/',
     ]],
 ];
@@ -85,16 +85,17 @@ include __DIR__ . '/../inc/header.php';
 
   <h2>How Greenedge helps</h2>
   <p>Greenedge Infratech is a registered vendor under PM Surya Ghar: Muft Bijli Yojana in Uttar Pradesh, so you can select us on the National Portal when you apply.</p>
+  <p>Outside Uttar Pradesh? We still design and install home solar systems across India, and can guide you on applying for the central subsidy through a vendor registered in your state. <a href="/residential-solar">Home rooftop solar</a>.</p>
   <ul>
     <li>Free site survey and correct sizing from your last 12 months of bills</li>
     <li>Help with portal registration, application and document upload</li>
-    <li>Installation by our Aligarh team, DISCOM inspection and net meter coordination</li>
+    <li>Installation by our team, DISCOM inspection and net meter coordination</li>
     <li>Guidance until your subsidy is credited, plus after-sales service</li>
   </ul>
 
   <h2>Frequently asked questions</h2>
   <h3>Will I really get 300 units free?</h3>
-  <p>A 3 kW system in Western UP typically produces around 350&ndash;400 units a month on average, so a home using about 300 units can bring its energy charges close to zero. Fixed charges remain, and output is lower in winter and cloudy months.</p>
+  <p>A 3 kW system in Uttar Pradesh typically produces around 350&ndash;400 units a month on average, so a home using about 300 units can bring its energy charges close to zero. Fixed charges remain, and output is lower in winter and cloudy months.</p>
   <h3>Should I install more than 3 kW?</h3>
   <p>If your usage is higher, yes &ndash; savings grow with size. Just note the subsidy does not increase beyond 3 kW, so the extra capacity is at full price.</p>
   <h3>How long does it take to get the subsidy?</h3>

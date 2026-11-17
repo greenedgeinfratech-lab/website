@@ -31,8 +31,8 @@ $lfCats = [
       <input name="name" type="text" autocomplete="name" required maxlength="80" class="input" placeholder="Your name"></label>
     <label class="block"><span class="label">Mobile number *</span>
       <input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" required maxlength="14" pattern="[0-9+\s-]{10,14}" class="input" placeholder="10-digit mobile"></label>
-    <label class="block"><span class="label">City / locality *</span>
-      <input name="city" type="text" autocomplete="address-level2" required maxlength="80" class="input" placeholder="e.g. Aligarh, Ramghat Road"></label>
+    <label class="block"><span class="label">City &amp; state *</span>
+      <input name="city" type="text" autocomplete="address-level2" required maxlength="80" class="input" placeholder="e.g. Jaipur, Rajasthan"></label>
     <?php if ($lfPartner): ?>
     <input type="hidden" name="category" value="other">
     <label class="block"><span class="label">I want to join as *</span>

@@ -2,18 +2,18 @@
 require __DIR__ . '/inc/config.php';
 require __DIR__ . '/inc/ui.php';
 $page = [
-    'title' => 'Solar Schemes, Subsidies & Policies in Uttar Pradesh (2026) | Greenedge Infratech',
-    'description' => 'All solar schemes and rules in one place for UP: PM Surya Ghar subsidy, housing society subsidy, UP state subsidy, solar loans, PM-KUSUM, UP Solar Energy Policy 2022, net metering, open access, ALMM and tax depreciation.',
+    'title' => 'Solar Schemes, Subsidies & Policies in India (2026) | Greenedge Infratech',
+    'description' => 'All solar schemes and rules in one place: PM Surya Ghar subsidy, housing society subsidy, state subsidies, solar loans, PM-KUSUM, state solar policies, net metering, green energy open access, ALMM and tax depreciation.',
     'path' => '/solar-schemes', 'nav' => 'schemes',
     'crumbs' => [['Schemes & policies', '/solar-schemes']],
 ];
 include __DIR__ . '/inc/header.php';
 ui_hero([
     'eyebrow' => 'Government schemes &amp; policies',
-    'title' => 'Solar schemes, subsidies and rules in Uttar Pradesh',
-    'sub' => 'A plain-language guide to the central and state programmes that affect solar in UP, kept up to date by our team. Use it to understand what applies to you, then let us confirm the details for your case.',
+    'title' => 'Solar schemes, subsidies and rules in India',
+    'sub' => 'A plain-language guide to the central and state programmes that affect solar in India, kept up to date by our team. Use it to understand what applies to you, then let us confirm the details for your case.',
 ]);
-$toc = [['pm-surya-ghar', 'PM Surya Ghar (homes)'], ['rwa', 'Housing societies &amp; RWAs'], ['loans', 'Solar loans'], ['kusum', 'PM-KUSUM (farmers)'], ['up-policy', 'UP Solar Energy Policy 2022'], ['net-metering', 'Net metering in UP'], ['open-access', 'Green energy open access'], ['depreciation', 'Tax benefits for business'], ['almm', 'ALMM &amp; domestic content']];
+$toc = [['pm-surya-ghar', 'PM Surya Ghar (homes)'], ['rwa', 'Housing societies &amp; RWAs'], ['loans', 'Solar loans'], ['kusum', 'PM-KUSUM (farmers)'], ['state-policies', 'State solar policies'], ['net-metering', 'Net metering'], ['open-access', 'Green energy open access'], ['depreciation', 'Tax benefits for business'], ['almm', 'ALMM &amp; domestic content']];
 ?>
 <div class="container mx-auto px-4 py-12 grid lg:grid-cols-[240px_1fr] gap-10 items-start">
   <nav class="lg:sticky lg:top-24 card p-4 text-sm" aria-label="On this page">
@@ -23,16 +23,16 @@ $toc = [['pm-surya-ghar', 'PM Surya Ghar (homes)'], ['rwa', 'Housing societies &
   <article class="prose-lite max-w-none">
     <section id="pm-surya-ghar" class="scroll-mt-24">
       <h2 class="!mt-0">PM Surya Ghar: Muft Bijli Yojana (homes)</h2>
-      <p>The Government of India&rsquo;s rooftop solar scheme for households, launched in 2024 and run by MNRE through the National Portal. It gives a direct subsidy to residential consumers who install a grid-connected rooftop system through a registered vendor. In Uttar Pradesh, UPNEDA adds a state subsidy of &#8377;15,000 per kW, up to &#8377;30,000 per consumer.</p>
+      <p>The Government of India&rsquo;s rooftop solar scheme for households, launched in 2024 and run by MNRE through the National Portal. It gives a direct subsidy to residential consumers who install a grid-connected rooftop system through a registered vendor. Several states add their own subsidy on top of the central amount.</p>
       <table>
-        <thead><tr><th>System size</th><th>Central subsidy</th><th>UP state subsidy</th><th>Total in UP</th></tr></thead>
+        <thead><tr><th>System size</th><th>Central subsidy</th></tr></thead>
         <tbody>
-          <tr><td>1 kW</td><td>&#8377;30,000</td><td>&#8377;15,000</td><td><strong>&#8377;45,000</strong></td></tr>
-          <tr><td>2 kW</td><td>&#8377;60,000</td><td>&#8377;30,000</td><td><strong>&#8377;90,000</strong></td></tr>
-          <tr><td>3 kW and above</td><td>&#8377;78,000 (cap)</td><td>&#8377;30,000 (cap)</td><td><strong>&#8377;1,08,000</strong></td></tr>
+          <tr><td>1 kW</td><td>&#8377;30,000</td></tr>
+          <tr><td>2 kW</td><td>&#8377;60,000</td></tr>
+          <tr><td>3 kW and above</td><td>&#8377;78,000 (cap)</td></tr>
         </tbody>
       </table>
-      <p>Central subsidy is &#8377;30,000 per kW for the first 2 kW and &#8377;18,000 for the third kW; there is no extra central subsidy beyond 3 kW. <a href="/pmsuryaghar/">Full guide: eligibility, documents and steps &rarr;</a></p>
+      <p>Central subsidy is &#8377;30,000 per kW for the first 2 kW and &#8377;18,000 for the third kW; there is no extra central subsidy beyond 3 kW. Greenedge is a registered PM Surya Ghar vendor in Uttar Pradesh, where homes also get a state subsidy of &#8377;15,000 per kW up to &#8377;30,000. <a href="/pmsuryaghar/">Full guide: eligibility, documents and steps &rarr;</a></p>
     </section>
 
     <section id="rwa" class="scroll-mt-24">
@@ -48,29 +48,22 @@ $toc = [['pm-surya-ghar', 'PM Surya Ghar (homes)'], ['rwa', 'Housing societies &
 
     <section id="kusum" class="scroll-mt-24">
       <h2>PM-KUSUM (farmers)</h2>
-      <p>PM-KUSUM supports solar in agriculture in three parts: small solar plants on farmers&rsquo; land (Component A), standalone solar pumps (Component B) and solarisation of grid-connected pumps and agricultural feeders (Component C). Uttar Pradesh is one of the active states, including feeder-level solarisation projects. <a href="/solar-pumps-kusum">Solar pumps &amp; PM-KUSUM &rarr;</a></p>
+      <p>PM-KUSUM supports solar in agriculture in three parts: small solar plants on farmers&rsquo; land (Component A), standalone solar pumps (Component B) and solarisation of grid-connected pumps and agricultural feeders (Component C). Each state runs its own application rounds and adds its share of the subsidy. <a href="/solar-pumps-kusum">Solar pumps &amp; PM-KUSUM &rarr;</a></p>
     </section>
 
-    <section id="up-policy" class="scroll-mt-24">
-      <h2>Uttar Pradesh Solar Energy Policy 2022</h2>
-      <p>Approved in November 2022 with UPNEDA as nodal agency, the policy set a target of 22,000 MW of solar in five years:</p>
-      <ul>
-        <li>14,000 MW from solar parks and utility projects</li>
-        <li>4,500 MW from residential rooftop solar</li>
-        <li>1,500 MW from non-residential rooftop solar, such as government buildings and educational institutions</li>
-        <li>2,000 MW through PM-KUSUM</li>
-      </ul>
-      <p>It allows rooftop solar with net metering on government buildings and educational institutions, and calls for solar on government and PSU buildings, schools, colleges and universities in phases, through CAPEX and RESCO models. <a href="/government-solar">Government solar &rarr;</a></p>
+    <section id="state-policies" class="scroll-mt-24">
+      <h2>State solar policies</h2>
+      <p>Most states have their own solar or renewable energy policy, run by a state nodal agency. These policies set state targets, any extra subsidy for homes, rules for solar on government buildings and educational institutions, land and approval support for larger plants, and incentives for industry. Many now promote solar on government buildings through both CAPEX and RESCO models. Tell us your state and we will explain what applies to your project.</p>
     </section>
 
     <section id="net-metering" class="scroll-mt-24">
-      <h2>Net metering and rooftop rules in UP</h2>
-      <p>Grid-connected rooftop solar in UP is governed by the UPERC (Rooftop Solar PV Grid Interactive System Gross / Net Metering) Regulations, 2019, as amended (the latest amendment came into force in July 2025). Under net metering, a bidirectional meter records units you import and export, and exported units are adjusted against imports in your bill. The arrangement available &ndash; net metering, net billing or gross metering &ndash; depends on your consumer category: residential consumers, government buildings and educational institutions can use net metering. Applications go through your DISCOM: DVVNL for Aligarh, Agra and nearby districts, PVVNL for the Meerut region, plus MVVNL, PuVVNL and KESCo elsewhere in the state.</p>
+      <h2>Net metering and rooftop rules</h2>
+      <p>Grid-connected rooftop solar is governed by the rooftop or net-metering regulations of your State Electricity Regulatory Commission, within national rules. Under net metering, a bidirectional meter records units you import and export, and exported units are adjusted against imports in your bill, with any surplus settled at a rate set by the regulator. Depending on your state and consumer category, you may be offered net metering, net billing or gross metering, and there are limits on capacity relative to your sanctioned load. Applications go through your electricity distribution company (DISCOM).</p>
     </section>
 
     <section id="open-access" class="scroll-mt-24">
       <h2>Green energy open access</h2>
-      <p>The Electricity (Promoting Renewable Energy Through Green Energy Open Access) Rules, 2022 let consumers with 100 kW or more contracted demand buy renewable power from plants elsewhere. UPERC has aligned its open access regulations with these rules and in 2026 issued an order easing metering and fee requirements for green open access consumers. <a href="/open-access-solar">Open access solar &rarr;</a></p>
+      <p>The Electricity (Promoting Renewable Energy Through Green Energy Open Access) Rules, 2022 let consumers with 100 kW or more contracted demand buy renewable power from plants elsewhere. Each state regulator implements the rules with its own charges and procedures. <a href="/open-access-solar">Open access solar &rarr;</a></p>
     </section>
 
     <section id="depreciation" class="scroll-mt-24">
@@ -83,7 +76,7 @@ $toc = [['pm-surya-ghar', 'PM Surya Ghar (homes)'], ['rwa', 'Housing societies &
       <p>MNRE&rsquo;s Approved List of Models and Manufacturers (ALMM) lists solar modules (and, in phases, cells) approved for government-supported and many other projects. Subsidised schemes such as PM Surya Ghar also require domestic-content (DCR) modules made from Indian cells. We specify ALMM-listed equipment and DCR modules wherever a scheme requires them, and name every model in your quotation.</p>
     </section>
 
-    <?php ui_sources([['PM Surya Ghar National Portal', 'https://pmsuryaghar.gov.in'], ['MNRE', 'https://mnre.gov.in'], ['UPNEDA', 'https://upneda.org.in'], ['UPERC', 'https://www.uperc.org'], ['SBI Surya Ghar loan', 'https://sbi.co.in/web/personal-banking/loans/pm-surya-ghar-loan-for-solar-roof-top'], ['UP Solar Energy Policy 2022', 'https://invest.up.gov.in/solar-energy-policy-2022/']]); ?>
+    <?php ui_sources([['PM Surya Ghar National Portal', 'https://pmsuryaghar.gov.in'], ['MNRE', 'https://mnre.gov.in'], ['SBI Surya Ghar loan', 'https://sbi.co.in/web/personal-banking/loans/pm-surya-ghar-loan-for-solar-roof-top']]); ?>
   </article>
 </div>
 

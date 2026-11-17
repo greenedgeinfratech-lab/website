@@ -83,7 +83,7 @@ $consent  = in_array(field($in, 'consent', 5), ['1', 'on', 'true', 'yes'], true)
 $errors = [];
 if (mb_strlen($name) < 2)                      $errors[] = 'your name';
 if (!preg_match('/^[6-9]\d{9}$/', $phone))      $errors[] = 'a valid 10-digit mobile number';
-if (mb_strlen($city) < 2)                      $errors[] = 'your city or locality';
+if (mb_strlen($city) < 2)                      $errors[] = 'your city and state';
 if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'a valid email (or leave it blank)';
 if (!$consent)                                 $errors[] = 'your consent to be contacted';
 if ($errors) {
@@ -199,7 +199,7 @@ if ($email !== '') {
         $ack[] = 'Your calculator estimate (indicative, to be confirmed after a site survey):';
         $ack[] = '- Recommended system: ' . $calc['system_kw'] . ' kW';
         if (isset($calc['annual_savings'])) $ack[] = '- Estimated savings in year 1: Rs ' . number_format((float)$calc['annual_savings']);
-        if (!empty($calc['subsidy'])) $ack[] = '- PM Surya Ghar + UP subsidy, if eligible: up to Rs ' . number_format((float)$calc['subsidy']);
+        if (!empty($calc['subsidy'])) $ack[] = '- PM Surya Ghar subsidy (incl. state subsidy where applicable), if eligible: up to Rs ' . number_format((float)$calc['subsidy']);
         if (isset($calc['payback_years'])) $ack[] = '- Simple payback: about ' . $calc['payback_years'] . ' years';
     }
     $ack[] = '';

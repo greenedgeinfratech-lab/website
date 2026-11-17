@@ -2,11 +2,11 @@
 require __DIR__ . '/inc/config.php';
 require __DIR__ . '/inc/ui.php';
 $page = [
-    'title' => 'Solar Water Pumps & PM-KUSUM in Uttar Pradesh | Greenedge Infratech',
-    'description' => 'Solar irrigation pumps, grid-connected pump solarisation and farm solar plants in Uttar Pradesh. PM-KUSUM components A, B and C explained, with help for farmers to apply.',
+    'title' => 'Solar Water Pumps & PM-KUSUM | Greenedge Infratech',
+    'description' => 'Solar irrigation pumps, grid-connected pump solarisation and farm solar plants across India. PM-KUSUM components A, B and C explained, with help for farmers to apply.',
     'path' => '/solar-pumps-kusum', 'nav' => 'services',
     'crumbs' => [['Solutions', '/services'], ['Solar pumps & PM-KUSUM', '/solar-pumps-kusum']],
-    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Solar water pumps and PM-KUSUM installations', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => 'Uttar Pradesh', 'url' => SITE_URL . '/solar-pumps-kusum']],
+    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Solar water pumps and PM-KUSUM installations', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => ['@type' => 'Country', 'name' => 'India'], 'url' => SITE_URL . '/solar-pumps-kusum']],
 ];
 include __DIR__ . '/inc/header.php';
 ui_hero([
@@ -19,14 +19,14 @@ ui_hero([
 ]);
 ?>
 <section id="kusum" class="container mx-auto px-4 py-16 scroll-mt-24">
-  <?php ui_heading('PM-KUSUM in three parts', 'PM-KUSUM (Pradhan Mantri Kisan Urja Suraksha evam Utthaan Mahabhiyan) is the Government of India&rsquo;s programme for solar in agriculture, run by MNRE and implemented in UP by state agencies.'); ?>
+  <?php ui_heading('PM-KUSUM in three parts', 'PM-KUSUM (Pradhan Mantri Kisan Urja Suraksha evam Utthaan Mahabhiyan) is the Government of India&rsquo;s programme for solar in agriculture, run by MNRE and implemented by state agencies.'); ?>
   <div class="grid gap-6 mt-10 lg:grid-cols-3">
     <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wider text-green-700">Component A</p><h3 class="text-xl font-bold mt-1">Solar plants on farm land</h3><p class="mt-2 text-sm text-slate-600">Small, decentralised grid-connected solar plants on barren, fallow or cultivable land of farmers, with the power sold to the DISCOM.</p></div>
     <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wider text-green-700">Component B</p><h3 class="text-xl font-bold mt-1">Standalone solar pumps</h3><p class="mt-2 text-sm text-slate-600">Off-grid solar pumps for farmers without a reliable grid connection, often replacing diesel pumps.</p></div>
-    <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wider text-green-700">Component C</p><h3 class="text-xl font-bold mt-1">Solarising grid-connected pumps</h3><p class="mt-2 text-sm text-slate-600">Adding solar to existing grid pumps (individual pump solarisation), or solarising whole agricultural feeders (feeder-level solarisation). UP has been approving power purchase agreements for feeder-level projects.</p></div>
+    <div class="card p-6"><p class="text-xs font-semibold uppercase tracking-wider text-green-700">Component C</p><h3 class="text-xl font-bold mt-1">Solarising grid-connected pumps</h3><p class="mt-2 text-sm text-slate-600">Adding solar to existing grid pumps (individual pump solarisation), or solarising whole agricultural feeders (feeder-level solarisation).</p></div>
   </div>
-  <p class="mt-8 text-sm text-slate-600 max-w-3xl mx-auto text-center">The government share of the pump cost is at least 30% from the centre for Component B and individual pump solarisation, with the state adding its share. Applications in UP open in rounds announced by the state; amounts, eligibility and booking rules are set for each round.</p>
-  <?php ui_sources([['MNRE PM-KUSUM', 'https://pmkusum.mnre.gov.in'], ['UPNEDA', 'https://upneda.org.in']]); ?>
+  <p class="mt-8 text-sm text-slate-600 max-w-3xl mx-auto text-center">The government share of the pump cost is at least 30% from the centre for Component B and individual pump solarisation, with the state adding its share. Applications open in rounds announced by each state; amounts, eligibility and booking rules are set for each round.</p>
+  <?php ui_sources([['MNRE PM-KUSUM', 'https://pmkusum.mnre.gov.in']]); ?>
 </section>
 
 <section class="bg-slate-50">
@@ -61,7 +61,7 @@ ui_hero([
 <?php ui_faqs([
     ['Can a solar pump run on cloudy days?', 'It runs at reduced output in cloudy weather and stops at night. Pump size and panel capacity are chosen to meet your daily water need over the season.'],
     ['How long does a solar pump last?', 'Solar panels last 25 years or more; pumps and controllers need periodic servicing like any pump.'],
-    ['How do I apply for PM-KUSUM in UP?', 'The state announces application rounds with eligibility, subsidy share and booking rules. Contact us and we will help you check eligibility and prepare documents when the next round opens.'],
+    ['How do I apply for PM-KUSUM?', 'Your state announces application rounds with eligibility, subsidy share and booking rules. Contact us and we will help you check eligibility and prepare documents when the next round opens.'],
 ]); ?>
 <?php ui_related('/solar-pumps-kusum'); ?>
 <?php include __DIR__ . '/inc/footer.php'; ?>

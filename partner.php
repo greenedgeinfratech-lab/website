@@ -3,7 +3,7 @@ require __DIR__ . '/inc/config.php';
 require __DIR__ . '/inc/ui.php';
 $page = [
     'title' => 'Partner With Greenedge Infratech: Solar Dealers, Installers, Referral & Investment Partners',
-    'description' => 'Join the Greenedge partner network in Uttar Pradesh as a solar channel partner, installer, referral partner, investor or supplier. Design support, PM Surya Ghar process support, training, marketing and timely payouts.',
+    'description' => 'Join the Greenedge partner network across India as a solar channel partner, installer, referral partner, investor or supplier. Design support, PM Surya Ghar process support, training, marketing and timely payouts.',
     'path' => '/partner', 'nav' => 'partner',
     'crumbs' => [['Partner with us', '/partner']],
 ];
@@ -11,7 +11,7 @@ include __DIR__ . '/inc/header.php';
 ui_hero([
     'eyebrow' => 'Greenedge partner programme',
     'title' => 'Grow your business with solar &ndash; with Greenedge behind you',
-    'sub' => 'Uttar Pradesh is one of India&rsquo;s fastest-growing solar markets, from rooftop homes to factories and government buildings. Partner with us to win and deliver more projects, while we provide the engineering, approvals, supply and after-sales strength.',
+    'sub' => 'Solar is one of the fastest-growing markets in India and worldwide, from rooftop homes to factories and government buildings. Partner with us to win and deliver more projects, while we provide the engineering, approvals, supply and after-sales strength.',
     'badges' => ['Channel partners', 'Installers &amp; EPC teams', 'Referral partners', 'Investors &amp; suppliers'],
     'ctas' => [['#apply', 'Apply to partner', 'btn-accent', 'cta_partner_apply'], ['#types', 'Partnership types', 'btn-outline-light', 'cta_partner_types']],
     'image' => '/assets/image/Partner-with-Us.jpg',
@@ -22,10 +22,10 @@ ui_hero([
   <div class="grid gap-6 mt-10 md:grid-cols-2 lg:grid-cols-3">
     <?php foreach ([
       ['Channel partner / dealer', 'For electrical, electronics, inverter and battery dealers, and entrepreneurs who want a solar business in their town.', ['Sell Greenedge solar systems in your area', 'Partner pricing on complete systems', 'We support design, approvals and installation', 'Earn on every project you close']],
-      ['Installer / EPC sub-contractor', 'For trained installation teams and small EPC firms in Uttar Pradesh.', ['Regular installation work orders', 'Standard drawings, methods and safety checklists', 'Training on our quality standards', 'Clear rates and on-time payment for completed work']],
+      ['Installer / EPC sub-contractor', 'For trained installation teams and small EPC firms anywhere in India.', ['Regular installation work orders', 'Standard drawings, methods and safety checklists', 'Training on our quality standards', 'Clear rates and on-time payment for completed work']],
       ['Referral partner', 'For architects, builders, electricians, CAs, consultants, society office-bearers and anyone with a network.', ['Introduce homes, societies or businesses', 'We do the selling, survey and delivery', 'Referral reward on every converted project', 'Track your referrals with our team']],
       ['Investor / RESCO finance partner', 'For investors, NBFCs and developers looking for solar assets with long-term returns.', ['Pipeline of RESCO-ready commercial, industrial and institutional sites', 'Engineering, construction and O&amp;M by Greenedge', 'Generation monitoring and reporting', 'Structured PPAs with creditworthy offtakers']],
-      ['Supplier / manufacturer', 'For module, inverter, structure, cable and battery brands.', ['Projects across homes, C&amp;I and government', 'Product feedback from the field', 'Joint marketing in Western UP']],
+      ['Supplier / manufacturer', 'For module, inverter, structure, cable and battery brands.', ['Projects across homes, C&amp;I and government', 'Product feedback from the field', 'Joint marketing with our partner network']],
       ['Institutional partner', 'For banks, NGOs, CSR teams, colleges and industry associations.', ['Solar awareness and loan camps', 'CSR solar projects for schools and health centres', 'Training and internships for students']],
     ] as $p): ?>
     <div class="card p-6 flex flex-col">
@@ -42,7 +42,7 @@ ui_hero([
     <?php ui_heading('What partners get from Greenedge'); ?>
     <?php ui_cards([
         ['Engineering support', 'System design, shadow analysis, structural guidance and bill-of-materials for your customers&rsquo; projects.'],
-        ['Scheme and approval know-how', 'Our PM Surya Ghar vendor processes, DISCOM net metering and UPNEDA documentation, so your customers&rsquo; paperwork is done right.'],
+        ['Scheme and approval know-how', 'DISCOM net metering, state agency documentation and, in Uttar Pradesh, our PM Surya Ghar vendor processes, so your customers&rsquo; paperwork is done right.'],
         ['Quality supply', 'ALMM-listed panels, reputed inverters and galvanised structures through our supply chain.'],
         ['Training', 'Product, sales and installation training, including safety practices, for you and your team.'],
         ['Marketing material', 'Brochures, social media creatives, the Greenedge calculator and local lead support.'],
@@ -70,7 +70,7 @@ ui_hero([
   <div class="container mx-auto px-4 py-14 grid lg:grid-cols-[1fr_1.2fr] gap-10 items-start">
     <div>
       <h2 class="section-title">Apply to become a Greenedge partner</h2>
-      <p class="mt-3 text-slate-700">We are building our network across Aligarh, Hathras, Kasganj, Etah, Bulandshahr, Mathura and the rest of Uttar Pradesh. Tell us about yourself and we will be in touch.</p>
+      <p class="mt-3 text-slate-700">We are building our partner network across India and abroad. Tell us about yourself and we will be in touch.</p>
       <h3 class="font-bold text-slate-900 mt-8">What we look for</h3>
       <ul class="mt-3 space-y-2 tick-list text-slate-700">
         <li>Honest dealing with customers</li>
@@ -87,7 +87,7 @@ ui_hero([
 <?php ui_faqs([
     ['Is there a fee to become a partner?', 'There is no fee to apply. Any commercial terms for a partnership are discussed and agreed in writing before you start.'],
     ['Do I need solar experience?', 'Not for referral partnerships. Channel partners and installers with electrical experience can be trained on solar.'],
-    ['Which areas are you looking for partners in?', 'Our home base is Western Uttar Pradesh, and we welcome partners from across the state.'],
+    ['Which areas are you looking for partners in?', 'We welcome partners from every state in India and from other countries.'],
     ['How are referral rewards paid?', 'Referral rewards are paid after the referred project is completed and paid for, as per the terms agreed with you.'],
 ]); ?>
 <?php include __DIR__ . '/inc/footer.php'; ?>

@@ -2,17 +2,17 @@
 require __DIR__ . '/inc/config.php';
 require __DIR__ . '/inc/ui.php';
 $page = [
-    'title' => 'Solar Buyer\'s Guide for India & UP: Everything to Know Before You Install | Greenedge',
-    'description' => 'A complete, honest guide to buying solar in Uttar Pradesh: system types, panels and inverters, sizing, cost, savings, subsidy, net metering, financing, how to choose an installer, warranties and maintenance.',
+    'title' => 'Solar Buyer\'s Guide for India: Everything to Know Before You Install | Greenedge',
+    'description' => 'A complete, honest guide to buying solar in India: system types, panels and inverters, sizing, cost, savings, subsidy, net metering, financing, how to choose an installer, warranties and maintenance.',
     'path' => '/solar-guide', 'nav' => 'guide',
     'crumbs' => [['Solar buyer\'s guide', '/solar-guide']],
-    'schema' => [['@context' => 'https://schema.org', '@type' => 'Article', 'headline' => 'Solar buyer\'s guide for Uttar Pradesh', 'author' => ['@id' => SITE_URL . '/#business'], 'publisher' => ['@id' => SITE_URL . '/#business'], 'dateModified' => '2026-11-17', 'mainEntityOfPage' => SITE_URL . '/solar-guide']],
+    'schema' => [['@context' => 'https://schema.org', '@type' => 'Article', 'headline' => 'Solar buyer\'s guide for India', 'author' => ['@id' => SITE_URL . '/#business'], 'publisher' => ['@id' => SITE_URL . '/#business'], 'dateModified' => '2026-11-17', 'mainEntityOfPage' => SITE_URL . '/solar-guide']],
 ];
 include __DIR__ . '/inc/header.php';
 ui_hero([
     'eyebrow' => 'Solar buyer&rsquo;s guide',
     'title' => 'Everything you need to know before installing solar',
-    'sub' => 'Written by our engineers for homes, societies, businesses and institutions in Uttar Pradesh. No jargon, no hard sell &ndash; just what to check so you make a good decision, with us or anyone else.',
+    'sub' => 'Written by our engineers for homes, societies, businesses and institutions across India. No jargon, no hard sell &ndash; just what to check so you make a good decision, with us or anyone else.',
     'ctas' => [['/calculator', 'Try the calculator', 'btn-accent', 'cta_calculator'], ['#checklist', 'Installer checklist', 'btn-outline-light', 'cta_checklist']],
 ]);
 $toc = [['right-for-me', 'Is solar right for me?'], ['how', 'How solar works'], ['types', 'On-grid, hybrid or off-grid'], ['components', 'Panels, inverters &amp; parts'], ['sizing', 'Sizing your system'], ['cost', 'Cost, savings &amp; payback'], ['models', 'Ways to pay'], ['subsidy', 'Subsidy &amp; net metering'], ['checklist', 'Choosing an installer'], ['warranty', 'Warranties'], ['maintenance', 'Maintenance'], ['timeline', 'Timeline'], ['glossary', 'Glossary']];
@@ -32,7 +32,7 @@ $toc = [['right-for-me', 'Is solar right for me?'], ['how', 'How solar works'], 
         <li>You plan to stay in the building for a few years (or the plant can move with you).</li>
         <li>The roof is in good condition, or you can repair it before installation.</li>
       </ul>
-      <p>Western Uttar Pradesh gets good sunshine for most of the year. Output dips in foggy winter weeks and peaks in spring and summer.</p>
+      <p>Most of India gets good sunshine for most of the year. Output dips in monsoon, cloudy or foggy weeks and peaks in spring and summer.</p>
     </section>
 
     <section id="how" class="scroll-mt-24">
@@ -75,7 +75,7 @@ $toc = [['right-for-me', 'Is solar right for me?'], ['how', 'How solar works'], 
 
     <section id="sizing" class="scroll-mt-24">
       <h2>5. Sizing your system</h2>
-      <p>Start from your units, not your bill. Add up 12 months of units (kWh) and divide by 12. In Western UP, each kW of panels produces about 4&ndash;4.5 units a day on average, or roughly 120&ndash;135 units a month. So a home using 400 units a month needs about 3&ndash;3.5 kW, if the roof allows.</p>
+      <p>Start from your units, not your bill. Add up 12 months of units (kWh) and divide by 12. In most of India, each kW of panels produces about 4&ndash;5 units a day on average, or roughly 120&ndash;150 units a month. So a home using 400 units a month needs about 3&ndash;3.5 kW, if the roof allows.</p>
       <p>Also check your <strong>sanctioned load</strong>: DISCOM rules tie the solar capacity you can connect to your connection&rsquo;s load, so you may need a load increase first. Our <a href="/calculator">calculator</a> does this maths for you.</p>
     </section>
 
@@ -97,7 +97,7 @@ $toc = [['right-for-me', 'Is solar right for me?'], ['how', 'How solar works'], 
 
     <section id="subsidy" class="scroll-mt-24">
       <h2>8. Subsidy and net metering</h2>
-      <p>Eligible UP homes get up to &#8377;1,08,000 (central + state); housing societies get &#8377;18,000 per kW for common facilities. Businesses do not get PM Surya Ghar subsidy. Net metering lets exported units offset imported units in your bill, with any annual surplus settled at a rate set by the regulator. See <a href="/solar-schemes">schemes &amp; policies</a> for details.</p>
+      <p>Eligible homes get up to &#8377;78,000 central subsidy, plus state subsidy where offered; housing societies get &#8377;18,000 per kW for common facilities. Businesses do not get PM Surya Ghar subsidy. Net metering lets exported units offset imported units in your bill, with any annual surplus settled at a rate set by the regulator. See <a href="/solar-schemes">schemes &amp; policies</a> for details.</p>
     </section>
 
     <section id="checklist" class="scroll-mt-24">
@@ -152,11 +152,11 @@ $toc = [['right-for-me', 'Is solar right for me?'], ['how', 'How solar works'], 
       <h2>13. Glossary</h2>
       <ul>
         <li><strong>kW / kWp:</strong> the rated size of a solar system. <strong>kWh (unit):</strong> energy produced or used.</li>
-        <li><strong>DISCOM:</strong> your electricity distribution company (DVVNL for Aligarh).</li>
+        <li><strong>DISCOM:</strong> your electricity distribution company .</li>
         <li><strong>Net metering:</strong> billing where exported units offset imported units.</li>
         <li><strong>ALMM:</strong> MNRE&rsquo;s Approved List of Models and Manufacturers. <strong>DCR:</strong> domestic content requirement.</li>
         <li><strong>CAPEX / OPEX:</strong> owning the plant vs paying for power under a contract. <strong>RESCO:</strong> renewable energy service company. <strong>PPA:</strong> power purchase agreement.</li>
-        <li><strong>CFA:</strong> central financial assistance &ndash; the central subsidy. <strong>UPNEDA:</strong> UP New and Renewable Energy Development Agency.</li>
+        <li><strong>CFA:</strong> central financial assistance &ndash; the central subsidy. <strong>State nodal agency:</strong> the state body that runs renewable energy programmes.</li>
       </ul>
     </section>
   </article>

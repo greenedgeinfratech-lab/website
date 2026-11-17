@@ -4,7 +4,7 @@ require __DIR__ . '/inc/ui.php';
 $groups = [];
 foreach (GE_SOLUTIONS as $s) $groups[$s[3]][] = $s;
 $page = [
-    'title' => 'Solar Solutions & Services in Uttar Pradesh | Greenedge Infratech',
+    'title' => 'Solar Solutions & Services in India and Abroad | Greenedge Infratech',
     'description' => 'All Greenedge solar solutions: home rooftop solar, PM Surya Ghar, housing societies, commercial, industrial, zero-investment RESCO, open access, government buildings, solar pumps and maintenance.',
     'path' => '/services', 'nav' => 'services',
     'crumbs' => [['Solutions', '/services']],
@@ -35,7 +35,7 @@ ui_hero([
         ['Energy assessment', 'Bills, load profile, sanctioned load and tariff analysis to size the plant correctly.'],
         ['Design &amp; engineering', 'Shadow analysis, layout, structural check, electrical single-line diagram and yield estimate.'],
         ['Quality equipment', 'ALMM-listed modules (DCR where required), reputed inverters, galvanised structures and proper protection.'],
-        ['Approvals', 'PM Surya Ghar portal, DISCOM feasibility, net metering, UPNEDA and other approvals.'],
+        ['Approvals', 'PM Surya Ghar portal, DISCOM feasibility, net metering, state nodal agency and other approvals.'],
         ['Installation &amp; commissioning', 'Trained teams, safety practices, testing and DISCOM inspection.'],
         ['Finance options', 'CAPEX, bank loans, zero-investment RESCO and open access structures.'],
         ['Monitoring', 'App or web monitoring of generation and faults.'],

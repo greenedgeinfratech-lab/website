@@ -2,11 +2,11 @@
 require __DIR__ . '/inc/config.php';
 require __DIR__ . '/inc/ui.php';
 $page = [
-    'title' => 'Solar Panel Cleaning, Maintenance & AMC in Aligarh & UP | Greenedge Infratech',
+    'title' => 'Solar Panel Cleaning, Maintenance & AMC in India | Greenedge Infratech',
     'description' => 'Solar maintenance and AMC for homes, societies, businesses and industries: panel cleaning, preventive checks, inverter troubleshooting, performance reports and repairs, including plants installed by others.',
     'path' => '/solar-maintenance', 'nav' => 'services',
     'crumbs' => [['Solutions', '/services'], ['Maintenance & AMC', '/solar-maintenance']],
-    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Solar operation, maintenance and AMC', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => 'Uttar Pradesh', 'url' => SITE_URL . '/solar-maintenance']],
+    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Solar operation, maintenance and AMC', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => ['@type' => 'Country', 'name' => 'India'], 'url' => SITE_URL . '/solar-maintenance']],
 ];
 include __DIR__ . '/inc/header.php';
 ui_hero([

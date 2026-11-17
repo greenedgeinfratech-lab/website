@@ -38,11 +38,11 @@ $GE_SITE_DEFAULTS = [
     'hours'             => 'Monday to Saturday, 9:00 AM to 6:00 PM',
     'since'             => 2016,
     'installs'          => '200+',
-    'pmsg_vendor'       => 'Registered vendor under PM Surya Ghar: Muft Bijli Yojana, Uttar Pradesh',
-    'service_area'      => ['Aligarh', 'Hathras', 'Kasganj', 'Etah', 'Bulandshahr', 'Mathura'],
+    'pmsg_vendor'       => 'Registered vendor under PM Surya Ghar: Muft Bijli Yojana in Uttar Pradesh',
+    'service_area'      => ['India', 'International'],
     'lead_email_to'     => 'greenedgeinfratech@gmail.com',
-    'home_hero_title'   => 'Rooftop Solar Installation in Aligarh & Western UP',
-    'home_hero_text'    => 'Cut your electricity bill by up to 70–80% with a rooftop solar system designed for your home, shop or factory. Eligible homes in Uttar Pradesh can get up to ₹1,08,000 in PM Surya Ghar central and state subsidy.',
+    'home_hero_title'   => 'Solar Power for Every Roof, Factory and Field',
+    'home_hero_text'    => 'Cut your electricity bill by up to 70–80% with a rooftop solar system designed for your home, shop or factory. Eligible homes get up to ₹78,000 central subsidy under PM Surya Ghar, plus state subsidy where offered.',
     'home_savings_stat' => '70–80%',
 ];
 $GE_SITE = array_merge($GE_SITE_DEFAULTS, ge_load_json('site'));
@@ -86,7 +86,7 @@ date_default_timezone_set('Asia/Kolkata');
  */
 const GE_SOLUTIONS = [
     ['/residential-solar', 'Home rooftop solar', 'On-grid, hybrid and off-grid systems for houses and villas', 'Homes & communities'],
-    ['/pmsuryaghar/', 'PM Surya Ghar subsidy', 'Up to ₹1,08,000 subsidy for eligible UP homes', 'Homes & communities'],
+    ['/pmsuryaghar/', 'PM Surya Ghar subsidy', 'Up to ₹78,000 central subsidy for eligible homes', 'Homes & communities'],
     ['/housing-society-solar', 'Housing societies & RWAs', '₹18,000/kW subsidy for common areas and EV charging', 'Homes & communities'],
     ['/commercial-solar', 'Commercial solar', 'Shops, offices, schools, hospitals, hotels', 'Business & industry'],
     ['/industrial-solar', 'Industrial solar', 'Factories, cold stores, mills, warehouses', 'Business & industry'],

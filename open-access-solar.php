@@ -2,17 +2,17 @@
 require __DIR__ . '/inc/config.php';
 require __DIR__ . '/inc/ui.php';
 $page = [
-    'title' => 'Green Energy Open Access Solar in Uttar Pradesh (100 kW+) | Greenedge Infratech',
-    'description' => 'Buy solar power from an off-site plant through green energy open access in Uttar Pradesh. For consumers with 100 kW or more contracted demand. Captive, group captive and third-party PPA models explained.',
+    'title' => 'Green Energy Open Access Solar in India (100 kW+) | Greenedge Infratech',
+    'description' => 'Buy solar power from an off-site plant through green energy open access. For consumers with 100 kW or more contracted demand. Captive, group captive and third-party PPA models explained.',
     'path' => '/open-access-solar', 'nav' => 'services',
     'crumbs' => [['Solutions', '/services'], ['Green energy open access', '/open-access-solar']],
-    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Green energy open access solar', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => 'Uttar Pradesh', 'url' => SITE_URL . '/open-access-solar']],
+    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Green energy open access solar', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => ['@type' => 'Country', 'name' => 'India'], 'url' => SITE_URL . '/open-access-solar']],
 ];
 include __DIR__ . '/inc/header.php';
 ui_hero([
     'eyebrow' => 'Green energy open access',
     'title' => 'Solar power for your plant &ndash; even without a roof',
-    'sub' => 'Open access lets a large consumer buy electricity from a solar plant located elsewhere, delivered through the transmission and distribution network. Under India&rsquo;s Green Energy Open Access Rules, consumers with <strong class="text-white">100 kW or more</strong> contracted demand can buy green power this way, and UPERC has aligned Uttar Pradesh&rsquo;s regulations with these rules.',
+    'sub' => 'Open access lets a large consumer buy electricity from a solar plant located elsewhere, delivered through the transmission and distribution network. Under India&rsquo;s Green Energy Open Access Rules, consumers with <strong class="text-white">100 kW or more</strong> contracted demand can buy green power this way, implemented through each state&rsquo;s electricity regulatory commission.',
     'badges' => ['100 kW+ contracted demand', 'Captive, group captive, third-party', 'Larger savings at scale', 'Supports RE / ESG targets'],
     'ctas' => [['#enquire', 'Request a feasibility study', 'btn-accent', 'cta_oa'], ['#models', 'See open access models', 'btn-outline-light', 'cta_oa_models']],
 ]);
@@ -21,7 +21,7 @@ ui_hero([
   <?php ui_heading('Rooftop vs open access', 'Most large consumers use both: rooftop solar for on-site generation, and open access to go further.'); ?>
   <div class="grid gap-6 mt-10 lg:grid-cols-2">
     <div class="card p-6"><h3 class="text-xl font-bold">Rooftop / on-site</h3><ul class="mt-4 space-y-2 text-sm text-slate-700 tick-list"><li>Limited by your roof or land area</li><li>No grid charges on units used on site</li><li>Quick to install</li><li>Works for any size from a few kW</li></ul><a class="text-green-700 font-semibold mt-4 inline-block" href="/industrial-solar">Industrial rooftop solar &rarr;</a></div>
-    <div class="card p-6 border-green-300"><h3 class="text-xl font-bold">Open access / off-site</h3><ul class="mt-4 space-y-2 text-sm text-slate-700 tick-list"><li>Plant size not limited by your premises</li><li>Grid charges and surcharges apply, as set by UPERC</li><li>Needs regulatory approvals and scheduling</li><li>For consumers with 100 kW+ contracted demand</li></ul></div>
+    <div class="card p-6 border-green-300"><h3 class="text-xl font-bold">Open access / off-site</h3><ul class="mt-4 space-y-2 text-sm text-slate-700 tick-list"><li>Plant size not limited by your premises</li><li>Grid charges and surcharges apply, as set by your state regulator</li><li>Needs regulatory approvals and scheduling</li><li>For consumers with 100 kW+ contracted demand</li></ul></div>
   </div>
 </section>
 
@@ -47,8 +47,8 @@ ui_hero([
       <li>Scheduling, metering and SLDC requirements</li>
       <li>The solar tariff from the plant and the contract term</li>
     </ul>
-    <p class="mt-6 text-sm text-slate-600">UPERC has updated its open access framework several times, including a 2026 order that simplified metering and fees for green energy open access consumers. We model the charges that apply on the day of your study.</p>
-    <?php ui_sources([['UPERC', 'https://www.uperc.org']]); ?>
+    <p class="mt-6 text-sm text-slate-600">Each state regulator sets its own charges and procedures, and they change often. We model the charges that apply in your state on the day of your study.</p>
+    <?php ui_sources([['Ministry of Power', 'https://powermin.gov.in']]); ?>
   </div>
   <div class="card p-6">
     <h3 class="text-xl font-bold text-slate-900">How Greenedge helps</h3>
@@ -69,7 +69,7 @@ ui_hero([
     ['Landed-cost comparison in writing', 'Rooftop + open access combined plan', 'Help through approvals']); ?>
 
 <?php ui_faqs([
-    ['Who is eligible for green energy open access?', 'Consumers with a contracted demand or sanctioned load of 100 kW or more, under the Electricity (Promoting Renewable Energy Through Green Energy Open Access) Rules, 2022, as implemented by UPERC. Captive consumers have no minimum limit.'],
+    ['Who is eligible for green energy open access?', 'Consumers with a contracted demand or sanctioned load of 100 kW or more, under the Electricity (Promoting Renewable Energy Through Green Energy Open Access) Rules, 2022, as implemented by your state electricity regulatory commission. Captive consumers have no minimum limit.'],
     ['Do I need my own land?', 'No. Under a third-party PPA, the developer builds the plant on its land. Under captive models you hold equity in the plant.'],
     ['Will I still get power from the DISCOM?', 'Yes. You stay connected to your DISCOM, which supplies any power not covered by open access.'],
     ['How long does it take?', 'Developing a plant and completing approvals typically takes several months. We give you a realistic timeline after the feasibility study.'],

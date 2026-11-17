@@ -2,11 +2,11 @@
 require __DIR__ . '/inc/config.php';
 require __DIR__ . '/inc/ui.php';
 $page = [
-    'title' => 'Solar for Housing Societies & RWAs in UP: Rs 18,000/kW Subsidy | Greenedge Infratech',
-    'description' => 'Rooftop solar for group housing societies and resident welfare associations in Uttar Pradesh. Rs 18,000 per kW central subsidy for common facilities and EV charging, up to 500 kW. Lower maintenance charges for residents.',
+    'title' => 'Solar for Housing Societies & RWAs: Rs 18,000/kW Subsidy | Greenedge Infratech',
+    'description' => 'Rooftop solar for group housing societies and resident welfare associations across India. Rs 18,000 per kW central subsidy for common facilities and EV charging, up to 500 kW. Lower maintenance charges for residents.',
     'path' => '/housing-society-solar', 'nav' => 'services',
     'crumbs' => [['Solutions', '/services'], ['Housing societies & RWAs', '/housing-society-solar']],
-    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Rooftop solar for housing societies and RWAs', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => 'Uttar Pradesh', 'url' => SITE_URL . '/housing-society-solar']],
+    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Rooftop solar for housing societies and RWAs', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => ['@type' => 'Country', 'name' => 'India'], 'url' => SITE_URL . '/housing-society-solar']],
 ];
 include __DIR__ . '/inc/header.php';
 ui_hero([
@@ -62,7 +62,7 @@ ui_hero([
 
 <?php ui_enquiry(['type' => 'quotation', 'category' => 'housing-society', 'business' => true, 'message' => true, 'heading' => 'Request a proposal for your society', 'button' => 'Request Society Proposal'],
     'Get a solar proposal for your society',
-    'Share your society&rsquo;s name and location. We will set up a call with the committee, review common-area bills and prepare CAPEX and zero-investment options.',
+    'Share your society&rsquo;s name and location. We handle the PM Surya Ghar society application in Uttar Pradesh, and build society plants across India. We will set up a call with the committee, review common-area bills and prepare CAPEX and zero-investment options.',
     ['Subsidy calculation for your society', 'Presentation for the committee or AGM', 'Single point of contact through approvals']); ?>
 
 <?php ui_faqs([

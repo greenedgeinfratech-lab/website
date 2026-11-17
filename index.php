@@ -2,8 +2,8 @@
 require __DIR__ . '/inc/config.php';
 require __DIR__ . '/inc/ui.php';
 $page = [
-    'title' => 'Greenedge Infratech | Solar EPC in Aligarh & UP: Homes, Societies, Business, Industry, Government',
-    'description' => 'Rooftop and ground-mounted solar for homes, housing societies, commercial, industrial and government buildings in Uttar Pradesh. PM Surya Ghar registered vendor, zero-investment RESCO solar, open access, solar pumps. Free site survey.',
+    'title' => 'Greenedge Infratech | Solar EPC Company in India: Homes, Societies, Business, Industry, Government',
+    'description' => 'Rooftop and ground-mounted solar for homes, housing societies, commercial, industrial and government buildings across India and abroad. Zero-investment RESCO solar, open access, solar pumps. Free site survey.',
     'path' => '/',
     'preload' => '/assets/hero-solar.jpg',
 ];
@@ -14,8 +14,8 @@ include __DIR__ . '/inc/header.php';
   <div class="absolute inset-0 bg-gradient-to-r from-green-950/95 via-green-900/85 to-slate-900/60"></div>
   <div class="relative container mx-auto px-4 py-14 lg:py-20 grid lg:grid-cols-[1.25fr_1fr] gap-10 items-center">
     <div>
-      <p class="inline-flex flex-wrap gap-2 mb-5"><span class="rounded-full bg-white/15 px-4 py-1 text-sm font-medium">Solar EPC company in Aligarh since <?= BIZ_SINCE ?></span><span class="rounded-full bg-yellow-400 text-green-950 px-4 py-1 text-sm font-semibold">Registered PM Surya Ghar vendor (UP)</span></p>
-      <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">Solar power for every roof, factory and field in Uttar Pradesh</h1>
+      <p class="inline-flex flex-wrap gap-2 mb-5"><span class="rounded-full bg-white/15 px-4 py-1 text-sm font-medium">Solar EPC company since <?= BIZ_SINCE ?></span><span class="rounded-full bg-yellow-400 text-green-950 px-4 py-1 text-sm font-semibold">Projects across India &amp; abroad</span></p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">Solar power for every roof, factory and field</h1>
       <p class="mt-5 text-lg text-green-50 max-w-xl">Greenedge designs, builds and maintains solar plants for homes, housing societies, shops, factories, government buildings and farms. Buy it outright with subsidy, or go solar with <strong class="text-white">zero investment</strong> and pay only for the power.</p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/calculator" class="btn-accent text-base" data-track="cta_calculator">Calculate My Solar Savings</a>
@@ -24,7 +24,7 @@ include __DIR__ . '/inc/header.php';
       <ul class="mt-8 grid grid-cols-3 gap-3 max-w-lg text-center">
         <li class="rounded-lg bg-white/10 p-3"><span class="block text-2xl font-bold"><?= BIZ_INSTALLS ?></span><span class="text-xs text-green-100">solar installations</span></li>
         <li class="rounded-lg bg-white/10 p-3"><span class="block text-2xl font-bold"><?= e(site('home_savings_stat')) ?></span><span class="text-xs text-green-100">typical bill saving*</span></li>
-        <li class="rounded-lg bg-white/10 p-3"><span class="block text-2xl font-bold"><?= count(BIZ_SERVICE_AREA) ?>+</span><span class="text-xs text-green-100">districts served</span></li>
+        <li class="rounded-lg bg-white/10 p-3"><span class="block text-2xl font-bold">India+</span><span class="text-xs text-green-100">and international projects</span></li>
       </ul>
       <p class="mt-3 text-xs text-green-100/80">*Depends on usage, roof, system size and tariff. Use the calculator for your own estimate.</p>
     </div>
@@ -49,7 +49,7 @@ include __DIR__ . '/inc/header.php';
 <section class="container mx-auto px-4 py-16">
   <?php ui_heading('One solar partner for every kind of customer', 'Every plant is designed from your electricity bills, roof or land, and load &ndash; not from a fixed package.', 'Who we work with'); ?>
   <?php ui_cards([
-      ['Homes &amp; PM Surya Ghar', 'On-grid, hybrid and off-grid systems for houses. Eligible UP homes can get up to &#8377;1,08,000 subsidy; we handle the portal, DISCOM and paperwork.', '/residential-solar', 'Home solar'],
+      ['Homes &amp; PM Surya Ghar', 'On-grid, hybrid and off-grid systems for houses. Eligible homes get up to &#8377;78,000 central subsidy. In Uttar Pradesh we are a registered PM Surya Ghar vendor and handle the portal, DISCOM and paperwork.', '/residential-solar', 'Home solar'],
       ['Housing societies &amp; RWAs', 'Solar for lifts, pumps, common lighting and EV charging, with &#8377;18,000 per kW central subsidy for common facilities.', '/housing-society-solar', 'Society solar'],
       ['Commercial buildings', 'Shops, showrooms, offices, schools, hospitals and hotels: daytime use means fast payback and tax benefits.', '/commercial-solar', 'Commercial solar'],
       ['Industries &amp; MSMEs', 'Rooftop, carport and ground-mounted plants for factories, cold stores, mills and warehouses, sized to your load profile.', '/industrial-solar', 'Industrial solar'],
@@ -80,21 +80,21 @@ include __DIR__ . '/inc/header.php';
 
 <section class="container mx-auto px-4 py-16 grid lg:grid-cols-2 gap-10 items-center">
   <div>
-    <p class="eyebrow">Subsidy in Uttar Pradesh</p>
-    <h2 class="section-title mt-1">PM Surya Ghar: up to &#8377;1,08,000 for UP homes</h2>
-    <p class="mt-3 text-slate-700">Eligible residential consumers in UP can combine the central PM Surya Ghar: Muft Bijli Yojana subsidy with the UP state subsidy from UPNEDA. Housing societies get &#8377;18,000 per kW for common facilities.</p>
+    <p class="eyebrow">Government subsidy</p>
+    <h2 class="section-title mt-1">PM Surya Ghar: up to &#8377;78,000 for homes</h2>
+    <p class="mt-3 text-slate-700">Eligible residential consumers in India get central subsidy under PM Surya Ghar: Muft Bijli Yojana, and some states add their own. Greenedge is a registered PM Surya Ghar vendor in Uttar Pradesh, where homes get an extra state subsidy of up to &#8377;30,000 (up to &#8377;1,08,000 in total). Housing societies get &#8377;18,000 per kW for common facilities.</p>
     <div class="overflow-x-auto mt-6">
       <table class="w-full text-sm bg-white rounded-lg overflow-hidden border border-slate-200">
-        <thead class="bg-green-700 text-white"><tr><th class="p-3 text-left">System size</th><th class="p-3 text-right">Central</th><th class="p-3 text-right">UP state</th><th class="p-3 text-right">Total</th></tr></thead>
+        <thead class="bg-green-700 text-white"><tr><th class="p-3 text-left">System size</th><th class="p-3 text-right">Central subsidy</th></tr></thead>
         <tbody class="divide-y">
-          <tr><td class="p-3">1 kW</td><td class="p-3 text-right">&#8377;30,000</td><td class="p-3 text-right">&#8377;15,000</td><td class="p-3 text-right font-semibold">&#8377;45,000</td></tr>
-          <tr><td class="p-3">2 kW</td><td class="p-3 text-right">&#8377;60,000</td><td class="p-3 text-right">&#8377;30,000</td><td class="p-3 text-right font-semibold">&#8377;90,000</td></tr>
-          <tr><td class="p-3">3 kW and above</td><td class="p-3 text-right">&#8377;78,000</td><td class="p-3 text-right">&#8377;30,000</td><td class="p-3 text-right font-semibold">&#8377;1,08,000</td></tr>
-          <tr><td class="p-3">Housing society / RWA (common areas)</td><td class="p-3 text-right" colspan="2">&#8377;18,000 per kW, up to 500 kW</td><td class="p-3 text-right font-semibold">up to &#8377;90 lakh</td></tr>
+          <tr><td class="p-3">1 kW</td><td class="p-3 text-right font-semibold">&#8377;30,000</td></tr>
+          <tr><td class="p-3">2 kW</td><td class="p-3 text-right font-semibold">&#8377;60,000</td></tr>
+          <tr><td class="p-3">3 kW and above</td><td class="p-3 text-right font-semibold">&#8377;78,000</td></tr>
+          <tr><td class="p-3">Housing society / RWA (common areas)</td><td class="p-3 text-right font-semibold">&#8377;18,000 per kW, up to &#8377;90 lakh</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="text-xs text-slate-500 mt-3">Subsidy is approved and paid by the government, not by Greenedge, and depends on eligibility and scheme rules at the time. Checked against MNRE and UPNEDA information in November 2026.</p>
+    <p class="text-xs text-slate-500 mt-3">Subsidy is approved and paid by the government, not by Greenedge, and depends on eligibility and scheme rules at the time. State subsidies vary; we tell you what applies in your state. Checked against MNRE information in November 2026.</p>
     <div class="mt-6 flex flex-wrap gap-3"><a href="/pmsuryaghar/" class="btn-primary">How to apply</a><a href="/solar-schemes" class="btn-secondary">All schemes &amp; policies</a></div>
   </div>
   <img src="/assets/installation-team.jpg" alt="Greenedge installation team fixing solar panels on a rooftop" loading="lazy" width="800" height="600" class="rounded-xl shadow-lg w-full object-cover">
@@ -104,7 +104,7 @@ include __DIR__ . '/inc/header.php';
   <div class="container mx-auto px-4 py-14 grid lg:grid-cols-[1.4fr_1fr] gap-8 items-center">
     <div>
       <h2 class="text-3xl font-extrabold">What will solar save you?</h2>
-      <p class="mt-3 text-green-100 max-w-2xl">Our calculator uses Western UP sunshine data, your tariff and the current subsidy rules to estimate system size, cost, subsidy, monthly savings, EMI and payback &ndash; for homes, housing societies, shops and factories. It shows every assumption.</p>
+      <p class="mt-3 text-green-100 max-w-2xl">Our calculator uses typical Indian sunshine data, your state, your tariff and the current subsidy rules to estimate system size, cost, subsidy, monthly savings, EMI and payback &ndash; for homes, housing societies, shops and factories. It shows every assumption.</p>
     </div>
     <div class="flex flex-wrap gap-3 lg:justify-end">
       <a href="/calculator?cat=residential" class="btn-light" data-track="cta_calculator">For my home</a>
@@ -120,7 +120,7 @@ include __DIR__ . '/inc/header.php';
       ['Free consultation', 'Share your bills on call or WhatsApp. We estimate size, budget and the right business model.'],
       ['Site survey &amp; design', 'Our engineer checks roof or land, shadow, structure, wiring and sanctioned load, then designs the layout.'],
       ['Clear proposal', 'Itemised quotation or PPA offer: panels, inverter, structure, cabling, protection, net metering, warranties and service.'],
-      ['Approvals', 'PM Surya Ghar portal, DISCOM feasibility and net metering, UPNEDA, and other approvals your project needs.'],
+      ['Approvals', 'PM Surya Ghar portal, DISCOM feasibility and net metering, state nodal agency and other approvals your project needs.'],
       ['Installation &amp; commissioning', 'Installation by our trained team with safety checks, DISCOM inspection and commissioning.'],
       ['Subsidy, monitoring &amp; service', 'Subsidy document support, generation monitoring, cleaning guidance and maintenance for the life of the plant.'],
   ]); ?>
@@ -131,11 +131,11 @@ include __DIR__ . '/inc/header.php';
     <div>
       <h2 class="section-title">Why customers choose Greenedge</h2>
       <ul class="mt-6 space-y-4 text-slate-700 tick-list">
-        <li><strong>Registered PM Surya Ghar vendor.</strong> Eligible homes and societies in Uttar Pradesh can select us on the National Portal.</li>
+        <li><strong>Registered PM Surya Ghar vendor in Uttar Pradesh.</strong> Eligible UP homes and societies can select us on the National Portal.</li>
         <li><strong>Every segment, one team.</strong> Homes, RWAs, commercial, industrial, government and agriculture &ndash; CAPEX, RESCO and open access.</li>
-        <li><strong>Local in Aligarh.</strong> Survey, installation and service by our own people across <?= e(implode(', ', BIZ_SERVICE_AREA)) ?> and beyond.</li>
+        <li><strong>Reach across India and abroad.</strong> Our own engineering team plus a growing network of trained installation and service partners.</li>
         <li><strong>Engineering first.</strong> Sizing from 12 months of bills and load data, shadow analysis, and structures designed for wind load.</li>
-        <li><strong>Paperwork handled.</strong> National Portal, DISCOM net metering, UPNEDA and subsidy documentation.</li>
+        <li><strong>Paperwork handled.</strong> National Portal, DISCOM net metering, state agency and subsidy documentation.</li>
         <li><strong>Honest numbers.</strong> Our calculator and proposals show assumptions and ranges, never guarantees we cannot keep.</li>
         <li><strong>Long-term care.</strong> Monitoring, cleaning and preventive maintenance plans for the life of the plant.</li>
       </ul>
@@ -149,17 +149,17 @@ include __DIR__ . '/inc/header.php';
     <div>
       <p class="eyebrow">Grow with us</p>
       <h2 class="section-title mt-1">Partner with Greenedge</h2>
-      <p class="mt-3 text-slate-700">Dealers, installers, electricians, architects, consultants and investors: earn from the fast-growing solar market in Uttar Pradesh with our engineering, approvals and after-sales support behind you.</p>
+      <p class="mt-3 text-slate-700">Dealers, installers, electricians, architects, consultants and investors: earn from the fast-growing solar market with our engineering, approvals and after-sales support behind you.</p>
     </div>
     <div class="flex flex-wrap gap-3 lg:justify-end"><a href="/partner" class="btn-primary">See partner benefits</a><a href="/partner#apply" class="btn-secondary">Apply now</a></div>
   </div>
 </section>
 
 <?php ui_faqs([
-    ['How much does a rooftop solar system cost in Aligarh?', 'For a typical home on-grid system, budget roughly &#8377;55,000&ndash;65,000 per kW before subsidy, depending on panel and inverter brand, structure height and wiring. Larger commercial and industrial plants cost less per kW. Our <a href="/calculator">calculator</a> shows a range for your size, and the site survey gives an exact quotation.'],
+    ['How much does a rooftop solar system cost?', 'For a typical home on-grid system, budget roughly &#8377;55,000&ndash;65,000 per kW before subsidy, depending on panel and inverter brand, structure height and wiring. Larger commercial and industrial plants cost less per kW. Our <a href="/calculator">calculator</a> shows a range for your size, and the site survey gives an exact quotation.'],
     ['Can I go solar without investing money?', 'Businesses, institutions and government bodies with suitable roofs can use the <a href="/resco-solar">RESCO (zero-investment) model</a>: the plant is financed and maintained by an investor, and you pay only for the units at a fixed tariff. Homes can use collateral-free bank loans under PM Surya Ghar.'],
     ['Do commercial and industrial consumers get a subsidy?', 'PM Surya Ghar subsidy is for residential consumers and housing societies only. Businesses usually benefit from 40% accelerated depreciation under the Income Tax rules and from lower energy costs &ndash; confirm the tax treatment with your CA.'],
-    ['What size system do I need?', 'Each kW of rooftop solar in Western UP produces about 4&ndash;4.5 units a day on average across the year, roughly 120&ndash;135 units a month. A home using 400 units a month usually needs about 3&ndash;3.5 kW. About 100 sq ft of shadow-free roof is needed per kW.'],
+    ['What size system do I need?', 'Each kW of rooftop solar in most of India produces about 4&ndash;5 units a day on average across the year, roughly 120&ndash;150 units a month. A home using 400 units a month usually needs about 3&ndash;3.5 kW. About 100 sq ft of shadow-free roof is needed per kW.'],
     ['Will solar work during a power cut?', 'A standard on-grid system shuts down during a grid outage for safety. If you need backup, choose a hybrid system with batteries.'],
 ]); ?>
 <?php include __DIR__ . '/inc/footer.php'; ?>

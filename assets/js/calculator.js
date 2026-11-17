@@ -17,9 +17,9 @@
     return cfg.costBands[cfg.costBands.length - 1].perKw;
   }
 
-  function subsidyFor(kw, category, cfg, houses) {
+  function subsidyFor(kw, category, cfg, houses, state) {
     var cat = cfg.categories[category];
-    if (!cat || !cat.subsidyEligible) return { central: 0, state: 0, total: 0 };
+    if (!cat || !cat.subsidyEligible || state === 'Outside India') return { central: 0, state: 0, total: 0, abroad: state === 'Outside India' };
     if (cat.subsidyType === 'ghs') {
       var g = cfg.subsidy.ghs;
       var h = num(houses);
@@ -33,7 +33,8 @@
       if (part > 0) central += part * slab.perKw;
     });
     central = Math.min(central, cfg.subsidy.centralCap);
-    var state = Math.min(kw * cfg.subsidy.state.perKw, cfg.subsidy.state.cap);
+    var st = cfg.subsidy.state;
+    var state = (st.appliesTo && state === st.appliesTo) ? Math.min(kw * st.perKw, st.cap) : 0;
     return { central: Math.round(central), state: Math.round(state), total: Math.round(central + state) };
   }
 
@@ -99,7 +100,7 @@
 
     // Cost and subsidy
     var cost = kw * costPerKw(kw, cfg);
-    var sub = subsidyFor(kw, inputs.category, cfg, inputs.houses);
+    var sub = subsidyFor(kw, inputs.category, cfg, inputs.houses, inputs.state);
     var netCost = Math.max(0, cost - sub.total);
     var payback = annualSavings > 0 ? netCost / annualSavings : null;
 
@@ -210,6 +211,7 @@
       var lf = document.getElementById('lead-form');
       if (!lf) return;
       lf.elements.category.value = r.category === 'society' ? 'housing-society' : r.category;
+      if (F.state && F.state.value && !lf.elements.city.value) lf.elements.city.value = F.state.value;
       lf.elements.calc_summary.value = JSON.stringify({
         system_kw: r.kw, monthly_units: Math.round(r.monthlyUnits), monthly_bill: Math.round(r.currentMonthlyBill),
         tariff: parseFloat(F.tariff.value), annual_savings: Math.round(r.annualSavings),
@@ -252,7 +254,13 @@
         $('r-net').textContent = inr(r.netCost);
       } else if (r.subsidy.total > 0) {
         $('r-sub').textContent = 'up to ' + inr(r.subsidy.total);
-        $('r-sub-sub').textContent = inr(r.subsidy.central) + ' central (PM Surya Ghar) + ' + inr(r.subsidy.state) + ' Uttar Pradesh (UPNEDA), if eligible';
+        $('r-sub-sub').textContent = r.subsidy.state > 0
+          ? inr(r.subsidy.central) + ' central (PM Surya Ghar) + ' + inr(r.subsidy.state) + ' ' + cfg.subsidy.state.label + ', if eligible'
+          : inr(r.subsidy.central) + ' central subsidy under PM Surya Ghar, if eligible. Your state may add more.';
+        $('r-net').textContent = inr(r.netCost);
+      } else if (r.subsidy.abroad) {
+        $('r-sub').textContent = 'Not applicable';
+        $('r-sub-sub').textContent = 'Indian government subsidies apply only in India. Ask us about incentives in your country.';
         $('r-net').textContent = inr(r.netCost);
       } else {
         $('r-sub').textContent = 'Not applicable';
@@ -293,6 +301,7 @@
         tariff: F.tariff.value,
         roofArea: F.roofArea.value,
         houses: F.houses ? F.houses.value : '',
+        state: F.state ? F.state.value : '',
         sizeOverride: resize && $('size-input') ? $('size-input').value : ''
       }, cfg);
       if (!r.ok) {

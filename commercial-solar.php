@@ -2,11 +2,11 @@
 require __DIR__ . '/inc/config.php';
 require __DIR__ . '/inc/ui.php';
 $page = [
-    'title' => 'Commercial Rooftop Solar in Aligarh & UP: Shops, Offices, Schools, Hospitals | Greenedge',
-    'description' => 'Commercial rooftop solar for shops, showrooms, offices, schools, colleges, hospitals and hotels in Uttar Pradesh. Daytime savings, 40% accelerated depreciation, CAPEX or zero-investment RESCO. Free energy assessment.',
+    'title' => 'Commercial Rooftop Solar in India: Shops, Offices, Schools, Hospitals | Greenedge',
+    'description' => 'Commercial rooftop solar for shops, showrooms, offices, schools, colleges, hospitals and hotels across India. Daytime savings, 40% accelerated depreciation, CAPEX or zero-investment RESCO. Free energy assessment.',
     'path' => '/commercial-solar', 'nav' => 'services',
     'crumbs' => [['Solutions', '/services'], ['Commercial solar', '/commercial-solar']],
-    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Commercial rooftop solar', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => 'Uttar Pradesh', 'url' => SITE_URL . '/commercial-solar']],
+    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'Commercial rooftop solar', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => ['@type' => 'Country', 'name' => 'India'], 'url' => SITE_URL . '/commercial-solar']],
 ];
 include __DIR__ . '/inc/header.php';
 ui_hero([
@@ -23,7 +23,7 @@ ui_hero([
   <?php ui_cards([
       ['Retail &amp; showrooms', 'Lighting, air-conditioning and display loads through the day. Solar on the roof or a parking shed trims the costliest units.'],
       ['Offices &amp; banks', 'Steady weekday daytime demand that solar matches closely, with app monitoring for the facilities team.'],
-      ['Schools, colleges &amp; universities', 'Large roofs and daytime use. Educational institutions in UP can use net metering for rooftop solar.'],
+      ['Schools, colleges &amp; universities', 'Large roofs and daytime use. Many states allow net metering for educational institutions.'],
       ['Hospitals &amp; clinics', 'Round-the-clock loads; solar cuts daytime grid draw, and hybrid designs can support critical loads.'],
       ['Hotels, marriage halls &amp; restaurants', 'High cooling loads in summer, when solar output is strongest.'],
       ['Cold stores, petrol pumps &amp; warehouses', 'Long operating hours and big roofs suited to larger plants.'],
@@ -49,7 +49,7 @@ ui_hero([
         <li>Shadow analysis and layout drawing for your roof or parking area</li>
         <li>Structural check of RCC roofs and metal sheds</li>
         <li>Generation estimate, savings, payback and IRR for CAPEX, and tariff offer for RESCO</li>
-        <li>Metering option that applies to your consumer category under UPERC rooftop regulations</li>
+        <li>Metering option that applies to your consumer category under your state&rsquo;s rooftop regulations</li>
         <li>Bill of materials with brands, models and manufacturer warranties</li>
         <li>Project schedule, safety plan and O&amp;M plan</li>
       </ul>
@@ -77,7 +77,7 @@ ui_hero([
 
 <?php ui_faqs([
     ['Do businesses get the PM Surya Ghar subsidy?', 'No. PM Surya Ghar is for residential consumers and housing societies. Commercial consumers benefit from energy savings and, if eligible, 40% accelerated depreciation.'],
-    ['Is net metering available for commercial buildings in UP?', 'It depends on your consumer category under the UPERC rooftop solar regulations. Educational institutions and government buildings can use net metering; other commercial categories may be offered net billing or gross metering. We check the current rules for your connection and design to maximise on-site use.'],
+    ['Is net metering available for commercial buildings?', 'It depends on your state&rsquo;s rooftop solar regulations and your consumer category. Some states offer net metering to commercial consumers; others offer net billing or gross metering. We check the current rules for your connection and design to maximise on-site use.'],
     ['What is the payback period?', 'It depends on your tariff, daytime use and the price of the plant. With high daytime use and a commercial tariff, payback is often a few years. The calculator gives a first estimate and our proposal gives the exact figure.'],
     ['What maintenance is needed?', 'Regular cleaning, periodic inspection of connections and inverters, and monitoring of generation. See our <a href="/solar-maintenance">maintenance plans</a>.'],
 ]); ?>

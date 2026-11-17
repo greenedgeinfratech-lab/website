@@ -2,11 +2,11 @@
 require __DIR__ . '/inc/config.php';
 require __DIR__ . '/inc/ui.php';
 $page = [
-    'title' => 'Zero-Investment Solar (RESCO / OPEX PPA) in Uttar Pradesh | Greenedge Infratech',
+    'title' => 'Zero-Investment Solar (RESCO / OPEX PPA) in India | Greenedge Infratech',
     'description' => 'Go solar with no upfront cost under the RESCO (OPEX) model. The developer builds, owns and maintains the plant; you pay a fixed tariff per unit below your grid rate. For industries, institutions, societies and government buildings.',
     'path' => '/resco-solar', 'nav' => 'services',
     'crumbs' => [['Solutions', '/services'], ['Zero-investment solar (RESCO)', '/resco-solar']],
-    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'RESCO / OPEX rooftop solar', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => 'Uttar Pradesh', 'url' => SITE_URL . '/resco-solar']],
+    'schema' => [['@context' => 'https://schema.org', '@type' => 'Service', 'name' => 'RESCO / OPEX rooftop solar', 'provider' => ['@id' => SITE_URL . '/#business'], 'areaServed' => ['@type' => 'Country', 'name' => 'India'], 'url' => SITE_URL . '/resco-solar']],
 ];
 include __DIR__ . '/inc/header.php';
 ui_hero([
@@ -57,7 +57,7 @@ ui_hero([
       <li>Factories and warehouses with large, strong roofs and steady daytime load</li>
       <li>Schools, colleges, hospitals and hotels that prefer to keep capital for their core work</li>
       <li>Housing societies wanting lower common-area costs without a special levy on residents</li>
-      <li>Government buildings and PSUs &ndash; the UP Solar Energy Policy 2022 promotes solar on government buildings through CAPEX and RESCO models</li>
+      <li>Government buildings and PSUs, where state policies increasingly promote solar through CAPEX and RESCO models</li>
     </ul>
     <p class="mt-6 text-sm text-slate-600">Developers usually look for a sufficient plant size (often tens of kW or more), a roof with long remaining life, clear ownership, and a good bill-payment record.</p>
   </div>

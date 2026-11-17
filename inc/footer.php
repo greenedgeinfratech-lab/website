@@ -18,7 +18,7 @@
   <div class="container mx-auto px-4 py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
     <div>
       <p class="text-white font-bold text-lg">Greenedge Infratech</p>
-      <p class="mt-2"><?= e(BIZ_NAME) ?> is a solar EPC company in Aligarh, working since <?= BIZ_SINCE ?> with homes, housing societies, businesses, industries and public bodies across Uttar Pradesh.</p>
+      <p class="mt-2"><?= e(BIZ_NAME) ?> is a solar EPC company working since <?= BIZ_SINCE ?> with homes, housing societies, businesses, industries and public bodies across India and abroad.</p>
       <p class="mt-2 text-yellow-300 font-semibold"><?= e(BIZ_PMSG_VENDOR) ?></p>
     </div>
     <div>
@@ -50,7 +50,7 @@
         <p><a href="mailto:<?= BIZ_EMAIL ?>" class="hover:text-white"><?= BIZ_EMAIL ?></a></p>
         <p><?= e(BIZ_HOURS) ?></p>
       </address>
-      <p class="mt-3 text-slate-400">Serving <?= e(implode(', ', BIZ_SERVICE_AREA)) ?> and nearby areas of Western UP.</p>
+      <p class="mt-3 text-slate-400">Projects and partners across India and abroad.</p>
     </div>
   </div>
   <div class="border-t border-slate-800">
