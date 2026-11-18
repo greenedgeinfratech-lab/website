@@ -60,22 +60,42 @@ function leads_all(string $kind = 'leads'): array {
 function num_or($v, $d) { return is_numeric($v) ? $v + 0 : $d; }
 function slugify(string $s): string { $s = strtolower(trim(preg_replace('/[^A-Za-z0-9]+/', '-', $s), '-')); return $s !== '' ? substr($s, 0, 80) : 'post-' . date('YmdHis'); }
 
-if ($p === 'not-spam' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = (string)($_POST['id'] ?? ''); $moved = false;
-    foreach (glob(PRIVATE_ROOT . '/private_leads/spam-*.jsonl') ?: [] as $f) {
-        $keep = [];
+// Move entries between leads / spam / deleted (trash). Nothing is lost until "Empty trash".
+function move_entries(string $from, array $ids, ?string $to): int {
+    $ids = array_flip(array_map('strval', $ids)); $n = 0;
+    foreach (glob(PRIVATE_ROOT . '/private_leads/' . $from . '-*.jsonl') ?: [] as $f) {
+        $keep = []; $changed = false;
         foreach (file($f, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [] as $l) {
             $j = json_decode($l, true);
-            if (!$moved && $j && ($j['id'] ?? '') === $id) {
-                unset($j['spam']); $j['restored_from_spam'] = date('c');
-                file_put_contents(PRIVATE_ROOT . '/private_leads/leads-' . substr($j['received_at'] ?? date('c'), 0, 7) . '.jsonl', json_encode($j, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n", FILE_APPEND | LOCK_EX);
-                $moved = true; continue;
+            if ($j && isset($ids[$j['id'] ?? ''])) {
+                $dest = $to;
+                if ($from === 'deleted') { $dest = $j['deleted_from'] ?? 'leads'; unset($j['deleted_from'], $j['deleted_at']); }
+                elseif ($to === 'deleted') { $j['deleted_from'] = $from; $j['deleted_at'] = date('c'); }
+                if ($from === 'spam' && $to === 'leads') { unset($j['spam']); $j['restored_from_spam'] = date('c'); }
+                file_put_contents(PRIVATE_ROOT . '/private_leads/' . $dest . '-' . substr($j['received_at'] ?? date('c'), 0, 7) . '.jsonl',
+                    json_encode($j, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n", FILE_APPEND | LOCK_EX);
+                $n++; $changed = true; continue;
             }
             $keep[] = $l;
         }
-        if ($moved) { file_put_contents($f, $keep ? implode("\n", $keep) . "\n" : '', LOCK_EX); break; }
+        if ($changed) file_put_contents($f, $keep ? implode("\n", $keep) . "\n" : '', LOCK_EX);
     }
-    admin_log("not-spam $id"); go('spam', $moved ? 'Moved to Leads.' : 'Entry not found.');
+    return $n;
+}
+if ($p === 'move' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $from = (string)($_POST['from'] ?? ''); $to = (string)($_POST['to'] ?? '');
+    $ok = ['leads' => ['deleted'], 'spam' => ['deleted', 'leads'], 'deleted' => ['restore']];
+    if (!isset($ok[$from]) || !in_array($to, $ok[$from], true)) go('leads', 'Not allowed.');
+    $ids = array_slice(array_filter((array)($_POST['ids'] ?? []), 'is_string'), 0, 500);
+    if (!$ids) go($from === 'deleted' ? 'trash' : $from, 'Tick at least one entry first.');
+    $n = move_entries($from, $ids, $to === 'restore' ? null : $to);
+    admin_log("move $from->$to $n: " . implode(',', $ids));
+    $msg = ['deleted' => "$n moved to Trash. You can restore them from the Trash page.", 'leads' => "$n moved to Leads.", 'restore' => "$n restored."][$to];
+    go($from === 'deleted' ? 'trash' : $from, $msg);
+}
+if ($p === 'empty-trash' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $n = 0; foreach (glob(PRIVATE_ROOT . '/private_leads/deleted-*.jsonl') ?: [] as $f) { $n += count(file($f, FILE_SKIP_EMPTY_LINES) ?: []); unlink($f); }
+    admin_log("emptied trash ($n)"); go('trash', "$n entries permanently deleted.");
 }
 
 // ------------------------------------------------------------------ actions
@@ -177,7 +197,7 @@ function page_head(string $title): void { ?>
 <?php if (admin_is_logged_in()): ?>
 <header class="bg-green-800 text-white"><div class="container mx-auto px-4 py-3 flex flex-wrap items-center gap-4 text-sm">
   <strong class="mr-2">Greenedge admin</strong>
-  <?php foreach (['dashboard' => 'Dashboard', 'leads' => 'Leads', 'spam' => 'Spam', 'business' => 'Business details', 'home' => 'Homepage', 'blog' => 'Blog', 'faqs' => 'FAQs', 'calculator' => 'Calculator', 'activity' => 'Activity'] as $k => $v): ?>
+  <?php foreach (['dashboard' => 'Dashboard', 'leads' => 'Leads', 'spam' => 'Spam', 'trash' => 'Trash', 'business' => 'Business details', 'home' => 'Homepage', 'blog' => 'Blog', 'faqs' => 'FAQs', 'calculator' => 'Calculator', 'activity' => 'Activity'] as $k => $v): ?>
     <a href="/manage/?p=<?= $k ?>" class="hover:underline"><?= $v ?></a>
   <?php endforeach; ?>
   <span class="ml-auto"><a href="/" target="_blank" class="hover:underline">View website</a> &middot; <a href="/manage/?p=logout" class="hover:underline">Sign out</a></span>
@@ -185,6 +205,13 @@ function page_head(string $title): void { ?>
 <?php endif; ?>
 <main class="container mx-auto px-4 py-6">
 <?php }
+function bulk_bar(string $from, string $to, string $label): string {
+    $confirm = $to === 'deleted' ? "return document.querySelectorAll('.sel:checked').length ? confirm('Move the selected entries to Trash?') : (alert('Tick at least one entry first.'), false)" : 'return true';
+    return '<form id="bulk" method="post" action="/manage/?p=move" class="mt-3 flex items-center gap-3 text-sm" onsubmit="' . e($confirm) . '">' . csrf_field()
+        . '<input type="hidden" name="from" value="' . e($from) . '"><input type="hidden" name="to" value="' . e($to) . '">'
+        . '<label class="flex items-center gap-1"><input type="checkbox" onclick="document.querySelectorAll(\'.sel\').forEach(c=>c.checked=this.checked)"> Select all</label>'
+        . '<button class="btn-secondary ' . ($to === 'deleted' ? 'text-red-700' : '') . '">' . e($label) . '</button></form>';
+}
 function page_foot(): void { echo '</main></body></html>'; }
 function field(string $name, string $label, $value, string $type = 'text', string $hint = ''): string {
     return '<label class="block"><span class="label">' . e($label) . '</span><input class="input" type="' . $type . '" name="' . e($name) . '" value="' . e((string)$value) . '">' . ($hint ? '<span class="hint">' . e($hint) . '</span>' : '') . '</label>';
@@ -195,14 +222,31 @@ if ($flash) echo '<p class="mb-4 rounded-md p-3 bg-green-50 border border-green-
 
 // ------------------------------------------------------------------ pages
 switch ($p) {
+case 'trash':
+    $rows = leads_all('deleted'); ?>
+    <div class="flex items-center justify-between flex-wrap gap-3"><h1 class="text-2xl font-bold">Trash (<?= count($rows) ?>)</h1>
+    <?php if ($rows): ?><form method="post" action="/manage/?p=empty-trash" onsubmit="return confirm('Permanently delete everything in Trash? This cannot be undone.')"><?= csrf_field() ?><button class="btn-secondary text-red-700">Empty trash permanently</button></form><?php endif; ?></div>
+    <p class="text-sm text-slate-600">Deleted leads and spam stay here until you empty the trash. Tick entries and click "Restore selected" to put them back.</p>
+    <?= bulk_bar('deleted', 'restore', 'Restore selected') ?>
+    <div class="card mt-4 divide-y">
+    <?php foreach ($rows as $r): ?>
+      <div class="p-3 text-sm flex flex-wrap gap-3 items-center"><input type="checkbox" form="bulk" name="ids[]" value="<?= e($r['id'] ?? '') ?>" class="sel">
+        <span class="text-slate-500"><?= e(date('j M Y, g:i A', strtotime($r['received_at'] ?? 'now'))) ?></span><strong><?= e($r['name'] ?? '') ?></strong><span><?= e($r['phone'] ?? '') ?></span><span><?= e($r['city'] ?? '') ?></span>
+        <span class="text-xs text-slate-500">from <?= e($r['deleted_from'] ?? 'leads') ?>, deleted <?= e(date('j M, g:i A', strtotime($r['deleted_at'] ?? 'now'))) ?></span>
+        <span class="w-full text-slate-600"><?= e(mb_strimwidth($r['message'] ?? '', 0, 160, '…')) ?></span></div>
+    <?php endforeach; if (!$rows): ?><p class="p-3 text-sm">Trash is empty.</p><?php endif; ?>
+    </div>
+    <?php break;
+
 case 'spam':
     $rows = leads_all('spam'); ?>
     <h1 class="text-2xl font-bold">Spam held back (<?= count($rows) ?>)</h1>
     <p class="text-sm text-slate-600">Form entries that look like sales pitches (SEO, marketing, web design, links, throwaway emails). They were not emailed to you. If a real customer is here, click "Not spam" to move them to Leads.</p>
+    <?= bulk_bar('spam', 'deleted', 'Delete selected') ?>
     <div class="card mt-4 divide-y">
     <?php foreach ($rows as $r): ?>
-      <div class="p-3 text-sm"><div class="flex flex-wrap gap-3 items-center"><span class="text-slate-500"><?= e(date('j M Y, g:i A', strtotime($r['received_at'] ?? 'now'))) ?></span><strong><?= e($r['name'] ?? '') ?></strong><span><?= e($r['phone'] ?? '') ?></span><span><?= e($r['city'] ?? '') ?></span><span><?= e($r['email'] ?? '') ?></span>
-        <form method="post" action="/manage/?p=not-spam" class="ml-auto"><?= csrf_field() ?><input type="hidden" name="id" value="<?= e($r['id'] ?? '') ?>"><button class="btn-secondary">Not spam</button></form></div>
+      <div class="p-3 text-sm"><div class="flex flex-wrap gap-3 items-center"><input type="checkbox" form="bulk" name="ids[]" value="<?= e($r['id'] ?? '') ?>" class="sel"><span class="text-slate-500"><?= e(date('j M Y, g:i A', strtotime($r['received_at'] ?? 'now'))) ?></span><strong><?= e($r['name'] ?? '') ?></strong><span><?= e($r['phone'] ?? '') ?></span><span><?= e($r['city'] ?? '') ?></span><span><?= e($r['email'] ?? '') ?></span>
+        <form method="post" action="/manage/?p=move" class="ml-auto"><?= csrf_field() ?><input type="hidden" name="from" value="spam"><input type="hidden" name="to" value="leads"><input type="hidden" name="ids[]" value="<?= e($r['id'] ?? '') ?>"><button class="btn-secondary">Not spam</button></form></div>
         <p class="mt-1 text-slate-700"><?= e(mb_strimwidth($r['message'] ?? '', 0, 300, '…')) ?></p>
         <p class="mt-1 text-xs text-slate-500">Why: <?= e(implode(', ', $r['spam']['reasons'] ?? [])) ?></p></div>
     <?php endforeach; if (!$rows): ?><p class="p-3 text-sm">Nothing caught yet.</p><?php endif; ?>
@@ -212,15 +256,16 @@ case 'spam':
 case 'leads':
     $rows = leads_all(); ?>
     <div class="flex items-center justify-between"><h1 class="text-2xl font-bold">Leads (<?= count($rows) ?>)</h1><a class="btn-primary" href="/manage/?p=leads-csv">Download CSV (Excel)</a></div>
+    <?= bulk_bar('leads', 'deleted', 'Delete selected') ?>
     <div class="card mt-4 overflow-x-auto"><table class="w-full text-sm"><thead class="bg-slate-100 text-left"><tr>
-      <th class="p-2">Received</th><th class="p-2">Name</th><th class="p-2">Mobile</th><th class="p-2">City</th><th class="p-2">Type</th><th class="p-2">kW</th><th class="p-2">Bill</th><th class="p-2">Email</th><th class="p-2">Message</th></tr></thead><tbody class="divide-y">
+      <th class="p-2"><input type="checkbox" onclick="document.querySelectorAll('.sel').forEach(c=>c.checked=this.checked)" title="Select all"></th><th class="p-2">Received</th><th class="p-2">Name</th><th class="p-2">Mobile</th><th class="p-2">City</th><th class="p-2">Type</th><th class="p-2">kW</th><th class="p-2">Bill</th><th class="p-2">Email</th><th class="p-2">Message</th></tr></thead><tbody class="divide-y">
     <?php foreach ($rows as $r): $c = $r['calculator'] ?? []; ?>
-      <tr><td class="p-2 whitespace-nowrap"><?= e(date('j M Y, g:i A', strtotime($r['received_at'] ?? 'now'))) ?></td><td class="p-2"><?= e($r['name'] ?? '') ?></td>
+      <tr><td class="p-2"><input type="checkbox" form="bulk" name="ids[]" value="<?= e($r['id'] ?? '') ?>" class="sel"></td><td class="p-2 whitespace-nowrap"><?= e(date('j M Y, g:i A', strtotime($r['received_at'] ?? 'now'))) ?></td><td class="p-2"><?= e($r['name'] ?? '') ?></td>
       <td class="p-2 whitespace-nowrap"><a class="underline" href="tel:+91<?= e($r['phone'] ?? '') ?>"><?= e($r['phone'] ?? '') ?></a> &middot; <a class="underline" target="_blank" href="https://wa.me/91<?= e($r['phone'] ?? '') ?>">WA</a></td>
       <td class="p-2"><?= e($r['city'] ?? '') ?></td><td class="p-2"><?= e(($r['enquiry_type'] ?? '') . ' / ' . ($r['category'] ?? '')) ?></td>
       <td class="p-2"><?= e((string)($c['system_kw'] ?? '')) ?></td><td class="p-2"><?= isset($c['monthly_bill']) ? '&#8377;' . number_format((float)$c['monthly_bill']) : '' ?></td>
       <td class="p-2"><?= e($r['email'] ?? '') ?></td><td class="p-2 max-w-xs"><?= e(mb_strimwidth($r['message'] ?? '', 0, 120, '…')) ?></td></tr>
-    <?php endforeach; if (!$rows): ?><tr><td class="p-4" colspan="9">No leads yet.</td></tr><?php endif; ?>
+    <?php endforeach; if (!$rows): ?><tr><td class="p-4" colspan="10">No leads yet.</td></tr><?php endif; ?>
     </tbody></table></div>
     <?php break;
 
