@@ -98,6 +98,38 @@ if ($p === 'empty-trash' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     admin_log("emptied trash ($n)"); go('trash', "$n entries permanently deleted.");
 }
 
+// ---- weekly content drafts written by Claude into content/drafts/*.json (deployed from GitHub, read-only here)
+function drafts_all(): array {
+    $out = [];
+    foreach (glob(__DIR__ . '/../content/drafts/*.json') ?: [] as $f) {
+        $j = json_decode((string)file_get_contents($f), true);
+        if (is_array($j)) { $j['_file'] = basename($f, '.json'); $out[] = $j; }
+    }
+    usort($out, fn($a, $b) => strcmp($b['_file'], $a['_file']));
+    return $out;
+}
+if ($p === 'draft-import' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $file = preg_replace('/[^a-z0-9-]/', '', (string)($_POST['file'] ?? ''));
+    $d = null; foreach (drafts_all() as $x) if ($x['_file'] === $file) $d = $x;
+    if (!$d || empty($d['blog']['title'])) go('drafts', 'Draft not found.');
+    $posts = require __DIR__ . '/../inc/blog-data.php';
+    $slug = slugify((string)($d['blog']['slug'] ?? $d['blog']['title']));
+    if (isset($posts[$slug])) go('drafts', 'A post with this web address already exists: /blog/' . $slug);
+    $posts[$slug] = ['old_id' => 0, 'title' => mb_substr((string)$d['blog']['title'], 0, 160), 'description' => mb_substr((string)($d['blog']['description'] ?? ''), 0, 300),
+        'date' => date('Y-m-d'), 'updated' => date('Y-m-d'), 'image' => '/assets/hero-solar.jpg', 'body' => mb_substr((string)($d['blog']['body'] ?? ''), 0, 60000),
+        'format' => 'text', 'draft' => true, 'lang' => ($d['blog']['lang'] ?? '') === 'hi' ? 'hi' : null];
+    ge_save_json('blogs', $posts);
+    $st = ge_load_json('drafts-state'); $st[$file]['imported'] = $slug; ge_save_json('drafts-state', $st);
+    admin_log("imported draft $file as $slug");
+    $_SESSION['flash'] = 'Draft added to the blog as a hidden draft. Check the facts, add a picture, untick "Save as draft" and save to publish.';
+    header('Location: /manage/?p=blog-edit&slug=' . rawurlencode($slug)); exit;
+}
+if ($p === 'draft-done' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $file = preg_replace('/[^a-z0-9-]/', '', (string)($_POST['file'] ?? '')); $key = preg_replace('/[^a-z0-9_-]/', '', (string)($_POST['key'] ?? ''));
+    $st = ge_load_json('drafts-state'); $st[$file]['done'][$key] = date('c'); ge_save_json('drafts-state', $st);
+    go('drafts', 'Marked as posted.');
+}
+
 // ------------------------------------------------------------------ actions
 if ($p === 'leads-csv') {
     $rows = leads_all();
@@ -114,9 +146,10 @@ if ($p === 'leads-csv') {
 if ($p === 'business' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     global $GE_SITE;
     $site = ge_load_json('site');
-    foreach (['biz_name', 'biz_short', 'phone', 'phone_display', 'whatsapp', 'email', 'street', 'city', 'region', 'pin', 'hours', 'installs', 'pmsg_vendor', 'lead_email_to'] as $k) {
+    foreach (['biz_name', 'biz_short', 'phone', 'phone_display', 'whatsapp', 'email', 'street', 'city', 'region', 'pin', 'hours', 'installs', 'pmsg_vendor', 'lead_email_to', 'meta_pixel_id'] as $k) {
         $site[$k] = mb_substr(trim((string)($_POST[$k] ?? '')), 0, 300);
     }
+    $site['meta_pixel_id'] = preg_replace('/\D/', '', $site['meta_pixel_id']);
     $site['since'] = (int)($_POST['since'] ?? 2016);
     $site['service_area'] = array_values(array_filter(array_map('trim', explode(',', (string)($_POST['service_area'] ?? '')))));
     foreach (['email', 'lead_email_to'] as $k) if (!filter_var($site[$k], FILTER_VALIDATE_EMAIL)) go('business', 'Please enter a valid email address.');
@@ -197,7 +230,7 @@ function page_head(string $title): void { ?>
 <?php if (admin_is_logged_in()): ?>
 <header class="bg-green-800 text-white"><div class="container mx-auto px-4 py-3 flex flex-wrap items-center gap-4 text-sm">
   <strong class="mr-2">Greenedge admin</strong>
-  <?php foreach (['dashboard' => 'Dashboard', 'leads' => 'Leads', 'spam' => 'Spam', 'trash' => 'Trash', 'business' => 'Business details', 'home' => 'Homepage', 'blog' => 'Blog', 'faqs' => 'FAQs', 'calculator' => 'Calculator', 'activity' => 'Activity'] as $k => $v): ?>
+  <?php foreach (['dashboard' => 'Dashboard', 'leads' => 'Leads', 'spam' => 'Spam', 'trash' => 'Trash', 'business' => 'Business details', 'home' => 'Homepage', 'drafts' => 'Content drafts', 'blog' => 'Blog', 'faqs' => 'FAQs', 'calculator' => 'Calculator', 'activity' => 'Activity'] as $k => $v): ?>
     <a href="/manage/?p=<?= $k ?>" class="hover:underline"><?= $v ?></a>
   <?php endforeach; ?>
   <span class="ml-auto"><a href="/" target="_blank" class="hover:underline">View website</a> &middot; <a href="/manage/?p=logout" class="hover:underline">Sign out</a></span>
@@ -222,6 +255,37 @@ if ($flash) echo '<p class="mb-4 rounded-md p-3 bg-green-50 border border-green-
 
 // ------------------------------------------------------------------ pages
 switch ($p) {
+case 'drafts':
+    $drafts = drafts_all(); $st = ge_load_json('drafts-state'); ?>
+    <h1 class="text-2xl font-bold">Content drafts</h1>
+    <p class="text-sm text-slate-600 max-w-3xl">Every Monday morning Claude writes a blog post, 3 Google Business posts and 3 Facebook/Instagram posts for the week. Nothing goes live on its own: check the facts, add the blog to the website, and copy each post into Google Business Profile or Meta Business Suite on its day. Click "Mark posted" when done.</p>
+    <?php foreach ($drafts as $d): $f = $d['_file']; $s = $st[$f] ?? []; ?>
+      <section id="<?= e($f) ?>" class="card p-5 mt-6">
+        <h2 class="text-lg font-bold">Week of <?= e($d['week_of'] ?? $f) ?></h2>
+        <?php if (!empty($d['notes'])): ?><p class="text-sm mt-2 rounded bg-amber-50 border border-amber-200 p-2"><?= e($d['notes']) ?></p><?php endif; ?>
+        <?php if (!empty($d['blog']['title'])): ?>
+          <div class="mt-4 border rounded p-4"><p class="text-xs uppercase text-slate-500">Blog post (Monday)</p>
+            <p class="font-semibold mt-1"><?= e($d['blog']['title']) ?></p><p class="text-sm text-slate-600"><?= e($d['blog']['description'] ?? '') ?></p>
+            <details class="mt-2 text-sm"><summary class="cursor-pointer underline">Read the draft</summary><div class="prose max-w-none mt-2"><?= ge_format((string)($d['blog']['body'] ?? '')) ?></div></details>
+            <?php if (!empty($s['imported'])): ?><p class="mt-3 text-sm text-green-800">Added to the blog: <a class="underline" href="/manage/?p=blog-edit&amp;slug=<?= rawurlencode($s['imported']) ?>">open it</a></p>
+            <?php else: ?><form method="post" action="/manage/?p=draft-import" class="mt-3"><?= csrf_field() ?><input type="hidden" name="file" value="<?= e($f) ?>"><button class="btn-primary">Add to blog (as hidden draft)</button></form><?php endif; ?>
+          </div>
+        <?php endif; ?>
+        <?php foreach (['gbp_posts' => 'Google Business post', 'social_posts' => 'Facebook / Instagram post'] as $kind => $label): foreach ((array)($d[$kind] ?? []) as $i => $post): $key = $kind . '-' . $i; $tid = 't-' . $f . '-' . $key; ?>
+          <div class="mt-4 border rounded p-4"><p class="text-xs uppercase text-slate-500"><?= e($label) ?> <?= $i + 1 ?><?= !empty($post['day']) ? ' · ' . e((string)$post['day']) : '' ?></p>
+            <textarea readonly rows="5" class="input h-auto py-2 mt-2 text-sm" id="<?= e($tid) ?>"><?= e((string)($post['text'] ?? '')) ?></textarea>
+            <?php if (!empty($post['button'])): ?><p class="text-xs mt-1 text-slate-600">Button: <?= e((string)$post['button']) ?><?= !empty($post['link']) ? ' → ' . e((string)$post['link']) : '' ?></p><?php endif; ?>
+            <?php if (!empty($post['photo'])): ?><p class="text-xs mt-1 text-slate-600">Photo to use: <?= e((string)$post['photo']) ?></p><?php endif; ?>
+            <div class="mt-2 flex gap-2 items-center"><button type="button" class="btn-secondary" onclick="navigator.clipboard.writeText(document.getElementById('<?= e($tid) ?>').value);this.textContent='Copied'">Copy text</button>
+            <?php if (!empty($s['done'][$key])): ?><span class="text-sm text-green-800">Posted <?= e(date('j M', strtotime($s['done'][$key]))) ?></span>
+            <?php else: ?><form method="post" action="/manage/?p=draft-done"><?= csrf_field() ?><input type="hidden" name="file" value="<?= e($f) ?>"><input type="hidden" name="key" value="<?= e($key) ?>"><button class="btn-secondary">Mark posted</button></form><?php endif; ?></div>
+          </div>
+        <?php endforeach; endforeach; ?>
+        <?php if (!empty($d['sources'])): ?><p class="text-xs text-slate-500 mt-4">Sources checked: <?php foreach ((array)$d['sources'] as $u): if (preg_match('~^https://~', (string)$u)): ?><a class="underline mr-2" target="_blank" rel="noopener" href="<?= e((string)$u) ?>"><?= e((string)parse_url((string)$u, PHP_URL_HOST)) ?></a><?php endif; endforeach; ?></p><?php endif; ?>
+      </section>
+    <?php endforeach; if (!$drafts): ?><p class="mt-6 text-sm">No drafts yet. The first one arrives on Monday morning.</p><?php endif; ?>
+    <?php break;
+
 case 'trash':
     $rows = leads_all('deleted'); ?>
     <div class="flex items-center justify-between flex-wrap gap-3"><h1 class="text-2xl font-bold">Trash (<?= count($rows) ?>)</h1>
@@ -281,6 +345,7 @@ case 'business': ?>
       <?= field('hours', 'Business hours', BIZ_HOURS) ?><?= field('since', 'Working since (year)', BIZ_SINCE, 'number') ?>
       <?= field('installs', 'Installations count (e.g. 200+)', BIZ_INSTALLS) ?><?= field('pmsg_vendor', 'PM Surya Ghar vendor line', BIZ_PMSG_VENDOR) ?>
       <?= field('service_area', 'Service areas (comma separated)', implode(', ', BIZ_SERVICE_AREA)) ?><?= field('lead_email_to', 'Send website leads to (email)', LEAD_EMAIL_TO, 'email') ?>
+      <?= field('meta_pixel_id', 'Meta (Facebook) Pixel ID – digits only, leave empty to switch off', site('meta_pixel_id'), 'text', 'Events Manager → Data sources → your pixel → Settings. Tracks ad visits and website leads.') ?>
       <div class="sm:col-span-2"><button class="btn-primary">Save business details</button></div>
     </form>
     <?php break;

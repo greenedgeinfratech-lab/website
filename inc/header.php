@@ -96,6 +96,9 @@ foreach (GE_SOLUTIONS as $sol) $solGroups[$sol[3]][] = $sol;
 <script type="application/ld+json"><?= json_encode(count($schema) === 1 ? $schema[0] : $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=<?= e(GOOGLE_TAG_ID) ?>"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','<?= e(GOOGLE_TAG_ID) ?>');</script>
+<?php $__px = preg_replace('/\D/', '', (string)site('meta_pixel_id')); if ($__px !== ''): ?>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','<?= $__px ?>');fbq('track','PageView');</script>
+<?php endif; ?>
 </head>
 <body class="bg-white text-slate-800 antialiased">
 <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:p-3 focus:bg-white">Skip to content</a>

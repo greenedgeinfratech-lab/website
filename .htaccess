@@ -17,7 +17,7 @@ AddDefaultCharset UTF-8
     RewriteBase /
 
     # Directories that must never be served to the public
-    RewriteRule ^(\.git|data|views|inc|tools|components/.*\.php)(/|$) - [F,L]
+    RewriteRule ^(\.git|data|views|inc|content|tools|components/.*\.php)(/|$) - [F,L]
 
     # Old PHP admin panel (broken since the Node.js deploy, contains an upload script): closed 2026-11-15
     RewriteRule ^admin(/|$) - [F,L,NC]

@@ -1,0 +1,55 @@
+{
+  "week_of": "23 November 2026",
+  "notes": "Check before posting: the subsidy line (central up to Rs 78,000 + UP state up to Rs 30,000 for homes) matches what you are telling customers this month. Use your own photos from real Greenedge sites.",
+  "blog": {
+    "title": "Is your roof ready for solar? 7 checks before your site survey",
+    "slug": "is-your-roof-ready-for-solar-7-checks",
+    "description": "Seven simple checks on shade, space, roof strength, electricity connection and paperwork that tell you if your Aligarh home is ready for rooftop solar.",
+    "lang": "en",
+    "body": "Most homes in Aligarh and Western UP can take rooftop solar, but a few simple checks decide how big the system can be and how much it will save. Do these seven checks before our engineer visits and the survey takes half the time.\n\n## 1. Shade between 9 am and 4 pm\n\nSolar panels produce most between 9 am and 4 pm. Walk onto your roof at mid-morning and mid-afternoon and look for shadows from water tanks, a taller neighbouring house, trees or a mobile tower. A small shadow on one panel lowers the output of the whole string, so tell the surveyor about anything that casts shade at any time of year.\n\n## 2. Free roof space\n\nAs a rough guide, every 1 kW of solar needs about 100 sq ft of shadow-free roof. A 3 kW home system needs about 300 sq ft. Count only the open area, not the space under the water tank or the staircase room.\n\n## 3. Roof type and strength\n\n- **RCC (concrete) roof:** the best base; panels sit on a raised steel structure.\n- **Tin or asbestos sheet roof:** possible with a different mounting, common on shops and factories.\n- **Old or leaking roof:** get the repair done before installation, because panels stay for 25 years.\n\n## 4. Electricity connection in your name\n\nFor the PM Surya Ghar subsidy the electricity connection must be in the name of the house owner, and the bill should be up to date. Keep your latest bill ready: the consumer number on it is used for the online application.\n\n## 5. Your monthly units\n\nLook at the units (kWh) on your last 6 to 12 bills, not only the amount. The system size is worked out from your units. You can get a quick estimate with our [solar calculator](/calculator).\n\n## 6. Sanctioned load\n\nYour bill also shows the sanctioned load in kW. If the solar system will be larger than this, the load may need to be increased with your DISCOM. We check this during the survey.\n\n## 7. Documents for the subsidy\n\nFor a home system under PM Surya Ghar, keep these ready:\n\n- Latest electricity bill\n- Aadhaar card of the connection holder\n- Bank account details (passbook or cancelled cheque) for the subsidy credit\n- Proof of house ownership, or the owner's consent if the house is jointly owned\n\nThe central PM Surya Ghar subsidy for homes is up to Rs 78,000, and Uttar Pradesh adds up to Rs 30,000 through UPNEDA. Both are credited to your bank account after installation and inspection. Commercial and industrial buildings are not covered by this subsidy.\n\n## Book a free site survey\n\nGreenedge Infratech is a registered vendor under PM Surya Ghar in Uttar Pradesh. Our engineer checks shade, roof space, structure and load, and gives you a written quotation. [Book a free site survey](/contact) or call +91 98370 67681."
+  },
+  "gbp_posts": [
+    {
+      "day": "Tuesday",
+      "text": "Is your roof ready for solar? Check 3 things today: no shade on the roof between 9 am and 4 pm, about 100 sq ft of open roof for every 1 kW, and an electricity connection in the owner's name. Greenedge Infratech offers a free site survey across Aligarh and Western UP. Homes can get up to Rs 78,000 central + up to Rs 30,000 UP state subsidy under PM Surya Ghar.",
+      "button": "Book",
+      "link": "https://greenedgeinfratech.com/contact",
+      "photo": "A recent home rooftop installation by your team"
+    },
+    {
+      "day": "Thursday",
+      "text": "New on our blog: 7 checks before your solar site survey, from shade and roof space to the documents you need for the PM Surya Ghar subsidy. Read it before our engineer visits and the survey takes half the time.",
+      "button": "Learn more",
+      "link": "https://greenedgeinfratech.com/blog/is-your-roof-ready-for-solar-7-checks",
+      "photo": "Engineer measuring a roof during a survey"
+    },
+    {
+      "day": "Saturday",
+      "text": "How big a solar system does your home need? Enter your monthly bill in our free calculator to see the system size, PM Surya Ghar subsidy, cost range and payback in two minutes. Then call us on +91 98370 67681 for a free site survey.",
+      "button": "Learn more",
+      "link": "https://greenedgeinfratech.com/calculator",
+      "photo": "Close-up of panels on an RCC roof"
+    }
+  ],
+  "social_posts": [
+    {
+      "day": "Tuesday",
+      "text": "Kya aapki chhat solar ke liye taiyaar hai? ☀️\n\n✅ 9 baje se 4 baje tak chhat par chhaya na ho\n✅ Har 1 kW ke liye lagbhag 100 sq ft khuli jagah\n✅ Bijli connection ghar ke maalik ke naam par\n\nPM Surya Ghar mein gharon ko ₹78,000 tak central + ₹30,000 tak UP state subsidy.\n\nFree site survey book karein: greenedgeinfratech.com/contact\n📞 +91 98370 67681\n\n#SolarAligarh #PMSuryaGhar #RooftopSolar #Aligarh #GreenedgeInfratech",
+      "photo": "Before/after photo of a home roof with panels"
+    },
+    {
+      "day": "Thursday",
+      "text": "Survey se pehle ye 7 cheezein check kar lijiye: shade, chhat ki jagah, chhat ki majbooti, bijli connection, monthly units, sanctioned load aur subsidy ke documents. Poora blog padhein: greenedgeinfratech.com/blog/is-your-roof-ready-for-solar-7-checks\n\n#SolarTips #PMSuryaGhar #WesternUP",
+      "photo": "Carousel: one photo per check"
+    },
+    {
+      "day": "Saturday",
+      "text": "Aapka bijli bill kitna aata hai? Hamare free solar calculator mein bill daaliye aur 2 minute mein jaaniye system size, subsidy aur kitne saal mein paisa wapas.\n👉 greenedgeinfratech.com/calculator\n\n#SolarCalculator #Aligarh #SolarSavings",
+      "photo": "Screenshot of the calculator result on a phone"
+    }
+  ],
+  "sources": [
+    "https://www.pmsuryaghar.gov.in/",
+    "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/mar/doc2025313520001.pdf"
+  ]
+}

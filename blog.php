@@ -2,6 +2,7 @@
 require __DIR__ . '/inc/config.php';
 $posts = require __DIR__ . '/inc/blog-data.php';
 $slug = preg_replace('/[^a-z0-9-]/', '', strtolower($_GET['slug'] ?? ''));
+$posts = array_filter($posts, fn($x) => empty($x['draft'])); // hidden drafts are never public
 if (!isset($posts[$slug])) {
     // Old URLs: /blog_details?id=3
     $id = (int)($_GET['id'] ?? 0);

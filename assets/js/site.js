@@ -7,6 +7,7 @@
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push(Object.assign({ event: name }, params || {}));
       if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+      if (name === 'generate_lead' && typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_category: (params || {}).category || '' });
     } catch (e) { /* ignore */ }
   }
   window.geTrack = window.geTrack || track;
