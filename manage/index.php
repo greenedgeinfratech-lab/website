@@ -146,10 +146,11 @@ if ($p === 'leads-csv') {
 if ($p === 'business' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     global $GE_SITE;
     $site = ge_load_json('site');
-    foreach (['biz_name', 'biz_short', 'phone', 'phone_display', 'whatsapp', 'email', 'street', 'city', 'region', 'pin', 'hours', 'installs', 'pmsg_vendor', 'lead_email_to', 'meta_pixel_id'] as $k) {
+    foreach (['biz_name', 'biz_short', 'phone', 'phone_display', 'whatsapp', 'email', 'street', 'city', 'region', 'pin', 'hours', 'installs', 'pmsg_vendor', 'lead_email_to', 'meta_pixel_id', 'google_review_url'] as $k) {
         $site[$k] = mb_substr(trim((string)($_POST[$k] ?? '')), 0, 300);
     }
     $site['meta_pixel_id'] = preg_replace('/\D/', '', $site['meta_pixel_id']);
+    if ($site['google_review_url'] !== '' && !preg_match('~^https://~', $site['google_review_url'])) go('business', 'The Google review link must start with https://');
     $site['since'] = (int)($_POST['since'] ?? 2016);
     $site['service_area'] = array_values(array_filter(array_map('trim', explode(',', (string)($_POST['service_area'] ?? '')))));
     foreach (['email', 'lead_email_to'] as $k) if (!filter_var($site[$k], FILTER_VALIDATE_EMAIL)) go('business', 'Please enter a valid email address.');
@@ -346,6 +347,7 @@ case 'business': ?>
       <?= field('installs', 'Installations count (e.g. 200+)', BIZ_INSTALLS) ?><?= field('pmsg_vendor', 'PM Surya Ghar vendor line', BIZ_PMSG_VENDOR) ?>
       <?= field('service_area', 'Service areas (comma separated)', implode(', ', BIZ_SERVICE_AREA)) ?><?= field('lead_email_to', 'Send website leads to (email)', LEAD_EMAIL_TO, 'email') ?>
       <?= field('meta_pixel_id', 'Meta (Facebook) Pixel ID – digits only, leave empty to switch off', site('meta_pixel_id'), 'text', 'Events Manager → Data sources → your pixel → Settings. Tracks ad visits and website leads.') ?>
+      <?= field('google_review_url', 'Google review link (shown in the footer)', site('google_review_url'), 'url', 'Send this link to customers after installation to ask for a review.') ?>
       <div class="sm:col-span-2"><button class="btn-primary">Save business details</button></div>
     </form>
     <?php break;

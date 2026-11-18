@@ -50,6 +50,7 @@
         <p><a href="mailto:<?= BIZ_EMAIL ?>" class="hover:text-white"><?= BIZ_EMAIL ?></a></p>
         <p><?= e(BIZ_HOURS) ?></p>
       </address>
+      <?php if (site('google_review_url')): ?><p class="mt-3"><a href="<?= e(site('google_review_url')) ?>" target="_blank" rel="noopener" class="text-white underline hover:no-underline" data-track="review_click">&#9733; Review us on Google</a></p><?php endif; ?>
       <p class="mt-3 text-slate-400">Projects and partners across India and abroad.</p>
     </div>
   </div>

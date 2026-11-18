@@ -45,6 +45,7 @@ $GE_SITE_DEFAULTS = [
     'home_hero_text'    => 'Cut your electricity bill by up to 70–80% with a rooftop solar system designed for your home, shop or factory. Eligible homes get up to ₹78,000 central subsidy under PM Surya Ghar, plus state subsidy where offered.',
     'home_savings_stat' => '70–80%',
     'meta_pixel_id'     => '',
+    'google_review_url' => 'https://g.page/r/CY300Ssr43yrEBM/review',
 ];
 $GE_SITE = array_merge($GE_SITE_DEFAULTS, ge_load_json('site'));
 if (is_string($GE_SITE['service_area'])) $GE_SITE['service_area'] = array_values(array_filter(array_map('trim', explode(',', $GE_SITE['service_area']))));
