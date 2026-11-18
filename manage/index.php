@@ -49,9 +49,9 @@ if ($p === 'logout') { admin_logout(); header('Location: /manage/'); exit; }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') csrf_check();
 
 // ------------------------------------------------------------------ data helpers
-function leads_all(): array {
+function leads_all(string $kind = 'leads'): array {
     $out = [];
-    foreach (glob(PRIVATE_ROOT . '/private_leads/leads-*.jsonl') ?: [] as $f) {
+    foreach (glob(PRIVATE_ROOT . '/private_leads/' . $kind . '-*.jsonl') ?: [] as $f) {
         foreach (file($f, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [] as $l) { $j = json_decode($l, true); if ($j) $out[] = $j; }
     }
     usort($out, fn($a, $b) => strcmp($b['received_at'] ?? '', $a['received_at'] ?? ''));
@@ -59,6 +59,24 @@ function leads_all(): array {
 }
 function num_or($v, $d) { return is_numeric($v) ? $v + 0 : $d; }
 function slugify(string $s): string { $s = strtolower(trim(preg_replace('/[^A-Za-z0-9]+/', '-', $s), '-')); return $s !== '' ? substr($s, 0, 80) : 'post-' . date('YmdHis'); }
+
+if ($p === 'not-spam' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = (string)($_POST['id'] ?? ''); $moved = false;
+    foreach (glob(PRIVATE_ROOT . '/private_leads/spam-*.jsonl') ?: [] as $f) {
+        $keep = [];
+        foreach (file($f, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [] as $l) {
+            $j = json_decode($l, true);
+            if (!$moved && $j && ($j['id'] ?? '') === $id) {
+                unset($j['spam']); $j['restored_from_spam'] = date('c');
+                file_put_contents(PRIVATE_ROOT . '/private_leads/leads-' . substr($j['received_at'] ?? date('c'), 0, 7) . '.jsonl', json_encode($j, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n", FILE_APPEND | LOCK_EX);
+                $moved = true; continue;
+            }
+            $keep[] = $l;
+        }
+        if ($moved) { file_put_contents($f, $keep ? implode("\n", $keep) . "\n" : '', LOCK_EX); break; }
+    }
+    admin_log("not-spam $id"); go('spam', $moved ? 'Moved to Leads.' : 'Entry not found.');
+}
 
 // ------------------------------------------------------------------ actions
 if ($p === 'leads-csv') {
@@ -159,7 +177,7 @@ function page_head(string $title): void { ?>
 <?php if (admin_is_logged_in()): ?>
 <header class="bg-green-800 text-white"><div class="container mx-auto px-4 py-3 flex flex-wrap items-center gap-4 text-sm">
   <strong class="mr-2">Greenedge admin</strong>
-  <?php foreach (['dashboard' => 'Dashboard', 'leads' => 'Leads', 'business' => 'Business details', 'home' => 'Homepage', 'blog' => 'Blog', 'faqs' => 'FAQs', 'calculator' => 'Calculator', 'activity' => 'Activity'] as $k => $v): ?>
+  <?php foreach (['dashboard' => 'Dashboard', 'leads' => 'Leads', 'spam' => 'Spam', 'business' => 'Business details', 'home' => 'Homepage', 'blog' => 'Blog', 'faqs' => 'FAQs', 'calculator' => 'Calculator', 'activity' => 'Activity'] as $k => $v): ?>
     <a href="/manage/?p=<?= $k ?>" class="hover:underline"><?= $v ?></a>
   <?php endforeach; ?>
   <span class="ml-auto"><a href="/" target="_blank" class="hover:underline">View website</a> &middot; <a href="/manage/?p=logout" class="hover:underline">Sign out</a></span>
@@ -177,6 +195,20 @@ if ($flash) echo '<p class="mb-4 rounded-md p-3 bg-green-50 border border-green-
 
 // ------------------------------------------------------------------ pages
 switch ($p) {
+case 'spam':
+    $rows = leads_all('spam'); ?>
+    <h1 class="text-2xl font-bold">Spam held back (<?= count($rows) ?>)</h1>
+    <p class="text-sm text-slate-600">Form entries that look like sales pitches (SEO, marketing, web design, links, throwaway emails). They were not emailed to you. If a real customer is here, click "Not spam" to move them to Leads.</p>
+    <div class="card mt-4 divide-y">
+    <?php foreach ($rows as $r): ?>
+      <div class="p-3 text-sm"><div class="flex flex-wrap gap-3 items-center"><span class="text-slate-500"><?= e(date('j M Y, g:i A', strtotime($r['received_at'] ?? 'now'))) ?></span><strong><?= e($r['name'] ?? '') ?></strong><span><?= e($r['phone'] ?? '') ?></span><span><?= e($r['city'] ?? '') ?></span><span><?= e($r['email'] ?? '') ?></span>
+        <form method="post" action="/manage/?p=not-spam" class="ml-auto"><?= csrf_field() ?><input type="hidden" name="id" value="<?= e($r['id'] ?? '') ?>"><button class="btn-secondary">Not spam</button></form></div>
+        <p class="mt-1 text-slate-700"><?= e(mb_strimwidth($r['message'] ?? '', 0, 300, '…')) ?></p>
+        <p class="mt-1 text-xs text-slate-500">Why: <?= e(implode(', ', $r['spam']['reasons'] ?? [])) ?></p></div>
+    <?php endforeach; if (!$rows): ?><p class="p-3 text-sm">Nothing caught yet.</p><?php endif; ?>
+    </div>
+    <?php break;
+
 case 'leads':
     $rows = leads_all(); ?>
     <div class="flex items-center justify-between"><h1 class="text-2xl font-bold">Leads (<?= count($rows) ?>)</h1><a class="btn-primary" href="/manage/?p=leads-csv">Download CSV (Excel)</a></div>

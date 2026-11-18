@@ -131,6 +131,37 @@ $lead = [
     'ip_hash'      => hash('sha256', $ip),
 ];
 
+// --- spam score: sales pitches (SEO, marketing, web design...) are kept aside, not emailed
+function ge_spam_score(string $text, string $email, int $startedAt): array {
+    $t = mb_strtolower($text);
+    $why = []; $score = 0;
+    $strong = ['seo', 'search engine', 'search result', 'first page', 'page 1 of google', 'top of google', 'rank higher', 'ranking',
+        'backlink', 'guest post', 'traffic', 'digital marketing', 'marketing services', 'web design', 'website design', 'redesign',
+        'web development', 'app development', 'lead generation', 'more leads', 'more customers', 'virtual assistant', 'outsourc',
+        'crypto', 'bitcoin', 'casino', 'betting', 'forex', 'loan offer', 'unsubscribe', 'opt out', 'local market', 'keyword',
+        'google maps ranking', 'social media management', 'video explainer', 'whatsapp marketing', 'bulk sms', 'ai chatbot'];
+    $weak = ['your website', 'your business', 'your niche', 'let me know', 'i noticed', 'i came across', 'free trial', 'dominate',
+        'within 24 hours', 'measurable', 'no obligation', 'quick call', 'interested?', 'schedule a call', 'estimates'];
+    foreach ($strong as $k) if (preg_match('/\b' . preg_quote($k, '/') . '/u', $t)) { $score += 3; $why[] = $k; }
+    foreach ($weak as $k) if (str_contains($t, $k)) { $score += 1; $why[] = $k; }
+    if (preg_match('~https?://|www\.|\.(com|net|io|co|xyz|ru)\b/?~i', $text)) { $score += 2; $why[] = 'link'; }
+    $domain = strtolower(substr(strrchr($email, '@') ?: '', 1));
+    $badDomains = ['jmailservice.com', 'mailinator.com', 'guerrillamail.com', 'yopmail.com', 'tempmail.com', '10minutemail.com',
+        'sharklasers.com', 'trashmail.com', 'getnada.com', 'temp-mail.org', 'dispostable.com'];
+    if ($domain !== '' && in_array($domain, $badDomains, true)) { $score += 4; $why[] = 'throwaway email'; }
+    if ($startedAt <= 0) { $score += 2; $why[] = 'form not used'; }
+    if (preg_match('/[\x{0900}-\x{097F}]/u', $text)) { $score -= 3; }   // Hindi text: a real local visitor
+    return [$score, $why];
+}
+[$spamScore, $spamWhy] = ge_spam_score($message . ' ' . $company . ' ' . $name, $email, $startedAt);
+if ($spamScore >= 4) {
+    $lead['spam'] = ['score' => $spamScore, 'reasons' => $spamWhy];
+    @file_put_contents($privateDir . '/spam-' . date('Y-m') . '.jsonl',
+        json_encode($lead, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n", FILE_APPEND | LOCK_EX);
+    // Same reply as a real lead, so the sender cannot tell it was filtered. No emails are sent.
+    respond(true, 'Thank you, ' . $name . '! Our solar expert will call you on ' . $phone . ' within one working day.');
+}
+
 // --- 1. save (always, before email, so no lead is lost) ---------------------
 $saved = @file_put_contents(
     $privateDir . '/leads-' . date('Y-m') . '.jsonl',
